@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  ToothTimer
+//
+//  Created by Feldmaus on 27.06.15.
+//  Copyright © 2015 ischlecken. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "macros.h"
+#import "AppDefines.h"
+
+
+#endif /* PrefixHeader_pch */

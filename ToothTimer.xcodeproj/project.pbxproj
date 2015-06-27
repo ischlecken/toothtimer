@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850529831B3EDB5C00DE1E6F /* HealthKit.framework */; };
+		85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D1FF1B3ED72600807955 /* AppDelegate.swift */; };
+		85D7D2021B3ED72600807955 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D2011B3ED72600807955 /* FirstViewController.swift */; };
+		85D7D2041B3ED72600807955 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D2031B3ED72600807955 /* SecondViewController.swift */; };
+		85D7D2071B3ED72600807955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D2051B3ED72600807955 /* Main.storyboard */; };
+		85D7D2091B3ED72600807955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D2081B3ED72600807955 /* Assets.xcassets */; };
+		85D7D20C1B3ED72600807955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D20A1B3ED72600807955 /* LaunchScreen.storyboard */; };
+		85DD47181B3EE6A9005BD7BE /* colorscheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 85DD47171B3EE6A9005BD7BE /* colorscheme.json */; };
+		85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD471B1B3EEBDB005BD7BE /* AppConfig.m */; };
+		85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD471E1B3EEBDB005BD7BE /* CommonCoreGraphics.m */; };
+		85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47211B3EEBDB005BD7BE /* NSArray+SectionInfo.m */; };
+		85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47231B3EEBDB005BD7BE /* NSString+Date.m */; };
+		85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47251B3EEBDB005BD7BE /* SectionInfo.m */; };
+		85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47271B3EEBDB005BD7BE /* SettingsItem.m */; };
+		85DD47341B3EEBDB005BD7BE /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47291B3EEBDB005BD7BE /* UIColor+Hexadecimal.m */; };
+		85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */; };
+		85DD47361B3EEBDB005BD7BE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		850529821B3EDAFC00DE1E6F /* ToothTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ToothTimer.entitlements; sourceTree = "<group>"; };
+		850529831B3EDB5C00DE1E6F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		850529D01B3EE2A500DE1E6F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		85D7D1FC1B3ED72600807955 /* ToothTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToothTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D7D1FF1B3ED72600807955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		85D7D2011B3ED72600807955 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		85D7D2031B3ED72600807955 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		85D7D2061B3ED72600807955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		85D7D2081B3ED72600807955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85D7D20B1B3ED72600807955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		85D7D20D1B3ED72600807955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85DD47171B3EE6A9005BD7BE /* colorscheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colorscheme.json; sourceTree = "<group>"; };
+		85DD47191B3EE8E0005BD7BE /* ToothTimer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToothTimer-Bridging-Header.h"; sourceTree = "<group>"; };
+		85DD471A1B3EEBDB005BD7BE /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
+		85DD471B1B3EEBDB005BD7BE /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
+		85DD471C1B3EEBDB005BD7BE /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
+		85DD471D1B3EEBDB005BD7BE /* CommonCoreGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCoreGraphics.h; sourceTree = "<group>"; };
+		85DD471E1B3EEBDB005BD7BE /* CommonCoreGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCoreGraphics.m; sourceTree = "<group>"; };
+		85DD471F1B3EEBDB005BD7BE /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
+		85DD47201B3EEBDB005BD7BE /* NSArray+SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SectionInfo.h"; sourceTree = "<group>"; };
+		85DD47211B3EEBDB005BD7BE /* NSArray+SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SectionInfo.m"; sourceTree = "<group>"; };
+		85DD47221B3EEBDB005BD7BE /* NSString+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Date.h"; sourceTree = "<group>"; };
+		85DD47231B3EEBDB005BD7BE /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
+		85DD47241B3EEBDB005BD7BE /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
+		85DD47251B3EEBDB005BD7BE /* SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInfo.m; sourceTree = "<group>"; };
+		85DD47261B3EEBDB005BD7BE /* SettingsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsItem.h; sourceTree = "<group>"; };
+		85DD47271B3EEBDB005BD7BE /* SettingsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsItem.m; sourceTree = "<group>"; };
+		85DD47281B3EEBDB005BD7BE /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
+		85DD47291B3EEBDB005BD7BE /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
+		85DD472A1B3EEBDB005BD7BE /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		85DD472C1B3EEBDB005BD7BE /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
+		85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		85D7D1F91B3ED72600807955 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		85CA7BD31B3EED55004DF6E0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				85DD47191B3EE8E0005BD7BE /* ToothTimer-Bridging-Header.h */,
+				850529D01B3EE2A500DE1E6F /* PrefixHeader.pch */,
+				85DD471A1B3EEBDB005BD7BE /* AppConfig.h */,
+				85DD471B1B3EEBDB005BD7BE /* AppConfig.m */,
+				85DD471C1B3EEBDB005BD7BE /* AppDefines.h */,
+				85DD471D1B3EEBDB005BD7BE /* CommonCoreGraphics.h */,
+				85DD471E1B3EEBDB005BD7BE /* CommonCoreGraphics.m */,
+				85DD471F1B3EEBDB005BD7BE /* macros.h */,
+				85DD47201B3EEBDB005BD7BE /* NSArray+SectionInfo.h */,
+				85DD47211B3EEBDB005BD7BE /* NSArray+SectionInfo.m */,
+				85DD47221B3EEBDB005BD7BE /* NSString+Date.h */,
+				85DD47231B3EEBDB005BD7BE /* NSString+Date.m */,
+				85DD47241B3EEBDB005BD7BE /* SectionInfo.h */,
+				85DD47251B3EEBDB005BD7BE /* SectionInfo.m */,
+				85DD47261B3EEBDB005BD7BE /* SettingsItem.h */,
+				85DD47271B3EEBDB005BD7BE /* SettingsItem.m */,
+				85DD47281B3EEBDB005BD7BE /* UIColor+Hexadecimal.h */,
+				85DD47291B3EEBDB005BD7BE /* UIColor+Hexadecimal.m */,
+				85DD472A1B3EEBDB005BD7BE /* UIImage+ImageEffects.h */,
+				85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */,
+				85DD472C1B3EEBDB005BD7BE /* UIImage+Tint.h */,
+				85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		85CA7BD41B3EED7A004DF6E0 /* Supported Files */ = {
+			isa = PBXGroup;
+			children = (
+				85D7D20A1B3ED72600807955 /* LaunchScreen.storyboard */,
+				85DD47171B3EE6A9005BD7BE /* colorscheme.json */,
+				850529821B3EDAFC00DE1E6F /* ToothTimer.entitlements */,
+				85D7D20D1B3ED72600807955 /* Info.plist */,
+			);
+			name = "Supported Files";
+			sourceTree = "<group>";
+		};
+		85D7D1F31B3ED72600807955 = {
+			isa = PBXGroup;
+			children = (
+				850529831B3EDB5C00DE1E6F /* HealthKit.framework */,
+				85D7D1FE1B3ED72600807955 /* ToothTimer */,
+				85D7D1FD1B3ED72600807955 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		85D7D1FD1B3ED72600807955 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85D7D1FC1B3ED72600807955 /* ToothTimer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85D7D1FE1B3ED72600807955 /* ToothTimer */ = {
+			isa = PBXGroup;
+			children = (
+				85CA7BD41B3EED7A004DF6E0 /* Supported Files */,
+				85CA7BD31B3EED55004DF6E0 /* Utilities */,
+				85D7D1FF1B3ED72600807955 /* AppDelegate.swift */,
+				85D7D2011B3ED72600807955 /* FirstViewController.swift */,
+				85D7D2031B3ED72600807955 /* SecondViewController.swift */,
+				85D7D2051B3ED72600807955 /* Main.storyboard */,
+				85D7D2081B3ED72600807955 /* Assets.xcassets */,
+			);
+			path = ToothTimer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		85D7D1FB1B3ED72600807955 /* ToothTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85D7D2101B3ED72600807955 /* Build configuration list for PBXNativeTarget "ToothTimer" */;
+			buildPhases = (
+				85D7D1F81B3ED72600807955 /* Sources */,
+				85D7D1F91B3ED72600807955 /* Frameworks */,
+				85D7D1FA1B3ED72600807955 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToothTimer;
+			productName = ToothTimer;
+			productReference = 85D7D1FC1B3ED72600807955 /* ToothTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		85D7D1F41B3ED72600807955 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = ischlecken;
+				TargetAttributes = {
+					85D7D1FB1B3ED72600807955 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 4V27BGKSLA;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 85D7D1F71B3ED72600807955 /* Build configuration list for PBXProject "ToothTimer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 85D7D1F31B3ED72600807955;
+			productRefGroup = 85D7D1FD1B3ED72600807955 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				85D7D1FB1B3ED72600807955 /* ToothTimer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		85D7D1FA1B3ED72600807955 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85DD47181B3EE6A9005BD7BE /* colorscheme.json in Resources */,
+				85D7D20C1B3ED72600807955 /* LaunchScreen.storyboard in Resources */,
+				85D7D2091B3ED72600807955 /* Assets.xcassets in Resources */,
+				85D7D2071B3ED72600807955 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		85D7D1F81B3ED72600807955 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85DD47361B3EEBDB005BD7BE /* UIImage+Tint.m in Sources */,
+				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
+				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
+				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
+				85D7D2041B3ED72600807955 /* SecondViewController.swift in Sources */,
+				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
+				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
+				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
+				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
+				85DD47341B3EEBDB005BD7BE /* UIColor+Hexadecimal.m in Sources */,
+				85D7D2021B3ED72600807955 /* FirstViewController.swift in Sources */,
+				85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		85D7D2051B3ED72600807955 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85D7D2061B3ED72600807955 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		85D7D20A1B3ED72600807955 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85D7D20B1B3ED72600807955 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		85D7D20E1B3ED72600807955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		85D7D20F1B3ED72600807955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85D7D2111B3ED72600807955 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ToothTimer/ToothTimer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ToothTimer/PrefixHeader.pch;
+				INFOPLIST_FILE = ToothTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.ischlecken.ToothTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ToothTimer/ToothTimer-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		85D7D2121B3ED72600807955 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ToothTimer/ToothTimer.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ToothTimer/PrefixHeader.pch;
+				INFOPLIST_FILE = ToothTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.ischlecken.ToothTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ToothTimer/ToothTimer-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		85D7D1F71B3ED72600807955 /* Build configuration list for PBXProject "ToothTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D7D20E1B3ED72600807955 /* Debug */,
+				85D7D20F1B3ED72600807955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85D7D2101B3ED72600807955 /* Build configuration list for PBXNativeTarget "ToothTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85D7D2111B3ED72600807955 /* Debug */,
+				85D7D2121B3ED72600807955 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 85D7D1F41B3ED72600807955 /* Project object */;
+}
