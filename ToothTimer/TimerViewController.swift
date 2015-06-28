@@ -32,7 +32,12 @@ class TimerViewController: UIViewController
     actTimer--
     
     if actTimer<=0
-    { self.stopAction(nil) }
+    { _ = Log.createLog(Int32(AppConfig.sharedInstance().timerInSeconds),noOfSlices: Int16(AppConfig.sharedInstance().noOfSlices),status:"success")
+      
+      DataModel.sharedInstance.save()
+      
+      self.stopAction(nil)
+    }
   }
   
   func updateTimerLabel()

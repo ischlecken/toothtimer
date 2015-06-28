@@ -66,7 +66,7 @@
   
   if( self )
   { NSArray* udd =
-    @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"  andDefaultValue:[NSNumber numberWithInteger:240]],
+    @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"  andDefaultValue:[NSNumber numberWithInteger:20]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"noOfSlices"      andDefaultValue:[NSNumber numberWithInteger:4]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"usageCount"      andDefaultValue:[NSNumber numberWithInteger:0]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"default"]
@@ -267,6 +267,24 @@
   
   return result;
 }
+
+/**
+ *
+ */
++(NSURL*) databaseStoreURL
+{ return [[self.class applicationDocumentsDirectory] URLByAppendingPathComponent:@"tooltimer.sqlite"];
+}
+
+/**
+ *
+ */
++(BOOL) databaseStoreExists
+{ NSURL* url    = [AppConfig databaseStoreURL];
+  BOOL   result = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
+  
+  return result;
+}
+
 
 /**
  *

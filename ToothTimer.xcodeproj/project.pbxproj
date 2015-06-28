@@ -15,6 +15,10 @@
 		851313F51B3F1DDC009D713F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F11B3F1DDC009D713F /* Log.swift */; };
 		851313F81B3F2023009D713F /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F71B3F2023009D713F /* LogViewController.swift */; };
 		851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F91B3F2036009D713F /* SettingViewController.swift */; };
+		85C0EDBF1B40150300102F72 /* DAOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDBE1B40150300102F72 /* DAOModel.m */; };
+		85C0EDC11B4015ED00102F72 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C0EDC01B4015ED00102F72 /* CoreData.framework */; };
+		85C0EDC51B40180A00102F72 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC41B40180A00102F72 /* Error.m */; };
+		85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC61B401B4600102F72 /* DataModel.swift */; };
 		85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D1FF1B3ED72600807955 /* AppDelegate.swift */; };
 		85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D2011B3ED72600807955 /* TimerViewController.swift */; };
 		85D7D2071B3ED72600807955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D2051B3ED72600807955 /* Main.storyboard */; };
@@ -43,6 +47,13 @@
 		851313F11B3F1DDC009D713F /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		851313F71B3F2023009D713F /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		851313F91B3F2036009D713F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		85C0EDBD1B40150300102F72 /* DAOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOModel.h; sourceTree = "<group>"; };
+		85C0EDBE1B40150300102F72 /* DAOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAOModel.m; sourceTree = "<group>"; };
+		85C0EDC01B4015ED00102F72 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		85C0EDC31B40180A00102F72 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		85C0EDC41B40180A00102F72 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		85C0EDC61B401B4600102F72 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		85C0EDC81B40223B00102F72 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		85D7D1FC1B3ED72600807955 /* ToothTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToothTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D7D1FF1B3ED72600807955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D7D2011B3ED72600807955 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85C0EDC11B4015ED00102F72 /* CoreData.framework in Frameworks */,
 				850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,13 +106,27 @@
 				851313EF1B3F1DDC009D713F /* TimerParameter.swift */,
 				851313F01B3F1DDC009D713F /* Log+CoreDataProperties.swift */,
 				851313F11B3F1DDC009D713F /* Log.swift */,
+				85C0EDC61B401B4600102F72 /* DataModel.swift */,
 			);
 			name = dao;
+			sourceTree = "<group>";
+		};
+		85C0EDC21B4015FA00102F72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85C0EDC01B4015ED00102F72 /* CoreData.framework */,
+				850529831B3EDB5C00DE1E6F /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		85CA7BD31B3EED55004DF6E0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				85C0EDC31B40180A00102F72 /* Error.h */,
+				85C0EDC41B40180A00102F72 /* Error.m */,
+				85C0EDBD1B40150300102F72 /* DAOModel.h */,
+				85C0EDBE1B40150300102F72 /* DAOModel.m */,
 				85DD47191B3EE8E0005BD7BE /* ToothTimer-Bridging-Header.h */,
 				850529D01B3EE2A500DE1E6F /* PrefixHeader.pch */,
 				85DD471A1B3EEBDB005BD7BE /* AppConfig.h */,
@@ -142,8 +168,8 @@
 		85D7D1F31B3ED72600807955 = {
 			isa = PBXGroup;
 			children = (
-				850529831B3EDB5C00DE1E6F /* HealthKit.framework */,
 				85D7D1FE1B3ED72600807955 /* ToothTimer */,
+				85C0EDC21B4015FA00102F72 /* Frameworks */,
 				85D7D1FD1B3ED72600807955 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +193,7 @@
 				85D7D2051B3ED72600807955 /* Main.storyboard */,
 				851313F71B3F2023009D713F /* LogViewController.swift */,
 				851313F91B3F2036009D713F /* SettingViewController.swift */,
+				85C0EDC81B40223B00102F72 /* MyPlayground.playground */,
 			);
 			path = ToothTimer;
 			sourceTree = "<group>";
@@ -264,13 +291,16 @@
 				851313F21B3F1DDC009D713F /* TimerParameter+CoreDataProperties.swift in Sources */,
 				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
+				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
+				85C0EDBF1B40150300102F72 /* DAOModel.m in Sources */,
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
 				851313F51B3F1DDC009D713F /* Log.swift in Sources */,
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
+				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
 				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
 				85DD47341B3EEBDB005BD7BE /* UIColor+Hexadecimal.m in Sources */,
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,

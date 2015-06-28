@@ -12,6 +12,7 @@
 @property(          strong, nonatomic) NSString*                  colorSchemeName;
 @property(readonly, strong, nonatomic) NSArray*                   colorSchemeNames;
 @property(          assign, nonatomic) NSInteger                  usageCount;
+@property(          assign, nonatomic) BOOL                       iCloudAvailable;
 @property(          strong, nonatomic) NSURL*                     configFilePathURL;
 @property(          weak  , nonatomic) id<AppConfigDelegate>      delegate;
 
@@ -29,6 +30,9 @@
 +(BOOL)        copyIfModified:(NSURL*)sourceURL destination:(NSURL*)destinationURL;
 
 +(NSURL*)      appGroupURLForFileName:(NSString*)fileName;
++(NSURL*)      databaseStoreURL;
++(BOOL)        databaseStoreExists;
+
 +(void)        initConfigFiles;
 
 +(NSString*)   appName;

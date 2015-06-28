@@ -7,20 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
 class LogViewController: UITableViewController
 {
-  var data = ["bla","fasel","hugo","nikolaus"]
+  var logs : NSFetchedResultsController!
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    logs = Log.FetchedResultsController()
+    
+    do
+    { try logs.performFetch() }
+    catch
+    { NSLog("performFetch failed") }
   }
 
 
@@ -28,21 +30,28 @@ class LogViewController: UITableViewController
   //
   //
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int
-  { return 1 }
+  { return (logs.sections?.count)! }
 
   //
   //
   //
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-  { return data.count }
+  { var result = 0
+    
+    if let s=logs.sections
+    { result = s[section].numberOfObjects }
+    
+    return result
+  }
 
   //
   //
   //
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-
-    cell.textLabel?.text = data[indexPath.row]
+    let log  = logs.objectAtIndexPath(indexPath) as! Log
+    
+    cell.textLabel?.text = "Time:\(log.durationinseconds)"
 
     return cell
   }

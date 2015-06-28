@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8118.20" systemVersion="14D136" minimumToolsVersion="Xcode 7.0">
     <entity name="Log" representedClassName=".Log" syncable="YES">
-        <attribute name="duration" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="durationinseconds" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="logts" attributeType="Date" syncable="YES"/>
+        <attribute name="noofslices" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="status" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="TimerParameter" representedClassName=".TimerParameter" syncable="YES">
@@ -11,7 +12,7 @@
         <attribute name="noofslices" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Log" positionX="-13862" positionY="-10204" width="128" height="88"/>
+        <element name="Log" positionX="-13862" positionY="-10204" width="128" height="103"/>
         <element name="TimerParameter" positionX="-13689" positionY="-10204" width="128" height="88"/>
     </elements>
 </model>

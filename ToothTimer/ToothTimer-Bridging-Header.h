@@ -16,5 +16,6 @@
 #import "AppDefines.h"
 
 #import "AppConfig.h"
+#import "DAOModel.h"
 
 #endif /* ToothTimer_Bridging_Header_h */
