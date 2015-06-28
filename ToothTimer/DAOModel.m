@@ -7,8 +7,7 @@
 #import "ToothTimer-Swift.h"
 
 @interface DAOModel ()
-{ NSFetchedResultsController* _favorites;
-  NSURL*                      _ubiquityContainerURL;
+{ NSURL*                      _ubiquityContainerURL;
 }
 @end
 
