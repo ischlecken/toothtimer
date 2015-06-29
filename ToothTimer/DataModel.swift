@@ -2,14 +2,30 @@
 import Foundation
 import CoreData
 
-class DataModel
+class DataModel : NSObject
 {
+  static let kDatabaseName  = "toothtimer"
+  static let sharedInstance = DataModel()
   
   /**
    *
    */
-  static let managedObjectModel:NSManagedObjectModel =
-  { let modelURL = NSBundle.mainBundle().URLForResource("toothtimer", withExtension: "momd")
+  lazy var managedObjectContext:NSManagedObjectContext =
+  { var result = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+    
+    result.performBlockAndWait(
+    { result.persistentStoreCoordinator = self.persistentStoreCoordinator
+      result.mergePolicy                = NSMergePolicy(mergeType: NSMergePolicyType.MergeByPropertyObjectTrumpMergePolicyType)
+    })
+    
+    return result
+  }()
+
+  /**
+   *
+   */
+  lazy var managedObjectModel : NSManagedObjectModel =
+  { let modelURL = NSBundle.mainBundle().URLForResource(kDatabaseName, withExtension: "momd")
     
     return NSManagedObjectModel(contentsOfURL: modelURL!)!
   }()
@@ -17,9 +33,40 @@ class DataModel
   /**
    *
    */
-  static var persistentStoreCoordinator: NSPersistentStoreCoordinator =
-  { let result = NSPersistentStoreCoordinator(managedObjectModel: DataModel.managedObjectModel)
+  var persistentStoreCoordinator: NSPersistentStoreCoordinator?
     
+  func createPersistentStoreCoordinator() throws
+  { let result = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+    
+    NSNotificationCenter.defaultCenter().addObserver(self,selector: Selector("storesWillChange"),
+      name: NSPersistentStoreCoordinatorStoresWillChangeNotification,
+      object: result)
+ 
+    NSNotificationCenter.defaultCenter().addObserver(self,selector: Selector("storesDidChange"),
+      name: NSPersistentStoreCoordinatorStoresDidChangeNotification,
+      object: result)
+    
+    NSNotificationCenter.defaultCenter().addObserver(self,selector: Selector("persistentStoreDidImportUbiquitousContentChanges"),
+      name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
+      object: result)
+    
+    if let ubiURL=self.ubiquityContainerURL
+    { try self.addCloudSQLiteStoreWithURL(AppConfig.databaseStoreURL(),ubiquityURL: ubiURL,persistentStoreCoordinator: result)
+    }
+    else
+    { try self.addSQLiteStoreWithURL(AppConfig.databaseStoreURL(),persistentStoreCoordinator: result)
+    }
+    
+    self.persistentStoreCoordinator = result
+  }
+  
+  
+  /**
+   *
+   */
+  lazy var ubiquityContainerURL: NSURL? =
+  { let result = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
+      
     return result
   }()
   
@@ -27,30 +74,101 @@ class DataModel
   /**
    *
    */
-  func ubiquityContainerURL( completion:(available:Bool,url:NSURL?)->() ) -> NSURL
-  { if _ubiquityContainerURL==nil
-    { _ubiquityContainerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
-      
-      let iCloudAvailable = (_ubiquityContainerURL != nil)
-      
-      dispatch_async(dispatch_get_main_queue(),
-      { () -> Void in
-        
-        AppConfig.sharedInstance().iCloudAvailable = iCloudAvailable
-        
-        completion(available: iCloudAvailable,url: self._ubiquityContainerURL)
-      })
-    } /* of if */
+  override init()
+  { print("DataModel inited."); }
+  
+  /**
+   *
+   */
+  func resetCoreDataObjects()
+  { self.managedObjectContext.reset()
     
-    return _ubiquityContainerURL!
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+
+  /**
+   *
+   */
+  func addSQLiteStoreWithURL(storeURL:NSURL,persistentStoreCoordinator:NSPersistentStoreCoordinator) throws
+  { NSLog("storeURL:%@",storeURL)
+  
+    var resultError:ErrorType? = nil
+    
+    persistentStoreCoordinator .performBlockAndWait
+    { let options = [ NSMigratePersistentStoresAutomaticallyOption:true,NSInferMappingModelAutomaticallyOption:true ]
+      
+      do
+      { try persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options) }
+      catch let error
+      { resultError = error }
+    }
+  
+    if (resultError != nil)
+    { throw resultError! }
+  }
+  
+  /**
+   *
+   */
+  func addCloudSQLiteStoreWithURL(storeURL:NSURL,ubiquityURL:NSURL,persistentStoreCoordinator:NSPersistentStoreCoordinator) throws
+  { NSLog("storeURL:%@",storeURL)
+    
+    var resultError:ErrorType? = nil
+    
+    persistentStoreCoordinator .performBlockAndWait
+    { let coreDataCloudContent = ubiquityURL.path?.stringByAppendingPathComponent("CoreDataLogs");
+      let options              = [ NSPersistentStoreUbiquitousContentNameKey:DataModel.kDatabaseName,
+                                   NSPersistentStoreUbiquitousContentURLKey:NSURL.fileURLWithPath(coreDataCloudContent!),
+                                   NSMigratePersistentStoresAutomaticallyOption:true
+                                 ]
+    
+      do
+      { try persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options) }
+      catch let error
+      { resultError = error }
+    }
+    
+    if (resultError != nil)
+    { throw resultError! }
   }
   
   
   /**
    *
    */
-  init()
-  { print("DataModel inited."); }
+  func persistentStoreDidImportUbiquitousContentChanges(notification:NSNotification)
+  { NSLog("persistentStoreDidImportUbiquitousContentChanges")
+   
+    self.managedObjectContext.performBlock
+    { self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+    }
+  }
+
+  /**
+   *
+   */
+  func storesWillChange(notification:NSNotification)
+  { NSLog("storesWillChange")
+    
+    self.managedObjectContext.performBlock
+    { if self.managedObjectContext.hasChanges
+      {
+        do
+        { try self.managedObjectContext.save() }
+        catch
+        { }
+      }
+    }
+  }
+
+  /**
+   *
+   */
+  func storesDidChange(notification:NSNotification)
+  { NSLog("storesDidChange")
+    
+  }
+
   
   /**
    *
@@ -61,16 +179,9 @@ class DataModel
     do
     { try moc.save() }
     catch
-    {
-      NSLog("Error in MOC.save")
+    { NSLog("Error in MOC.save")
     }
-    
-    
   }
   
-  static  let sharedInstance = DataModel()
-  
-  private var _ubiquityContainerURL:NSURL?=nil
-  
-          var managedObjectContext:NSManagedObjectContext?
 }
+/*==============END-OF-FILE==============================*/
