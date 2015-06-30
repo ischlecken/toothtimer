@@ -38,15 +38,15 @@ class DataModel : NSObject
   func createPersistentStoreCoordinator() throws
   { let result = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
     
-    NSNotificationCenter.defaultCenter().addObserver(self,selector: Selector("storesWillChange"),
+    NSNotificationCenter.defaultCenter().addObserver(self,selector: "storesWillChange:",
       name: NSPersistentStoreCoordinatorStoresWillChangeNotification,
       object: result)
  
-    NSNotificationCenter.defaultCenter().addObserver(self,selector: Selector("storesDidChange"),
+    NSNotificationCenter.defaultCenter().addObserver(self,selector: "storesDidChange:",
       name: NSPersistentStoreCoordinatorStoresDidChangeNotification,
       object: result)
     
-    NSNotificationCenter.defaultCenter().addObserver(self,selector: Selector("persistentStoreDidImportUbiquitousContentChanges"),
+    NSNotificationCenter.defaultCenter().addObserver(self,selector: "persistentStoreDidImportUbiquitousContentChanges:",
       name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
       object: result)
     
@@ -75,7 +75,17 @@ class DataModel : NSObject
    *
    */
   override init()
-  { print("DataModel inited."); }
+  { super.init()
+    
+    print("DataModel inited.")
+  
+    do
+    { try self.createPersistentStoreCoordinator() }
+    catch
+    { NSLog("error while creating persistentstorecoordinator:\(error)")
+      
+    }
+  }
   
   /**
    *
@@ -174,12 +184,12 @@ class DataModel : NSObject
    *
    */
   func save()
-  { let moc = DAOModel.sharedInstance().managedObjectContext
+  { let moc = self.managedObjectContext
     
     do
     { try moc.save() }
-    catch
-    { NSLog("Error in MOC.save")
+    catch let error
+    { NSLog("Error in save:\(error)")
     }
   }
   

@@ -14,9 +14,9 @@ import CoreData
 
 extension Log {
 
-    @NSManaged var logts: NSTimeInterval
-    @NSManaged var durationinseconds: Int32
-    @NSManaged var noofslices: Int16
+    @NSManaged var logts: NSDate
+    @NSManaged var durationinseconds: NSNumber
+    @NSManaged var noofslices: NSNumber
     @NSManaged var status: String?
 
 }

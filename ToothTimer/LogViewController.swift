@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class LogViewController: UITableViewController
+class LogViewController: UITableViewController,NSFetchedResultsControllerDelegate
 {
   var logs : NSFetchedResultsController!
   
@@ -18,6 +18,8 @@ class LogViewController: UITableViewController
     super.viewDidLoad()
     
     logs = Log.FetchedResultsController()
+    logs.delegate = self
+    
     
     do
     { try logs.performFetch() }
@@ -51,9 +53,72 @@ class LogViewController: UITableViewController
   { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
     let log  = logs.objectAtIndexPath(indexPath) as! Log
     
-    cell.textLabel?.text = "Time:\(log.durationinseconds)"
-
+    cell.textLabel?.text = "\(log.status!):\(log.durationinseconds)"
+    cell.detailTextLabel?.text = "ts:\(log.logts)"
     return cell
+  }
+  
+  
+  func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    self.tableView.beginUpdates()
+  }
+  
+  func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
+  {
+    switch(type) {
+      
+    case .Insert:
+      if let newIndexPath = newIndexPath {
+        tableView.insertRowsAtIndexPaths([newIndexPath],
+          withRowAnimation:UITableViewRowAnimation.Fade)
+      }
+      
+    case .Delete:
+      if let indexPath = indexPath {
+        tableView.deleteRowsAtIndexPaths([indexPath],
+          withRowAnimation: UITableViewRowAnimation.Fade)
+      }
+      
+    case .Update:
+      if let indexPath = indexPath {
+        tableView.cellForRowAtIndexPath(indexPath)
+      }
+      
+    case .Move:
+      if let indexPath = indexPath {
+        if let newIndexPath = newIndexPath {
+          tableView.deleteRowsAtIndexPaths([indexPath],
+            withRowAnimation: UITableViewRowAnimation.Fade)
+          tableView.insertRowsAtIndexPaths([newIndexPath],
+            withRowAnimation: UITableViewRowAnimation.Fade)
+        }
+      }
+    }
+  }
+  
+  func controller(controller: NSFetchedResultsController,
+    didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+    atIndex sectionIndex: Int,
+    forChangeType type: NSFetchedResultsChangeType)
+  {
+    switch(type) {
+      
+    case .Insert:
+      tableView.insertSections(NSIndexSet(index: sectionIndex),
+        withRowAnimation: UITableViewRowAnimation.Fade)
+      
+    case .Delete:
+      tableView.deleteSections(NSIndexSet(index: sectionIndex),
+        withRowAnimation: UITableViewRowAnimation.Fade)
+      
+    default:
+      break
+    }
+  }
+  
+  func controllerDidChangeContent(controller: NSFetchedResultsController)
+  {
+    tableView.endUpdates()
   }
   
   /*

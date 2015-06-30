@@ -13,18 +13,18 @@ import CoreData
 class Log: NSManagedObject
 {
   class func createLog(durationInSeconds:Int32,noOfSlices:Int16,status:String) -> Log
-  { let result = NSEntityDescription .insertNewObjectForEntityForName("Log", inManagedObjectContext: DAOModel.sharedInstance().managedObjectContext) as! Log
+  { let result = NSEntityDescription .insertNewObjectForEntityForName("Log", inManagedObjectContext: DataModel.sharedInstance.managedObjectContext) as! Log
     
-    result.durationinseconds = durationInSeconds
-    result.noofslices        = noOfSlices
     result.status            = status
-    result.logts             = NSDate().timeIntervalSince1970
-  
+    result.logts             = NSDate()
+    result.durationinseconds = NSNumber(int:durationInSeconds)
+    result.noofslices        = NSNumber(int:Int32(noOfSlices))
+    
     return result
   }
 
   class func fetchRequest() -> NSFetchRequest
-  { let entity       = NSEntityDescription .entityForName("Log", inManagedObjectContext: DAOModel.sharedInstance().managedObjectContext)
+  { let entity       = NSEntityDescription .entityForName("Log", inManagedObjectContext: DataModel.sharedInstance.managedObjectContext)
     let fetchRequest = NSFetchRequest()
     
     fetchRequest.entity          = entity
@@ -36,7 +36,7 @@ class Log: NSManagedObject
   
   class func FetchedResultsController() -> NSFetchedResultsController
   { let result = NSFetchedResultsController(fetchRequest: Log.fetchRequest(),
-                                            managedObjectContext: DAOModel.sharedInstance().managedObjectContext,
+                                            managedObjectContext: DataModel.sharedInstance.managedObjectContext,
                                             sectionNameKeyPath: nil,
                                             cacheName: nil
                                            )
