@@ -14,7 +14,7 @@
 #import <CoreData/CoreData.h>
 
 #import "macros.h"
-#import "AppDefines.h"
+//#import "AppDefines.h"
 
 
 #endif /* PrefixHeader_pch */

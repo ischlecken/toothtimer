@@ -51,10 +51,10 @@ class DataModel : NSObject
       object: result)
     
     if let ubiURL=self.ubiquityContainerURL
-    { try self.addCloudSQLiteStoreWithURL(AppConfig.databaseStoreURL(),ubiquityURL: ubiURL,persistentStoreCoordinator: result)
+    { try self.addCloudSQLiteStoreWithURL(NSURL.databaseStoreURL,ubiquityURL: ubiURL,persistentStoreCoordinator: result)
     }
     else
-    { try self.addSQLiteStoreWithURL(AppConfig.databaseStoreURL(),persistentStoreCoordinator: result)
+    { try self.addSQLiteStoreWithURL(NSURL.databaseStoreURL,persistentStoreCoordinator: result)
     }
     
     self.persistentStoreCoordinator = result
@@ -74,7 +74,7 @@ class DataModel : NSObject
   /**
    *
    */
-  override init()
+  private override init()
   { super.init()
     
     print("DataModel inited.")

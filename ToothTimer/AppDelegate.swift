@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
   { AppConfig .initConfigFiles()
     
-    if AppConfig .sharedInstance().usageCount > Int(kUsageCountRemainderThreshold)
+    if AppConfig .sharedInstance().usageCount > Int(Constant.kUsageCountRemainderThreshold)
     { NSLog("show rating dialogue")
     } /* of if */
     
-    let tintColor = AppConfig .sharedInstance().colorWithName(kTintColorName)
+    UIColor.selectedColorSchemeName = AppConfig.sharedInstance().colorSchemeName
     
-    window?.tintColor = tintColor as! UIColor
-    
+    if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
+    { window?.tintColor = tintColor }
     
     return true
   }

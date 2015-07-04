@@ -1,7 +1,6 @@
 #import "AppConfig.h"
-#import "AppDefines.h"
 #import "macros.h"
-#import "UIColor+Hexadecimal.h"
+#import "ToothTimer-Swift.h"
 
 #pragma mark - UserDefaultDesc
 
@@ -81,7 +80,6 @@
     self.userDefaults = [[NSMutableDictionary alloc] initWithCapacity:udd.count];
     
     [self registerUserDefaults];
-    [self loadColorScheme];
   } /* of if */
   
   return self;
@@ -106,7 +104,9 @@
  *
  */
 -(void) reloadConfigUserDefaults
-{ self.configUserDefaultsStore = [[NSUserDefaults alloc] initWithSuiteName:kAppGroup]; }
+{ NSString* appGroup = [Constant kAppGroup];
+  
+  self.configUserDefaultsStore = [[NSUserDefaults alloc] initWithSuiteName:appGroup]; }
 
 
 /**
@@ -234,204 +234,7 @@
 { [self setConfigValue:value forKey:@"colorSchemeName"]; }
 
 
-#pragma mark Paths
 
-/**
- *
- */
-+(NSURL*) applicationDocumentsDirectory
-{ return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]; }
-
-
-/**
- *
- */
-+(NSURL*) documentFileURL:(NSString*)fileName
-{ return [NSURL URLWithString:fileName relativeToURL:[AppConfig applicationDocumentsDirectory]]; }
-
-
-/**
- *
- */
-+(NSURL*) colorSchemeURL
-{ return [AppConfig appGroupURLForFileName:[NSString stringWithFormat:@"%@.json",kColorSchemeFileName]]; }
-
-/**
- *
- */
-+(NSURL*) appGroupURLForFileName:(NSString*)fileName
-{ NSURL* storeURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:kAppGroup];
-  NSURL* result   = [storeURL URLByAppendingPathComponent:fileName];
-  
-  //_NSLOG(@"result:%@",result);
-  
-  return result;
-}
-
-/**
- *
- */
-+(NSURL*) databaseStoreURL
-{ return [[self.class applicationDocumentsDirectory] URLByAppendingPathComponent:@"tooltimer.sqlite"];
-}
-
-/**
- *
- */
-+(BOOL) databaseStoreExists
-{ NSURL* url    = [AppConfig databaseStoreURL];
-  BOOL   result = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
-  
-  return result;
-}
-
-
-/**
- *
- */
-+(void) copyToSharedLocationIfNotExists:(NSString*)fileName andType:(NSString*)fileType
-{ NSString* sharedFilePath = [[AppConfig appGroupURLForFileName:[NSString stringWithFormat:@"%@.%@",fileName,fileType]] path];
-  
-  if( ![[NSFileManager defaultManager] fileExistsAtPath:sharedFilePath] )
-  { NSString* filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
-    NSError*  error    = nil;
-    
-    if( ![[NSFileManager defaultManager] copyItemAtPath:filePath toPath:sharedFilePath error:&error] )
-      _NSLOG(@"could not copy %@ to %@:%@",filePath,sharedFilePath,error);
-  } /* of if */
-}
-
-/**
- *
- */
-+(void) copyToSharedLocation:(NSString*)fileName andType:(NSString*)fileType
-{ NSString* sharedFilePath = [[AppConfig appGroupURLForFileName:[NSString stringWithFormat:@"%@.%@",fileName,fileType]] path];
-  
-  NSError* error = nil;
-  
-  if( [[NSFileManager defaultManager] fileExistsAtPath:sharedFilePath] )
-  { if( ![[NSFileManager defaultManager] removeItemAtPath:sharedFilePath error:&error] )
-      _NSLOG(@"could not remove %@:%@",sharedFilePath,error);
-  } /* of if */
-  
-  NSString* filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
-  if( ![[NSFileManager defaultManager] copyItemAtPath:filePath toPath:sharedFilePath error:&error] )
-    _NSLOG(@"could not copy %@ to %@:%@",filePath,sharedFilePath,error);
-}
-
-/**
- *
- */
-+(BOOL) copyIfModified:(NSURL*)sourceURL destination:(NSURL*)destinationURL
-{ BOOL           result      = NO;
-  BOOL           copyFile    = NO;
-  NSFileManager* fileManager = [NSFileManager defaultManager];
-  
-  if( sourceURL && destinationURL )
-  { if( ![fileManager fileExistsAtPath:[destinationURL path]] )
-      copyFile = YES;
-    else
-    { NSDictionary* sourceFileAttributes = [fileManager attributesOfItemAtPath:[sourceURL path] error:NULL];
-      NSDictionary* destFileAttributes   = [fileManager attributesOfItemAtPath:[destinationURL path] error:NULL];
-      
-      if( sourceFileAttributes && destFileAttributes )
-      { NSNumber* sourceFileSize = sourceFileAttributes[NSFileSize];
-        NSNumber* destFileSize   = destFileAttributes[NSFileSize];
-      
-        _NSLOG(@"sourceFileSize:%@ destFileSize:%@",sourceFileSize,destFileSize);
-        
-        if( ![sourceFileSize isEqualToNumber:destFileSize] )
-          copyFile = YES;
-      } /* of if */
-    } /* of else */
-    
-    if( copyFile )
-    { NSError* error = nil;
-      
-      if( [fileManager fileExistsAtPath:[destinationURL path]] &&
-          ![fileManager removeItemAtPath:[destinationURL path] error:&error]
-         )
-        _NSLOG(@"remove of %@ failed:%@",destinationURL,error);
-      
-      if( [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error] )
-      { _NSLOG(@"copied %@ to %@",sourceURL,destinationURL);
-        
-        result = YES;
-      } /* of if */
-      else
-        _NSLOG(@"copy of %@ to %@ failed:%@",sourceURL,destinationURL,error);
-    } /* of if */
-  } /* of if */
-  
-  return result;
-}
-
-#pragma mark Colorscheme
-
-/**
- *
- */
--(void) loadColorScheme
-{ NSError*      error    = nil;
-  NSString*     dataPath = [[AppConfig colorSchemeURL] path];
-  
-  if( dataPath )
-    self.colorScheme = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath]
-                                                       options:kNilOptions
-                                                         error:&error];
-  
-}
-
-
-/**
- *
- */
--(NSArray*) colorSchemeNames
-{ NSMutableArray* result = [[NSMutableArray alloc] initWithCapacity:3];
-  
-  for( NSString* colorSchemeName in self.colorScheme )
-    [result addObject:colorSchemeName];
-  
-  return result;
-}
-
-/**
- *
- */
--(id) colorWithName:(NSString*)colorName
-{ id result = nil;
-  
-  if( self.colorCache==nil )
-    self.colorCache = [[NSMutableDictionary alloc] initWithCapacity:10];
-  
-  result = [self.colorCache objectForKey:colorName];
-  
-  if( result==nil && self.colorScheme )
-  { NSDictionary* currentColorScheme = [self.colorScheme objectForKey:self.colorSchemeName];
-    
-    if( currentColorScheme )
-    { id colorValue = [currentColorScheme objectForKey:colorName];
-      
-      if( [colorValue isKindOfClass:[NSString class]] )
-        result = [UIColor colorWithHexString:colorValue];
-      else if( [colorValue isKindOfClass:[NSArray class]] )
-      { NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity:5];
-        
-        for( NSString* c in colorValue )
-          [colors addObject:[UIColor colorWithHexString:c]];
-        
-        result = colors;
-      } /* of else if */
-      
-      if( result )
-        [self.colorCache setObject:result forKey:colorName];
-    } /* of if */
-  } /* of if */
-  
-  _NSLOG(@"%@:%@",colorName,result);
-  
-  return result;
-}
 
 #pragma mark User Defaults
 
@@ -489,35 +292,8 @@
  *
  */
 +(void) initConfigFiles
-{ [AppConfig copyToSharedLocation:kColorSchemeFileName andType:@"json"];
+{ 
 }
 
-#pragma mark app info
 
-/**
- *
- */
-+(NSString*) appName
-{ NSDictionary* localizedInfo    = [[NSBundle mainBundle] localizedInfoDictionary];
-  
-  return localizedInfo[@"CFBundleDisplayName"];
-}
-
-/**
- *
- */
-+(NSString*) appVersion
-{ NSDictionary* info             = [[NSBundle mainBundle] infoDictionary];
-  
-  return info[@"CFBundleShortVersionString"];
-}
-
-/**
- *
- */
-+(NSString*) appBuild
-{ NSDictionary* info             = [[NSBundle mainBundle] infoDictionary];
-  
-  return info[@"CFBundleVersion"];
-}
 @end

@@ -13,9 +13,8 @@
 #import <Foundation/Foundation.h>
 
 #import "macros.h"
-#import "AppDefines.h"
 
 #import "AppConfig.h"
-#import "DAOModel.h"
+#import "UIColor+Hexadecimal.h"
 
 #endif /* ToothTimer_Bridging_Header_h */
