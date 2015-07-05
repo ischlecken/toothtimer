@@ -14,9 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
-  { AppConfig .initConfigFiles()
-    
-    if AppConfig .sharedInstance().usageCount > Int(Constant.kUsageCountRemainderThreshold)
+  { if AppConfig .sharedInstance().usageCount > Int(Constant.kUsageCountRemainderThreshold)
     { NSLog("show rating dialogue")
     } /* of if */
     

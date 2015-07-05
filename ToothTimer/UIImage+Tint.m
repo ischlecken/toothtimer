@@ -1,6 +1,5 @@
 #import "UIImage+Tint.h"
 #import "CommonCoreGraphics.h"
-#import "UIColor+Hexadecimal.h"
 
 @implementation UIImage (Tint)
 

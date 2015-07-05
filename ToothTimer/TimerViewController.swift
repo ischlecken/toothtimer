@@ -23,6 +23,10 @@ class TimerViewController: UIViewController
 
     startButton.enabled = true
     stopButton.enabled  = false
+    
+    if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
+    { timeLabel.textColor = tintColor }
+    
     self.updateTimerLabel()
   }
 

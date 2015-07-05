@@ -35,10 +35,11 @@
 @interface AppConfig ()
 
 @property(nonatomic,strong) NSDictionary*        userDefaultDescription;
-@property(nonatomic,strong) NSMutableDictionary* userDefaults;
 @property(nonatomic,strong) NSUserDefaults*      configUserDefaultsStore;
-@property(nonatomic,strong) NSDictionary*        colorScheme;
-@property(nonatomic,strong) NSMutableDictionary* colorCache;
+
+-(id)           getConfigValue:(NSString*)key;
+-(void)         setConfigValue:(id)value forKey:(NSString*)key;
+-(BOOL)         configValueExists:(NSString*)key;
 @end
 
 @implementation AppConfig
@@ -68,7 +69,7 @@
     @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"  andDefaultValue:[NSNumber numberWithInteger:20]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"noOfSlices"      andDefaultValue:[NSNumber numberWithInteger:4]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"usageCount"      andDefaultValue:[NSNumber numberWithInteger:0]],
-       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"default"]
+       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"blue"]
      ];
     
     NSMutableDictionary* udd1 = [[NSMutableDictionary alloc] initWithCapacity:udd.count];
@@ -76,8 +77,6 @@
       [udd1 setObject:u forKey:u.keyName];
     
     self.userDefaultDescription = udd1;
-    
-    self.userDefaults = [[NSMutableDictionary alloc] initWithCapacity:udd.count];
     
     [self registerUserDefaults];
   } /* of if */
@@ -117,38 +116,13 @@
   UserDefaultDesc* udd    = self.userDefaultDescription[key];
   
   if( udd )
-  {
     result = [[self configUserDefaults] objectForKey:key];
-    
-    if( result!=nil )
-      [self.userDefaults setObject:result forKey:key];
-  } /* of if */
   
   //_NSLOG(@"getConfigValue(%@):%@",key,result);
   
   return result;
 }
 
-/**
- *
- */
--(BOOL) hasConfigValueChanged:(NSString*)key
-{ BOOL             result = NO;
-  UserDefaultDesc* udd    = self.userDefaultDescription[key];
-  
-  if( udd )
-  { NSObject* value0 = self.userDefaults[key];
-    NSObject* value1 = [[self configUserDefaults] objectForKey:key];
-    
-    //_NSLOG(@"[%@]:value0:%@ value1:%@",key,value0,value1);
-    
-    result = (value0==nil && value1!=nil) || (value1!=nil && value0==nil) || ![value0 isEqual:value1];
-  } /* of if */
-  
-  //_NSLOG(@"hasConfigValueChanged(%@):%d",key,result);
-  
-  return result;
-}
 
 /**
  *
@@ -168,16 +142,10 @@
   if( udd )
   { [self willChangeValueForKey:key];
     
-    [self.userDefaults setObject:value forKey:key];
-    
     [[self configUserDefaults] setObject:value forKey:key];
     [[self configUserDefaults] synchronize];
     
     [self didChangeValueForKey:key];
-
-    if( [key isEqualToString:@"colorSchemeName"] )
-    { self.colorCache = nil;
-    } /* of else if */
   } /* of if */
   
   //_NSLOG(@"setConfigValue(value=%@,key=%@)",value,key);
@@ -280,20 +248,5 @@
   
   NSString* appDomain = [[NSBundle mainBundle] bundleIdentifier];
   [[self configUserDefaults] removePersistentDomainForName:appDomain];
- 
-  //_NSLOG(@"resetUserDefaults:%@",appDomain);
-  
-  //[self configUserDefaults];
-  
-  self.userDefaults = [[NSMutableDictionary alloc] initWithCapacity:self.userDefaultDescription.count];
 }
-
-/**
- *
- */
-+(void) initConfigFiles
-{ 
-}
-
-
 @end

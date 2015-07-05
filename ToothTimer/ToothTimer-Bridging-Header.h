@@ -15,6 +15,5 @@
 #import "macros.h"
 
 #import "AppConfig.h"
-#import "UIColor+Hexadecimal.h"
 
 #endif /* ToothTimer_Bridging_Header_h */

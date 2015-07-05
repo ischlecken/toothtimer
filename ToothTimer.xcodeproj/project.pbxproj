@@ -16,6 +16,9 @@
 		851313F81B3F2023009D713F /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F71B3F2023009D713F /* LogViewController.swift */; };
 		851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F91B3F2036009D713F /* SettingViewController.swift */; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
+		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
+		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
+		85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A3A1B491A5900C88E95 /* NSFileManager.swift */; };
 		85C0EDC11B4015ED00102F72 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C0EDC01B4015ED00102F72 /* CoreData.framework */; };
 		85C0EDC51B40180A00102F72 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC41B40180A00102F72 /* Error.m */; };
 		85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC61B401B4600102F72 /* DataModel.swift */; };
@@ -31,7 +34,6 @@
 		85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47231B3EEBDB005BD7BE /* NSString+Date.m */; };
 		85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47251B3EEBDB005BD7BE /* SectionInfo.m */; };
 		85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47271B3EEBDB005BD7BE /* SettingsItem.m */; };
-		85DD47341B3EEBDB005BD7BE /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47291B3EEBDB005BD7BE /* UIColor+Hexadecimal.m */; };
 		85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */; };
 		85DD47361B3EEBDB005BD7BE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,9 @@
 		851313F71B3F2023009D713F /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		851313F91B3F2036009D713F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
+		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
+		85C03A3A1B491A5900C88E95 /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
 		85C0EDC01B4015ED00102F72 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		85C0EDC31B40180A00102F72 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		85C0EDC41B40180A00102F72 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
@@ -75,8 +80,6 @@
 		85DD47251B3EEBDB005BD7BE /* SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInfo.m; sourceTree = "<group>"; };
 		85DD47261B3EEBDB005BD7BE /* SettingsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsItem.h; sourceTree = "<group>"; };
 		85DD47271B3EEBDB005BD7BE /* SettingsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsItem.m; sourceTree = "<group>"; };
-		85DD47281B3EEBDB005BD7BE /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
-		85DD47291B3EEBDB005BD7BE /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 		85DD472A1B3EEBDB005BD7BE /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		85DD472C1B3EEBDB005BD7BE /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
@@ -109,6 +112,17 @@
 			name = dao;
 			sourceTree = "<group>";
 		};
+		85C03A371B4919E700C88E95 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				855F5A811B482C5F003448D1 /* AppGlobal.swift */,
+				85C03A351B49199900C88E95 /* UIColor.swift */,
+				85C03A381B491A1800C88E95 /* NSURL.swift */,
+				85C03A3A1B491A5900C88E95 /* NSFileManager.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		85C0EDC21B4015FA00102F72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +132,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		85CA7BD31B3EED55004DF6E0 /* Utilities */ = {
+		85CA7BD31B3EED55004DF6E0 /* Utilities-objc */ = {
 			isa = PBXGroup;
 			children = (
 				85C0EDC31B40180A00102F72 /* Error.h */,
@@ -138,14 +152,12 @@
 				85DD47251B3EEBDB005BD7BE /* SectionInfo.m */,
 				85DD47261B3EEBDB005BD7BE /* SettingsItem.h */,
 				85DD47271B3EEBDB005BD7BE /* SettingsItem.m */,
-				85DD47281B3EEBDB005BD7BE /* UIColor+Hexadecimal.h */,
-				85DD47291B3EEBDB005BD7BE /* UIColor+Hexadecimal.m */,
 				85DD472A1B3EEBDB005BD7BE /* UIImage+ImageEffects.h */,
 				85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */,
 				85DD472C1B3EEBDB005BD7BE /* UIImage+Tint.h */,
 				85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */,
 			);
-			name = Utilities;
+			name = "Utilities-objc";
 			sourceTree = "<group>";
 		};
 		85CA7BD41B3EED7A004DF6E0 /* Supported Files */ = {
@@ -182,9 +194,9 @@
 			children = (
 				851313F61B3F1E1E009D713F /* dao */,
 				85CA7BD41B3EED7A004DF6E0 /* Supported Files */,
-				85CA7BD31B3EED55004DF6E0 /* Utilities */,
+				85CA7BD31B3EED55004DF6E0 /* Utilities-objc */,
+				85C03A371B4919E700C88E95 /* Utilities */,
 				85D7D1FF1B3ED72600807955 /* AppDelegate.swift */,
-				855F5A811B482C5F003448D1 /* AppGlobal.swift */,
 				85D7D2011B3ED72600807955 /* TimerViewController.swift */,
 				85D7D2051B3ED72600807955 /* Main.storyboard */,
 				851313F71B3F2023009D713F /* LogViewController.swift */,
@@ -290,15 +302,17 @@
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
 				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
+				85C03A361B49199900C88E95 /* UIColor.swift in Sources */,
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
+				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
 				851313F51B3F1DDC009D713F /* Log.swift in Sources */,
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
 				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
 				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
-				85DD47341B3EEBDB005BD7BE /* UIColor+Hexadecimal.m in Sources */,
+				85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */,
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,
 				85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */,
 				851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */,
