@@ -66,7 +66,7 @@
     @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"  andDefaultValue:[NSNumber numberWithInteger:20]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"noOfSlices"      andDefaultValue:[NSNumber numberWithInteger:4]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"usageCount"      andDefaultValue:[NSNumber numberWithInteger:0]],
-       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"default"]
+       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"bonbon"]
      ];
     
     NSMutableDictionary* udd1 = [[NSMutableDictionary alloc] initWithCapacity:udd.count];

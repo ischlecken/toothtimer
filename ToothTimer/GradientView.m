@@ -12,6 +12,8 @@
   
   NSArray* gradientColors = [UIColor colorWithName:@"gradientColors"];
   
+  _NSLOG(@"gradientColors:%@",gradientColors);
+  
   UIColor* color0 = gradientColors[0];
   UIColor* color2 = gradientColors[1];
   
