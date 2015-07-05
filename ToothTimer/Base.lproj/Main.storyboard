@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -57,7 +57,7 @@
                             <outlet property="delegate" destination="sWA-uC-NnZ" id="O6j-3q-cxL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="3zd-Ed-n2P"/>
+                    <navigationItem key="navigationItem" title="Settings" id="3zd-Ed-n2P"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpH-ng-fYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -115,7 +115,7 @@
         <scene sceneID="511-mB-wyo">
             <objects>
                 <navigationController id="ftV-mw-3dT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="s5g-Dx-8hH"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="setting" id="s5g-Dx-8hH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vec-Mi-mLR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -167,7 +167,7 @@
                             <outlet property="delegate" destination="T5R-rX-7M6" id="6p2-k7-Dd8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="d6k-7F-twm"/>
+                    <navigationItem key="navigationItem" title="Log" id="d6k-7F-twm"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X05-dl-gr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,7 +177,7 @@
         <scene sceneID="6M1-od-46g">
             <objects>
                 <navigationController id="PfI-JD-6Ry" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Logs" id="fgD-QG-ju5"/>
+                    <tabBarItem key="tabBarItem" title="Logs" image="list" id="fgD-QG-ju5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYg-lc-ha1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -194,7 +194,7 @@
         <scene sceneID="fhx-QS-8BT">
             <objects>
                 <navigationController id="3NW-ad-JMA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Timer" id="inM-kZ-CNr"/>
+                    <tabBarItem key="tabBarItem" title="Timer" image="time" id="inM-kZ-CNr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EAV-kF-vO7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -208,4 +208,9 @@
             <point key="canvasLocation" x="677" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="list" width="19" height="19"/>
+        <image name="setting" width="19" height="19"/>
+        <image name="time" width="19" height="19"/>
+    </resources>
 </document>
