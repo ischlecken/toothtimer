@@ -63,10 +63,11 @@
   
   if( self )
   { NSArray* udd =
-    @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"  andDefaultValue:[NSNumber numberWithInteger:20]],
-       [UserDefaultDesc userDefaultDescWithKeyName:@"noOfSlices"      andDefaultValue:[NSNumber numberWithInteger:4]],
-       [UserDefaultDesc userDefaultDescWithKeyName:@"usageCount"      andDefaultValue:[NSNumber numberWithInteger:0]],
-       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"bonbon"]
+    @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"      andDefaultValue:[NSNumber numberWithInteger:60]],
+       [UserDefaultDesc userDefaultDescWithKeyName:@"noOfSlices"          andDefaultValue:[NSNumber numberWithInteger:4]],
+       [UserDefaultDesc userDefaultDescWithKeyName:@"usageCount"          andDefaultValue:[NSNumber numberWithInteger:0]],
+       [UserDefaultDesc userDefaultDescWithKeyName:@"notificationEnabled" andDefaultValue:[NSNumber numberWithBool:NO]],
+       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName"     andDefaultValue:@"bonbon"]
      ];
     
     NSMutableDictionary* udd1 = [[NSMutableDictionary alloc] initWithCapacity:udd.count];
@@ -184,6 +185,19 @@
  */
 -(void) setUsageCount:(NSInteger)value
 { [self setConfigValue:[NSNumber numberWithInteger:value] forKey:@"usageCount"]; }
+
+
+/**
+ *
+ */
+-(BOOL) notificationEnabled
+{ NSNumber* result = [self getConfigValue:@"notificationEnabled"]; return [result boolValue]; }
+
+/**
+ *
+ */
+-(void) setNotificationEnabled:(BOOL)value
+{ [self setConfigValue:[NSNumber numberWithBool:value] forKey:@"notificationEnabled"]; }
 
 
 /**

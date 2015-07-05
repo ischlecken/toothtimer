@@ -8,9 +8,10 @@
 #import "SectionInfo.h"
 #import "NSArray+SectionInfo.h"
 #import "AppConfig.h"
+#import "AppUtil.h"
 #import "ToothTimer-swift.h"
 
-#define kSectionTitleSearch       @"search"
+#define kSectionTitleTimer        @"timer"
 #define kSectionTitleNotification @"notification"
 #define kSectionTitleAbout        @"about"
 #define kSectionTitleGUI          @"gui"
@@ -19,15 +20,14 @@
 @interface SettingsViewController () <MFMailComposeViewControllerDelegate,
                                       TextfieldTableViewCellDelegate,
                                       BooleanTableViewCellDelegate,
+                                      UITableViewDelegate,UITableViewDataSource,
                                       UIPickerViewDataSource,UIPickerViewDelegate>
-@property(nonatomic, strong)          NSArray*      sections;
-@property(nonatomic, strong)          NSIndexPath*  pickerIndexPath;
 
-@property(nonatomic, strong)          NSArray*      configParameter;
-@property(nonatomic, strong)          SettingsItem* serviceNameItem;
-
-@property(nonatomic, weak  ) IBOutlet UITableView*  tableView;
-
+@property(nonatomic, strong)          NSArray*         sections;
+@property(nonatomic, strong)          NSIndexPath*     pickerIndexPath;
+@property(nonatomic, strong)          NSArray*         configParameter;
+@property(nonatomic, weak  ) IBOutlet UITableView*     tableView;
+@property(nonatomic, copy  )          SelectActionType pickerSelectAction;
 @end
 
 @implementation SettingsViewController
@@ -37,25 +37,25 @@
  */
 -(void) viewDidLoad
 { [super viewDidLoad];
-  
-  _NSLOG_SELECTOR;
 
   [self.tableView registerNib:[UINib nibWithNibName:@"TextfieldTableViewCell" bundle:nil] forCellReuseIdentifier:@"TextfieldCell"];
   [self.tableView registerNib:[UINib nibWithNibName:@"BooleanTableViewCell"   bundle:nil] forCellReuseIdentifier:@"BooleanCell"];
   [self.tableView registerNib:[UINib nibWithNibName:@"PickerTableViewCell"    bundle:nil] forCellReuseIdentifier:@"PickerCell"];
 
-  self.tableView.rowHeight          = UITableViewAutomaticDimension;
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 56.0f;
 
   NSMutableArray* sectionInfo   = [[NSMutableArray alloc] initWithCapacity:3];
   BOOL            useImperial   = NO;
 
-  SelectActionType pickerSelectAction = ^(NSIndexPath* indexPath,SettingsItem* item)
-  { [self.tableView beginUpdates];
+  __weak __typeof(self)weakSelf = self;
+  
+  self.pickerSelectAction = ^(NSIndexPath* indexPath,SettingsItem* item)
+  { [weakSelf.tableView beginUpdates];
     
     BOOL                addPicker = YES;
     NSIndexPath*        pip       = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-    MutableSectionInfo* msi       = self.sections[indexPath.section];
+    MutableSectionInfo* msi       = weakSelf.sections[indexPath.section];
     SettingsItem*       si        = msi.items[indexPath.row];
     id                  rowValue  = [_APPCONFIG getConfigValue:si.title];
     
@@ -63,7 +63,7 @@
       addPicker = NO;
     
     if( addPicker )
-    { NSIndexPath* openPickerIndexPath = [self.sections findFirstSettingItemWithCellId:@"PickerCell"];
+    { NSIndexPath* openPickerIndexPath = [weakSelf.sections findFirstSettingItemWithCellId:@"PickerCell"];
       
       //_NSLOG(@"openPickerIndexPath:%@",openPickerIndexPath);
       
@@ -80,92 +80,82 @@
       } /* of for */
       
       if( openPickerIndexPath )
-      { NSMutableArray* openPickerItems = (NSMutableArray*)[self.sections[openPickerIndexPath.section] items];
+      { NSMutableArray* openPickerItems = (NSMutableArray*)[weakSelf.sections[openPickerIndexPath.section] items];
         
         if( openPickerIndexPath.section!=pip.section || openPickerIndexPath.row>pip.row )
         { [openPickerItems removeObjectAtIndex:openPickerIndexPath.row];
-          [self.tableView deleteRowsAtIndexPaths:@[openPickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+          [weakSelf.tableView deleteRowsAtIndexPaths:@[openPickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
           
           [msi.items insertObject:pickerSetting atIndex:pip.row];
-          [self.tableView insertRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
+          [weakSelf.tableView insertRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
         } /* of if */
         else
         { [openPickerItems removeObjectAtIndex:openPickerIndexPath.row];
-          [self.tableView deleteRowsAtIndexPaths:@[openPickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+          [weakSelf.tableView deleteRowsAtIndexPaths:@[openPickerIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
           
           [msi.items insertObject:pickerSetting atIndex:pip.row-1];
-          [self.tableView insertRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
+          [weakSelf.tableView insertRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
         } /* of else */
       } /* of if */
       else
       { [msi.items insertObject:pickerSetting atIndex:pip.row];
-        [self.tableView insertRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
+        [weakSelf.tableView insertRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
       } /* of else */
     } /* of if */
     else
     { [msi.items removeObjectAtIndex:pip.row];
       
-      [self.tableView deleteRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
+      [weakSelf.tableView deleteRowsAtIndexPaths:@[pip] withRowAnimation:UITableViewRowAnimationFade];
     } /* of else */
     
-    [self.tableView endUpdates];
+    [weakSelf.tableView endUpdates];
   };
   
-  self.serviceNameItem = [SettingsItem settingItemWithTitle:@"serviceName"
-                                                  andCellId:@"DetailCell"
-                                            andSelectAction:pickerSelectAction
-                                            andPickerValues:[self loadServiceNames]];
-  
-  NSArray* searchSectionItems =
-  @[ self.serviceNameItem,
-     
-     [SettingsItem settingItemWithTitle:@"maxResultsetSize"
+  NSArray* timerSectionItems =
+  @[ [SettingsItem settingItemWithTitle:@"timerInSeconds"
                               andCellId:@"DetailCell"
-                        andSelectAction:pickerSelectAction
-                        andPickerValues:@[@5,@10,@20,@50,@100]],
+                        andSelectAction:self.pickerSelectAction
+                        andPickerValues:@[@1,@2,@3,@4,@5,@6,@7,@8,@9,@10]],
      
-     [SettingsItem settingItemWithTitle:useImperial ? @"searchRadiusInYard" : @"searchRadiusInMeter"
+     [SettingsItem settingItemWithTitle:@"noOfSlices"
                               andCellId:@"DetailCell"
-                        andSelectAction:pickerSelectAction
-                        andPickerValues:useImperial ? @[@800,@1000,@1760,@3520,@8800,@17600,@35200,@88000] : @[@800,@1000,@2000,@5000,@10000,@20000,@50000,@100000]],
+                        andSelectAction:self.pickerSelectAction
+                        andPickerValues:@[@1,@2,@3,@4,@4,@5,@6]],
      
   ];
-  [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleSearch andItems:[[NSMutableArray alloc] initWithArray:searchSectionItems]]];
+  [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleTimer andItems:[[NSMutableArray alloc] initWithArray:timerSectionItems]]];
   
-  NSArray* notificationSectionItems =
-  @[ [SettingsItem settingItemWithTitle:@"notificationEnabled"
-                              andCellId:@"BooleanCell"],
-     
+  NSMutableArray* notificationSectionItems = [[NSMutableArray alloc] initWithArray:
+                                             @[ [SettingsItem settingItemWithTitle:@"notificationEnabled" andCellId:@"BooleanCell"] ]];
+  
+  if( _APPCONFIG.notificationEnabled )
+    [notificationSectionItems addObjectsFromArray:
+    @[
      [SettingsItem settingItemWithTitle:useImperial ? @"notificationRadiusInYard" : @"notificationRadiusInMeter"
                               andCellId:@"DetailCell"
-                        andSelectAction:pickerSelectAction
+                        andSelectAction:self.pickerSelectAction
                         andPickerValues:useImperial ? @[@50,@100,@200,@500,@1000,@1760,@3520,@8800,@17600] : @[@50,@100,@200,@500,@1000,@2000,@5000,@10000]],
 
      [SettingsItem settingItemWithTitle:@"notificationDurationInMinutes"
                               andCellId:@"DetailCell"
-                        andSelectAction:pickerSelectAction
+                        andSelectAction:self.pickerSelectAction
                         andPickerValues:@[@10,@30,@60,@120]],
   
-  ];
+  ]];
+  
   [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleNotification andItems:[[NSMutableArray alloc] initWithArray:notificationSectionItems]]];
 
   NSArray* guiSectionItems =
   @[
     [SettingsItem settingItemWithTitle:@"colorSchemeName"
                              andCellId:@"DetailCell"
-                       andSelectAction:pickerSelectAction
+                       andSelectAction:self.pickerSelectAction
                        andPickerValues:[UIColor colorSchemeNames]],
    ];
   [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleGUI andItems:[[NSMutableArray alloc] initWithArray:guiSectionItems]]];
 
   NSArray* aboutSectionItems =
   @[
-     [SettingsItem settingItemWithTitle:@"visit"
-                              andCellId:@"BasicCell"
-                        andSelectAction:^(NSIndexPath* indexPath,SettingsItem *item)
-      {
-      }],
-     
      [SettingsItem settingItemWithTitle:@"contact"
                               andCellId:@"BasicCell"
                         andSelectAction:^(NSIndexPath* indexPath,SettingsItem *item)
@@ -198,7 +188,7 @@
      [SettingsItem settingItemWithTitle:@"about"
                               andCellId:@"BasicCell"
                         andSelectAction:^(NSIndexPath* indexPath,SettingsItem *item)
-      {
+      { [[AppUtil class] performSelector:@selector(aboutDialogue) withObject:nil afterDelay:1.0];
       }],
   ];
   [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleAbout andItems:[[NSMutableArray alloc] initWithArray:aboutSectionItems]]];
@@ -208,10 +198,10 @@
   self.configParameter = @[@"serviceNames"];
   
   for( NSString* configKeyPath in self.configParameter )
-    [_APPCONFIG addObserver:self
-                 forKeyPath:configKeyPath
-                    options:NSKeyValueObservingOptionNew
-                    context:NULL];
+    [[AppConfig sharedInstance] addObserver:self
+                                      forKeyPath:configKeyPath
+                                         options:NSKeyValueObservingOptionNew
+                                         context:NULL];
   
   self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithName:@"titleColor"]};
 }
@@ -230,9 +220,9 @@
  */
 -(NSArray*) loadServiceNames
 { NSMutableArray* serviceNames = [[NSMutableArray alloc] initWithCapacity:3];
-  [serviceNames addObject:@"auto"];
   [serviceNames addObject:@"bla"];
   [serviceNames addObject:@"fasel"];
+  [serviceNames addObject:@"label"];
   
   return serviceNames;
 }
@@ -259,7 +249,7 @@
  */
 -(void) dealloc
 { for( NSString* configKeyPath in self.configParameter )
-    [_APPCONFIG removeObserver:self forKeyPath:configKeyPath];
+    [[AppConfig sharedInstance] removeObserver:self forKeyPath:configKeyPath];
 }
 
 
@@ -320,6 +310,43 @@
 -(void) updateBoolValue:(BOOL)value forConfig:(NSString*)title
 { if( [_APPCONFIG configValueExists:title] )
     [_APPCONFIG setConfigValue:[NSNumber numberWithBool:value] forKey:title];
+  
+  if( [title isEqualToString:@"notificationEnabled"] )
+  { SectionInfo* si = [self.sections findSectionInfo:kSectionTitleNotification];
+    
+    if( value )
+    {
+      if( si.items.count==1 )
+      { MutableSectionInfo* msi         = (MutableSectionInfo*)si;
+        BOOL                useImperial = NO;
+
+        [msi.items addObjectsFromArray:
+        @[
+          [SettingsItem settingItemWithTitle:useImperial ? @"notificationRadiusInYard" : @"notificationRadiusInMeter"
+                                   andCellId:@"DetailCell"
+                             andSelectAction:self.pickerSelectAction
+                             andPickerValues:useImperial ? @[@50,@100,@200,@500,@1000,@1760,@3520,@8800,@17600] : @[@50,@100,@200,@500,@1000,@2000,@5000,@10000]],
+          
+          [SettingsItem settingItemWithTitle:@"notificationDurationInMinutes"
+                                   andCellId:@"DetailCell"
+                             andSelectAction:self.pickerSelectAction
+                             andPickerValues:@[@10,@30,@60,@120]],
+          
+          ]];
+      } /* of if */
+    } /* of if */
+    else
+    {
+      if( si.items.count==3 )
+      { MutableSectionInfo* msi = (MutableSectionInfo*)si;
+        
+        [msi.items removeLastObject];
+        [msi.items removeLastObject];
+      } /* of if */
+    } /* of else */
+    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+  } /* of if */
 }
 
 
@@ -365,9 +392,6 @@
   header.textLabel.textColor=[UIColor whiteColor];
 }
 
-/**
- *
- */
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 { UITableViewCell* cell          = nil;
   SectionInfo*     si            = self.sections[indexPath.section];
@@ -581,7 +605,7 @@
  */
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 { if( [[segue identifier] isEqualToString:@"ShowHelpSegue"] )
-  {
+  { 
   } /* of if */
 }
 
@@ -594,10 +618,7 @@
 { _NSLOG(@"keyPath=%@",keyPath);
   
   if( [keyPath isEqualToString:@"serviceNames"] )
-  { self.serviceNameItem.pickerValues = [self loadServiceNames];
-  
-    [self closePickerCells];
-    [self.tableView reloadData];
+  {
   } /* of if */
 }
 @end

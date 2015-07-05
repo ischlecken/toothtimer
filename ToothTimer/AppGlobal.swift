@@ -27,13 +27,13 @@ class Constant : NSObject
   }
   
   static var appVersion : String
-  { let localizedInfo = NSBundle.mainBundle().localizedInfoDictionary
+  { let localizedInfo = NSBundle.mainBundle().infoDictionary
     
     return localizedInfo?["CFBundleShortVersionString"] as! String;
   }
 
   static var appBuild : String
-  { let localizedInfo = NSBundle.mainBundle().localizedInfoDictionary
+  { let localizedInfo = NSBundle.mainBundle().infoDictionary
     
     return localizedInfo?["CFBundleVersion"] as! String;
   }

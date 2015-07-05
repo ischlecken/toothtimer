@@ -1,3 +1,3 @@
-@interface SettingsViewController<UITableViewDelegate,UITableViewDataSource> : UIViewController
+@interface SettingsViewController : UIViewController
 
 @end

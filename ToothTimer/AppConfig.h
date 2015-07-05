@@ -7,6 +7,7 @@
 @property(          assign, nonatomic) NSInteger                  noOfSlices;
 @property(          strong, nonatomic) NSString*                  colorSchemeName;
 @property(          assign, nonatomic) NSInteger                  usageCount;
+@property(          assign, nonatomic) BOOL                       notificationEnabled;
 
 -(id)           getConfigValue:(NSString*)key;
 -(void)         setConfigValue:(id)value forKey:(NSString*)key;

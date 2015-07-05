@@ -16,6 +16,7 @@
 		851313F81B3F2023009D713F /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F71B3F2023009D713F /* LogViewController.swift */; };
 		851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F91B3F2036009D713F /* SettingViewController.swift */; };
 		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
+		851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AF9EF1B49A8C500C42489 /* AppUtil.m */; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
@@ -63,6 +64,8 @@
 		851313F91B3F2036009D713F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		851AF9EB1B498BC500C42489 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851AF9ED1B498BCC00C42489 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		851AF9EE1B49A8C500C42489 /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
+		851AF9EF1B49A8C500C42489 /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 		85CA7BD31B3EED55004DF6E0 /* Utilities-objc */ = {
 			isa = PBXGroup;
 			children = (
+				851AF9EE1B49A8C500C42489 /* AppUtil.h */,
+				851AF9EF1B49A8C500C42489 /* AppUtil.m */,
 				85CFF8AE1B49818600C262F0 /* GradientView.h */,
 				85CFF8AF1B49818600C262F0 /* GradientView.m */,
 				85C0EDC31B40180A00102F72 /* Error.h */,
@@ -249,9 +254,9 @@
 		85D7D1FE1B3ED72600807955 /* ToothTimer */ = {
 			isa = PBXGroup;
 			children = (
+				85CA7BD41B3EED7A004DF6E0 /* Supported Files */,
 				85CFF8961B49812000C262F0 /* TableCells */,
 				851313F61B3F1E1E009D713F /* dao */,
-				85CA7BD41B3EED7A004DF6E0 /* Supported Files */,
 				85CA7BD31B3EED55004DF6E0 /* Utilities-objc */,
 				85C03A371B4919E700C88E95 /* Utilities */,
 				85D7D1FF1B3ED72600807955 /* AppDelegate.swift */,
@@ -369,6 +374,7 @@
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
 				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
+				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,
 				85C03A361B49199900C88E95 /* UIColor.swift in Sources */,
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,

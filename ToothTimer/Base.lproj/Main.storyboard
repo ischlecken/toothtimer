@@ -90,7 +90,7 @@
             </objects>
             <point key="canvasLocation" x="677" y="-695"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="Tv9-l9-wfM">
             <objects>
                 <viewController id="AEd-Nd-UJd" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ky9-8S-h3M">
-                                <rect key="frame" x="0.0" y="14" width="600" height="586"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="575"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="ANO-zT-bow" style="IBUITableViewCellStyleDefault" id="Fgp-9p-Tfi">
@@ -156,13 +156,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.40402873950000001" green="0.68183458610000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Ky9-8S-h3M" firstAttribute="top" secondItem="9Ih-TQ-Ig9" secondAttribute="bottom" constant="-50" id="8Ay-rq-TCm"/>
-                            <constraint firstItem="PlI-hb-Wzv" firstAttribute="top" secondItem="Ky9-8S-h3M" secondAttribute="bottom" constant="-49" id="F5g-Wu-p6e"/>
-                            <constraint firstAttribute="trailing" secondItem="Ky9-8S-h3M" secondAttribute="trailing" id="H9U-wu-JPw"/>
-                            <constraint firstItem="Ky9-8S-h3M" firstAttribute="leading" secondItem="IOT-3y-6aT" secondAttribute="leading" id="aKv-vk-169"/>
+                            <constraint firstItem="Ky9-8S-h3M" firstAttribute="top" secondItem="9Ih-TQ-Ig9" secondAttribute="bottom" constant="-44" id="H7o-oT-AHY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ky9-8S-h3M" secondAttribute="trailing" constant="-20" id="fDp-lU-PjZ"/>
+                            <constraint firstItem="PlI-hb-Wzv" firstAttribute="top" secondItem="Ky9-8S-h3M" secondAttribute="bottom" constant="-44" id="qWK-1J-OIX"/>
+                            <constraint firstItem="Ky9-8S-h3M" firstAttribute="leading" secondItem="IOT-3y-6aT" secondAttribute="leadingMargin" constant="-20" id="yfj-7e-wVs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="N53-VL-mR5"/>
+                    <navigationItem key="navigationItem" title="Settings" id="N53-VL-mR5"/>
                     <connections>
                         <outlet property="tableView" destination="Ky9-8S-h3M" id="4Gj-Wr-cX3"/>
                     </connections>

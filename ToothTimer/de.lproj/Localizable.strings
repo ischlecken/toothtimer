@@ -2,48 +2,41 @@
 /**
  * settings
  */
-"settings.sectiontitle.search"                              = "Suche";
+"settings.sectiontitle.timer"                               = "Zeituhr";
 "settings.sectiontitle.notification"                        = "Benachrichtigung";
 "settings.sectiontitle.about"                               = "Über";
 "settings.sectiontitle.gui"                                 = "UI";
 
-"settings.title.serviceName"                                = "Dienstname";
-"settings.title.maxResultsetSize"                           = "Max. Ergebnisanzahl";
-"settings.title.searchRadiusInMeter"                        = "Suchradius";
-"settings.title.searchRadiusInYard"                         = "Suchradius";
-"settings.title.locationOffset"                             = "Testpositionsoffset";
+"settings.title.timerInSeconds"                             = "Seconds";
+"settings.title.noOfSlices"                                 = "No. of slices";
+
 "settings.title.notificationEnabled"                        = "Benachrichtigung";
 "settings.title.notificationRadiusInMeter"                  = "Radius";
 "settings.title.notificationRadiusInYard"                   = "Radius";
 "settings.title.notificationDurationInMinutes"              = "Dauer";
 "settings.title.help"                                       = "Hilfe";
-"settings.title.visit"                                      = "«%1$@» besuchen";
 "settings.title.contact"                                    = "«%1$@» kontaktieren";
 "settings.title.rate"                                       = "«%1$@» bewerten";
 "settings.title.about"                                      = "Über «%1$@»";
 "settings.title.colorSchemeName"                            = "Farbschema";
 
-"settings.picker.searchRadiusInMeter.500"                   = "500 Meter";
-"settings.picker.searchRadiusInMeter.800"                   = "800 Meter";
-"settings.picker.searchRadiusInMeter.1000"                  = "1 km";
-"settings.picker.searchRadiusInMeter.2000"                  = "2 km";
-"settings.picker.searchRadiusInMeter.5000"                  = "5 km";
-"settings.picker.searchRadiusInMeter.10000"                 = "10 km";
-"settings.picker.searchRadiusInMeter.20000"                 = "20 km";
-"settings.picker.searchRadiusInMeter.50000"                 = "50 km";
-"settings.picker.searchRadiusInMeter.100000"                = "100 km";
-"settings.picker.searchRadiusInMeter.500000"                = "500 km";
+"settings.picker.timerInSeconds.60"                         = "1 minute";
+"settings.picker.timerInSeconds.120"                        = "2 minutes";
+"settings.picker.timerInSeconds.180"                        = "3 minutes";
+"settings.picker.timerInSeconds.240"                        = "4 minutes";
+"settings.picker.timerInSeconds.300"                        = "5 minutes";
+"settings.picker.timerInSeconds.360"                        = "6 minutes";
+"settings.picker.timerInSeconds.420"                        = "7 minutes";
+"settings.picker.timerInSeconds.480"                        = "8 minutes";
+"settings.picker.timerInSeconds.540"                        = "9 minutes";
+"settings.picker.timerInSeconds.600"                        = "10 minutes";
 
-"settings.picker.searchRadiusInYard.500"                    = "500 Yards";
-"settings.picker.searchRadiusInYard.800"                    = "800 Yards";
-"settings.picker.searchRadiusInYard.1000"                   = "1000 Yards";
-"settings.picker.searchRadiusInYard.1760"                   = "1 Meile";
-"settings.picker.searchRadiusInYard.3520"                   = "2 Meilen";
-"settings.picker.searchRadiusInYard.8800"                   = "5 Meilen";
-"settings.picker.searchRadiusInYard.17600"                  = "10 Meilen";
-"settings.picker.searchRadiusInYard.35200"                  = "20 Meilen";
-"settings.picker.searchRadiusInYard.88000"                  = "50 Meilen";
-"settings.picker.searchRadiusInYard.176000"                 = "100 Meilen";
+"settings.picker.noOfSlices.1"                              = "1";
+"settings.picker.noOfSlices.2"                              = "2";
+"settings.picker.noOfSlices.3"                              = "3";
+"settings.picker.noOfSlices.4"                              = "4";
+"settings.picker.noOfSlices.5"                              = "5";
+"settings.picker.noOfSlices.6"                              = "6";
 
 "settings.picker.notificationRadiusInMeter.50"              = "50 Meter";
 "settings.picker.notificationRadiusInMeter.100"             = "100 Meter";
@@ -73,18 +66,6 @@
 
 "settings.picker.locationOffset.NotSet"                     = "-";
 
-"settings.picker.serviceName.auto"                          = "Meine Position benutzen";
-"settings.picker.serviceName.US"                            = "Vereinigte Staaten";
-"settings.picker.serviceName.UK"                            = "Großbritannien";
-"settings.picker.serviceName.DE"                            = "Deutschand";
-"settings.picker.serviceName.NL"                            = "Niederlande";
-"settings.picker.serviceName.IT"                            = "Italien";
-"settings.picker.serviceName.ES"                            = "Spanien";
-"settings.picker.serviceName.TR"                            = "Türkey";
-"settings.picker.serviceName.FR"                            = "Frankreich";
-"settings.picker.serviceName.CA"                            = "Canada";
-
-
 "settings.picker.colorSchemeName.default"                   = "Standard";
 "settings.picker.colorSchemeName.bonbon"                    = "Bonbon";
 "settings.picker.colorSchemeName.blue"                      = "Blau";
@@ -105,5 +86,7 @@
 "contact.subject"                                           = "%1$@ Kontakt über iOS App";
 "contact.message"                                           = "Hallo %1$@, ";
 
-"vicinityutil.AboutTitle"                                   = "Über «%1$@»";
-"vicinityutil.AboutMessage"                                 = "Version %1$@ Build %2$@\n\nLSSi Europe Ltd.\nDolpin House - 140 Windmill Road\nSunbury-on-Thames\nMiddlesex TW16 7HT\n\nFindet Interessantes in Ihrer Nähe.";
+"apputil.AboutTitle"                                        = "Über «%1$@»";
+"apputil.AboutMessage"                                      = "Version %1$@ Build %2$@\n\nPutzen Sie ihre Zähne lang genug.";
+"apputil.CancelButtonTitle"                                 = "Abbrechen";
+"apputil.OKButtonTitle"                                     = "OK";
