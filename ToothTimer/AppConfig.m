@@ -37,9 +37,6 @@
 @property(nonatomic,strong) NSDictionary*        userDefaultDescription;
 @property(nonatomic,strong) NSUserDefaults*      configUserDefaultsStore;
 
--(id)           getConfigValue:(NSString*)key;
--(void)         setConfigValue:(id)value forKey:(NSString*)key;
--(BOOL)         configValueExists:(NSString*)key;
 @end
 
 @implementation AppConfig
@@ -69,7 +66,7 @@
     @[ [UserDefaultDesc userDefaultDescWithKeyName:@"timerInSeconds"  andDefaultValue:[NSNumber numberWithInteger:20]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"noOfSlices"      andDefaultValue:[NSNumber numberWithInteger:4]],
        [UserDefaultDesc userDefaultDescWithKeyName:@"usageCount"      andDefaultValue:[NSNumber numberWithInteger:0]],
-       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"blue"]
+       [UserDefaultDesc userDefaultDescWithKeyName:@"colorSchemeName" andDefaultValue:@"default"]
      ];
     
     NSMutableDictionary* udd1 = [[NSMutableDictionary alloc] initWithCapacity:udd.count];

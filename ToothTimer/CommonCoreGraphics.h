@@ -1,8 +1,3 @@
-//
-//  Created by Stefan Thomas on 15.01.2015.
-//  Copyright (c) 2015 LSSi Europe. All rights reserved.
-//
-
 void             drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor);
 void             drawLinearGradient1(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor);
 void             drawPathGradient(CGContextRef context, CGRect rect, CGPathRef path, CGColorRef startColor, CGColorRef endColor);

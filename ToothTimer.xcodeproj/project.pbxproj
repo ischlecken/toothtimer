@@ -15,6 +15,7 @@
 		851313F51B3F1DDC009D713F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F11B3F1DDC009D713F /* Log.swift */; };
 		851313F81B3F2023009D713F /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F71B3F2023009D713F /* LogViewController.swift */; };
 		851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F91B3F2036009D713F /* SettingViewController.swift */; };
+		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
@@ -22,6 +23,17 @@
 		85C0EDC11B4015ED00102F72 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85C0EDC01B4015ED00102F72 /* CoreData.framework */; };
 		85C0EDC51B40180A00102F72 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC41B40180A00102F72 /* Error.m */; };
 		85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC61B401B4600102F72 /* DataModel.swift */; };
+		85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8981B49815D00C262F0 /* BooleanTableViewCell.m */; };
+		85CFF8A41B49815D00C262F0 /* BooleanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF8991B49815D00C262F0 /* BooleanTableViewCell.xib */; };
+		85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF89B1B49815D00C262F0 /* PickerTableViewCell.m */; };
+		85CFF8A61B49815D00C262F0 /* PickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF89C1B49815D00C262F0 /* PickerTableViewCell.xib */; };
+		85CFF8A71B49815D00C262F0 /* TextfieldBooleanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF89E1B49815D00C262F0 /* TextfieldBooleanTableViewCell.m */; };
+		85CFF8A81B49815D00C262F0 /* TextfieldBooleanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF89F1B49815D00C262F0 /* TextfieldBooleanTableViewCell.xib */; };
+		85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8A11B49815D00C262F0 /* TextfieldTableViewCell.m */; };
+		85CFF8AA1B49815D00C262F0 /* TextfieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF8A21B49815D00C262F0 /* TextfieldTableViewCell.xib */; };
+		85CFF8AD1B49817900C262F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8AC1B49817900C262F0 /* SettingsViewController.m */; };
+		85CFF8B01B49818600C262F0 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8AF1B49818600C262F0 /* GradientView.m */; };
+		85CFF8C11B498B5900C262F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF8BF1B498B5900C262F0 /* Localizable.strings */; };
 		85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D1FF1B3ED72600807955 /* AppDelegate.swift */; };
 		85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D2011B3ED72600807955 /* TimerViewController.swift */; };
 		85D7D2071B3ED72600807955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D2051B3ED72600807955 /* Main.storyboard */; };
@@ -49,6 +61,8 @@
 		851313F11B3F1DDC009D713F /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		851313F71B3F2023009D713F /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		851313F91B3F2036009D713F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		851AF9EB1B498BC500C42489 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		851AF9ED1B498BCC00C42489 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
@@ -58,6 +72,24 @@
 		85C0EDC41B40180A00102F72 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		85C0EDC61B401B4600102F72 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		85C0EDC81B40223B00102F72 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		85CFF8971B49815D00C262F0 /* BooleanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooleanTableViewCell.h; sourceTree = "<group>"; };
+		85CFF8981B49815D00C262F0 /* BooleanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooleanTableViewCell.m; sourceTree = "<group>"; };
+		85CFF8991B49815D00C262F0 /* BooleanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BooleanTableViewCell.xib; sourceTree = "<group>"; };
+		85CFF89A1B49815D00C262F0 /* PickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerTableViewCell.h; sourceTree = "<group>"; };
+		85CFF89B1B49815D00C262F0 /* PickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerTableViewCell.m; sourceTree = "<group>"; };
+		85CFF89C1B49815D00C262F0 /* PickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerTableViewCell.xib; sourceTree = "<group>"; };
+		85CFF89D1B49815D00C262F0 /* TextfieldBooleanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextfieldBooleanTableViewCell.h; sourceTree = "<group>"; };
+		85CFF89E1B49815D00C262F0 /* TextfieldBooleanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextfieldBooleanTableViewCell.m; sourceTree = "<group>"; };
+		85CFF89F1B49815D00C262F0 /* TextfieldBooleanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextfieldBooleanTableViewCell.xib; sourceTree = "<group>"; };
+		85CFF8A01B49815D00C262F0 /* TextfieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextfieldTableViewCell.h; sourceTree = "<group>"; };
+		85CFF8A11B49815D00C262F0 /* TextfieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextfieldTableViewCell.m; sourceTree = "<group>"; };
+		85CFF8A21B49815D00C262F0 /* TextfieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextfieldTableViewCell.xib; sourceTree = "<group>"; };
+		85CFF8AB1B49817900C262F0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		85CFF8AC1B49817900C262F0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		85CFF8AE1B49818600C262F0 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		85CFF8AF1B49818600C262F0 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		85CFF8C01B498B5900C262F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		85CFF8C21B498B7400C262F0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85D7D1FC1B3ED72600807955 /* ToothTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToothTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D7D1FF1B3ED72600807955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85D7D2011B3ED72600807955 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +167,8 @@
 		85CA7BD31B3EED55004DF6E0 /* Utilities-objc */ = {
 			isa = PBXGroup;
 			children = (
+				85CFF8AE1B49818600C262F0 /* GradientView.h */,
+				85CFF8AF1B49818600C262F0 /* GradientView.m */,
 				85C0EDC31B40180A00102F72 /* Error.h */,
 				85C0EDC41B40180A00102F72 /* Error.m */,
 				85DD47191B3EE8E0005BD7BE /* ToothTimer-Bridging-Header.h */,
@@ -163,6 +197,8 @@
 		85CA7BD41B3EED7A004DF6E0 /* Supported Files */ = {
 			isa = PBXGroup;
 			children = (
+				851AF9EA1B498BC500C42489 /* InfoPlist.strings */,
+				85CFF8BF1B498B5900C262F0 /* Localizable.strings */,
 				85D7D2081B3ED72600807955 /* Assets.xcassets */,
 				85D7D20A1B3ED72600807955 /* LaunchScreen.storyboard */,
 				85DD47171B3EE6A9005BD7BE /* colorscheme.json */,
@@ -170,6 +206,27 @@
 				85D7D20D1B3ED72600807955 /* Info.plist */,
 			);
 			name = "Supported Files";
+			sourceTree = "<group>";
+		};
+		85CFF8961B49812000C262F0 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				85CFF8AB1B49817900C262F0 /* SettingsViewController.h */,
+				85CFF8AC1B49817900C262F0 /* SettingsViewController.m */,
+				85CFF8971B49815D00C262F0 /* BooleanTableViewCell.h */,
+				85CFF8981B49815D00C262F0 /* BooleanTableViewCell.m */,
+				85CFF8991B49815D00C262F0 /* BooleanTableViewCell.xib */,
+				85CFF89A1B49815D00C262F0 /* PickerTableViewCell.h */,
+				85CFF89B1B49815D00C262F0 /* PickerTableViewCell.m */,
+				85CFF89C1B49815D00C262F0 /* PickerTableViewCell.xib */,
+				85CFF89D1B49815D00C262F0 /* TextfieldBooleanTableViewCell.h */,
+				85CFF89E1B49815D00C262F0 /* TextfieldBooleanTableViewCell.m */,
+				85CFF89F1B49815D00C262F0 /* TextfieldBooleanTableViewCell.xib */,
+				85CFF8A01B49815D00C262F0 /* TextfieldTableViewCell.h */,
+				85CFF8A11B49815D00C262F0 /* TextfieldTableViewCell.m */,
+				85CFF8A21B49815D00C262F0 /* TextfieldTableViewCell.xib */,
+			);
+			name = TableCells;
 			sourceTree = "<group>";
 		};
 		85D7D1F31B3ED72600807955 = {
@@ -192,6 +249,7 @@
 		85D7D1FE1B3ED72600807955 /* ToothTimer */ = {
 			isa = PBXGroup;
 			children = (
+				85CFF8961B49812000C262F0 /* TableCells */,
 				851313F61B3F1E1E009D713F /* dao */,
 				85CA7BD41B3EED7A004DF6E0 /* Supported Files */,
 				85CA7BD31B3EED55004DF6E0 /* Utilities-objc */,
@@ -265,6 +323,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 85D7D1F31B3ED72600807955;
 			productRefGroup = 85D7D1FD1B3ED72600807955 /* Products */;
@@ -282,9 +341,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				85DD47181B3EE6A9005BD7BE /* colorscheme.json in Resources */,
+				85CFF8A61B49815D00C262F0 /* PickerTableViewCell.xib in Resources */,
 				85D7D20C1B3ED72600807955 /* LaunchScreen.storyboard in Resources */,
 				85D7D2091B3ED72600807955 /* Assets.xcassets in Resources */,
+				85CFF8C11B498B5900C262F0 /* Localizable.strings in Resources */,
+				85CFF8A41B49815D00C262F0 /* BooleanTableViewCell.xib in Resources */,
+				85CFF8A81B49815D00C262F0 /* TextfieldBooleanTableViewCell.xib in Resources */,
 				85D7D2071B3ED72600807955 /* Main.storyboard in Resources */,
+				85CFF8AA1B49815D00C262F0 /* TextfieldTableViewCell.xib in Resources */,
+				851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,8 +360,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85CFF8A71B49815D00C262F0 /* TextfieldBooleanTableViewCell.m in Sources */,
 				855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */,
 				85DD47361B3EEBDB005BD7BE /* UIImage+Tint.m in Sources */,
+				85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */,
 				851313F21B3F1DDC009D713F /* TimerParameter+CoreDataProperties.swift in Sources */,
 				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
@@ -305,8 +372,11 @@
 				85C03A361B49199900C88E95 /* UIColor.swift in Sources */,
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
+				85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */,
+				85CFF8B01B49818600C262F0 /* GradientView.m in Sources */,
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
 				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
+				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
 				851313F51B3F1DDC009D713F /* Log.swift in Sources */,
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
@@ -318,12 +388,31 @@
 				851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */,
 				851313F31B3F1DDC009D713F /* TimerParameter.swift in Sources */,
 				851313ED1B3F1C33009D713F /* toothtimer.xcdatamodeld in Sources */,
+				85CFF8AD1B49817900C262F0 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		851AF9EA1B498BC500C42489 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				851AF9EB1B498BC500C42489 /* en */,
+				851AF9ED1B498BCC00C42489 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		85CFF8BF1B498B5900C262F0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85CFF8C01B498B5900C262F0 /* en */,
+				85CFF8C21B498B7400C262F0 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		85D7D2051B3ED72600807955 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
