@@ -18,6 +18,7 @@
 		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
 		851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AF9EF1B49A8C500C42489 /* AppUtil.m */; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
+		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
 		85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A3A1B491A5900C88E95 /* NSFileManager.swift */; };
@@ -67,6 +68,7 @@
 		851AF9EE1B49A8C500C42489 /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
 		851AF9EF1B49A8C500C42489 /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
+		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		85C03A3A1B491A5900C88E95 /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				85C03A351B49199900C88E95 /* UIColor.swift */,
 				85C03A381B491A1800C88E95 /* NSURL.swift */,
 				85C03A3A1B491A5900C88E95 /* NSFileManager.swift */,
+				858669131B4C82D20091F8E5 /* CustomView.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
 				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
+				858669141B4C82D20091F8E5 /* CustomView.swift in Sources */,
 				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
 				85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */,
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,

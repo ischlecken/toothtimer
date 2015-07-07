@@ -14,6 +14,7 @@ class TimerViewController: UIViewController
   @IBOutlet weak var timeLabel  : UILabel!
   @IBOutlet weak var startButton: UIBarButtonItem!
   @IBOutlet weak var stopButton : UIBarButtonItem!
+  @IBOutlet weak var customView : CustomView!
   
                  var actTimer   : Int = 0
             weak var timer      : NSTimer?
@@ -56,6 +57,8 @@ class TimerViewController: UIViewController
     self.updateTimerLabel()
     
     timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
+    
+    self.customView.addAnimation( CFTimeInterval(actTimer) )
   }
   
   @IBAction func stopAction(sender: UIBarButtonItem?)
