@@ -46,7 +46,7 @@ class TimerViewController: UIViewController
   }
   
   func updateTimerLabel()
-  { timeLabel.text = String(format: "Time:%d", actTimer)
+  { timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
   }
 
   @IBAction func startAction(sender: UIBarButtonItem)

@@ -29,18 +29,15 @@ class CustomView: UIView
   
   func addAnimation ()
   {
-    CATransaction.begin()
-    CATransaction.setAnimationDuration(6.0)
-    
-    
-    let end = CABasicAnimation(keyPath: "lineWidth")
-    end.duration     = 3.0
-    end.fromValue    = 4.0
-    end.toValue      = 2.0
-    
-    self.innerRing.addAnimation(end, forKey: "strokeEnd")
-    
-    CATransaction.commit()
+    UIView.animateWithDuration(2.0) { () -> Void in
+      let end = CABasicAnimation(keyPath: "lineWidth")
+      end.duration     = 3.0
+      end.fromValue    = 4.0
+      end.toValue      = 2.0
+      
+      self.innerRing.addAnimation(end, forKey: "strokeEnd")
+
+    }
   }
   
   override func drawRect(rect: CGRect)
@@ -69,9 +66,12 @@ class CustomView: UIView
 }
 
 let v = CustomView(frame: CGRectMake(0, 0, 200, 200))
+XCPShowView("Container View", view:v)
+
 v.addAnimation()
 
-XCPShowView("Container View", view:v)
+v
+
 
 
 
