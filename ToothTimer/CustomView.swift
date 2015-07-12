@@ -48,7 +48,7 @@ class CustomView: UIView
     self.innerRing.strokeStart     = 0.0
     self.innerRing.strokeEnd       = 0.0
     self.innerRing.lineCap         = kCALineCapRound
-    self.innerRing.shadowColor     = UIColor.blackColor().CGColor
+    self.innerRing.shadowColor     = UIColor.whiteColor().CGColor
     self.innerRing.shadowOffset    = CGSize(width: 0, height: 6)
     self.innerRing.shadowRadius    = 2
     self.innerRing.shadowOpacity   = 1.0
@@ -58,7 +58,13 @@ class CustomView: UIView
     
     self.gradientLayer.startPoint = CGPoint(x: 0.5,y: 0.0)
     self.gradientLayer.endPoint   = CGPoint(x: 0.5,y: 1.0)
+    self.gradientLayer.type       = kCAGradientLayerAxial
     
+    self.initGradientColors()
+  }
+  
+  func initGradientColors()
+  {
     let gradientColors     = UIColor.colorWithName("gradientColors") as! [UIColor]
     var gradientColorsRefs = [CGColor]()
     
@@ -67,21 +73,52 @@ class CustomView: UIView
     }
     
     self.gradientLayer.colors = gradientColorsRefs
-    self.gradientLayer.type   = kCAGradientLayerAxial
   }
   
   func addAnimation (duration:CFTimeInterval)
-  { NSLog("addAnimation")
+  { NSLog("addAnimation(\(duration))")
     
-    UIView.animateWithDuration(duration) { () -> Void in
-      let end = CABasicAnimation(keyPath: "strokeEnd")
-      end.duration     = duration
-      end.fromValue    = 0.0
-      end.toValue      = 1.0
+    self.initGradientColors()
+    
+    CATransaction.begin()
+    CATransaction.setCompletionBlock
+    { () -> Void in
       
-      self.innerRing.addAnimation(end, forKey: "strokeEnd")
-      
+      NSLog("Animation completed")
     }
+
+    let end = CABasicAnimation(keyPath: "strokeEnd")
+    end.duration     = duration
+    end.fromValue    = 0.0
+    end.toValue      = 1.0
+    
+    self.innerRing.addAnimation(end, forKey: "strokeEnd")
+    
+    let colors = [UIColor(hexString: "#404040").CGColor,UIColor(hexString:"#000000").CGColor]
+    
+    CATransaction.begin()
+    CATransaction.setCompletionBlock { () -> Void in
+      self.gradientLayer.colors = colors
+    }
+    
+    let colorsAnim = CABasicAnimation(keyPath: "colors")
+    colorsAnim.duration = 4
+    colorsAnim.toValue  = colors
+    
+    self.layer.addAnimation(colorsAnim, forKey: "colorsAnimation")
+    CATransaction.commit()
+    
+    CATransaction.commit()
+  }
+  
+  func removeAnimation()
+  { NSLog("removeAnimation")
+    
+    if let pl = self.innerRing.presentationLayer()
+    { self.innerRing.strokeEnd = pl.strokeEnd
+    }
+    
+    self.innerRing.removeAnimationForKey("strokeEnd")
   }
   
   override var frame : CGRect

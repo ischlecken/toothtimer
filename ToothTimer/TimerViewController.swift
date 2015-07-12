@@ -59,6 +59,8 @@ class TimerViewController: UIViewController
     timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
     
     self.customView.addAnimation( CFTimeInterval(actTimer) )
+    
+    self.navigationController?.tabBarController?.tabBar.hidden = true
   }
   
   @IBAction func stopAction(sender: UIBarButtonItem?)
@@ -67,6 +69,12 @@ class TimerViewController: UIViewController
     
     startButton.enabled = true
     stopButton.enabled  = false
+    
+    self.navigationController?.tabBarController?.tabBar.hidden = false
+    
+    if let _ = sender
+    { self.customView.removeAnimation()
+    } /* of if */
   }
 }
 

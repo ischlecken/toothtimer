@@ -28,7 +28,7 @@ class Log: NSManagedObject
     let fetchRequest = NSFetchRequest()
     
     fetchRequest.entity          = entity
-    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "logts",ascending: true)]
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "logts",ascending: false)]
     fetchRequest.fetchBatchSize  = 20
     
     return fetchRequest;
