@@ -9,17 +9,16 @@
 import UIKit
 import CoreData
 
-class LogViewController: UITableViewController,NSFetchedResultsControllerDelegate
+class LogViewController: UIViewController,NSFetchedResultsControllerDelegate,UITableViewDelegate,UITableViewDataSource
 {
-  var logs : NSFetchedResultsController!
+                 var logs      : NSFetchedResultsController!
+  @IBOutlet weak var tableView : UITableView!
   
   override func viewDidLoad()
-  {
-    super.viewDidLoad()
+  { super.viewDidLoad()
     
     logs = Log.FetchedResultsController()
     logs.delegate = self
-    
     
     do
     { try logs.performFetch() }
@@ -31,13 +30,13 @@ class LogViewController: UITableViewController,NSFetchedResultsControllerDelegat
   //
   //
   //
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+  func numberOfSectionsInTableView(tableView: UITableView) -> Int
   { return (logs.sections?.count)! }
 
   //
   //
   //
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   { var result = 0
     
     if let s=logs.sections
@@ -49,7 +48,7 @@ class LogViewController: UITableViewController,NSFetchedResultsControllerDelegat
   //
   //
   //
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
     let log  = logs.objectAtIndexPath(indexPath) as! Log
     
