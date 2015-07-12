@@ -14,11 +14,11 @@
 		851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F01B3F1DDC009D713F /* Log+CoreDataProperties.swift */; };
 		851313F51B3F1DDC009D713F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F11B3F1DDC009D713F /* Log.swift */; };
 		851313F81B3F2023009D713F /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F71B3F2023009D713F /* LogViewController.swift */; };
-		851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F91B3F2036009D713F /* SettingViewController.swift */; };
 		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
 		851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AF9EF1B49A8C500C42489 /* AppUtil.m */; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
+		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
 		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
 		85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A3A1B491A5900C88E95 /* NSFileManager.swift */; };
@@ -34,7 +34,6 @@
 		85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8A11B49815D00C262F0 /* TextfieldTableViewCell.m */; };
 		85CFF8AA1B49815D00C262F0 /* TextfieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF8A21B49815D00C262F0 /* TextfieldTableViewCell.xib */; };
 		85CFF8AD1B49817900C262F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8AC1B49817900C262F0 /* SettingsViewController.m */; };
-		85CFF8B01B49818600C262F0 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8AF1B49818600C262F0 /* GradientView.m */; };
 		85CFF8C11B498B5900C262F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF8BF1B498B5900C262F0 /* Localizable.strings */; };
 		85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D1FF1B3ED72600807955 /* AppDelegate.swift */; };
 		85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D7D2011B3ED72600807955 /* TimerViewController.swift */; };
@@ -62,13 +61,13 @@
 		851313F01B3F1DDC009D713F /* Log+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Log+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		851313F11B3F1DDC009D713F /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		851313F71B3F2023009D713F /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
-		851313F91B3F2036009D713F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		851AF9EB1B498BC500C42489 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851AF9ED1B498BCC00C42489 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851AF9EE1B49A8C500C42489 /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
 		851AF9EF1B49A8C500C42489 /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		85C03A3A1B491A5900C88E95 /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
@@ -91,8 +90,6 @@
 		85CFF8A21B49815D00C262F0 /* TextfieldTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextfieldTableViewCell.xib; sourceTree = "<group>"; };
 		85CFF8AB1B49817900C262F0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		85CFF8AC1B49817900C262F0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		85CFF8AE1B49818600C262F0 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
-		85CFF8AF1B49818600C262F0 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		85CFF8C01B498B5900C262F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85CFF8C21B498B7400C262F0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		85D7D1FC1B3ED72600807955 /* ToothTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToothTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +154,7 @@
 				85C03A381B491A1800C88E95 /* NSURL.swift */,
 				85C03A3A1B491A5900C88E95 /* NSFileManager.swift */,
 				858669131B4C82D20091F8E5 /* CustomView.swift */,
+				858B73C51B52EE27006CC0A7 /* GradientView.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -175,8 +173,6 @@
 			children = (
 				851AF9EE1B49A8C500C42489 /* AppUtil.h */,
 				851AF9EF1B49A8C500C42489 /* AppUtil.m */,
-				85CFF8AE1B49818600C262F0 /* GradientView.h */,
-				85CFF8AF1B49818600C262F0 /* GradientView.m */,
 				85C0EDC31B40180A00102F72 /* Error.h */,
 				85C0EDC41B40180A00102F72 /* Error.m */,
 				85DD47191B3EE8E0005BD7BE /* ToothTimer-Bridging-Header.h */,
@@ -266,7 +262,6 @@
 				85D7D2011B3ED72600807955 /* TimerViewController.swift */,
 				85D7D2051B3ED72600807955 /* Main.storyboard */,
 				851313F71B3F2023009D713F /* LogViewController.swift */,
-				851313F91B3F2036009D713F /* SettingViewController.swift */,
 				85C0EDC81B40223B00102F72 /* MyPlayground.playground */,
 			);
 			path = ToothTimer;
@@ -382,7 +377,6 @@
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
 				85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */,
-				85CFF8B01B49818600C262F0 /* GradientView.m in Sources */,
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
 				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
 				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
@@ -390,12 +384,12 @@
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
 				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
+				858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */,
 				858669141B4C82D20091F8E5 /* CustomView.swift in Sources */,
 				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
 				85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */,
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,
 				85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */,
-				851313FA1B3F2036009D713F /* SettingViewController.swift in Sources */,
 				851313F31B3F1DDC009D713F /* TimerParameter.swift in Sources */,
 				851313ED1B3F1C33009D713F /* toothtimer.xcdatamodeld in Sources */,
 				85CFF8AD1B49817900C262F0 /* SettingsViewController.m in Sources */,

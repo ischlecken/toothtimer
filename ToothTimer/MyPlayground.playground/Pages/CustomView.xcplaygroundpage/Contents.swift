@@ -5,7 +5,7 @@ class CustomView: UIView
 {
   var innerRing:CAShapeLayer = CAShapeLayer()
   
-  required init(coder aDecoder: NSCoder)
+  required init?(coder aDecoder: NSCoder)
   { super.init(coder: aDecoder)
   }
 
@@ -66,12 +66,10 @@ class CustomView: UIView
 }
 
 let v = CustomView(frame: CGRectMake(0, 0, 200, 200))
-XCPShowView("Container View", view:v)
 
 v.addAnimation()
 
-v
-
+XCPShowView("Container View1", view:v)
 
 
 

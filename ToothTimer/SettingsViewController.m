@@ -37,7 +37,7 @@
  */
 -(void) viewDidLoad
 { [super viewDidLoad];
-
+  
   [self.tableView registerNib:[UINib nibWithNibName:@"TextfieldTableViewCell" bundle:nil] forCellReuseIdentifier:@"TextfieldCell"];
   [self.tableView registerNib:[UINib nibWithNibName:@"BooleanTableViewCell"   bundle:nil] forCellReuseIdentifier:@"BooleanCell"];
   [self.tableView registerNib:[UINib nibWithNibName:@"PickerTableViewCell"    bundle:nil] forCellReuseIdentifier:@"PickerCell"];

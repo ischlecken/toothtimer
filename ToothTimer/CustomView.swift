@@ -13,7 +13,7 @@ class CustomView: UIView
 {
   var innerRing:CAShapeLayer = CAShapeLayer()
   
-  required init(coder aDecoder: NSCoder)
+  required init?(coder aDecoder: NSCoder)
   { super.init(coder: aDecoder)
     
     self.initView()
@@ -23,6 +23,14 @@ class CustomView: UIView
   { super.init(frame: frame)
     
     self.initView()
+  }
+  
+  override class func layerClass() -> AnyClass
+  { return CAGradientLayer.self
+  }
+  
+  var gradientLayer : CAGradientLayer
+    { return self.layer as! CAGradientLayer
   }
   
   var circleRect : CGRect
@@ -47,6 +55,19 @@ class CustomView: UIView
     self.innerRing.frame           = CGRectNull
     
     self.layer.addSublayer(self.innerRing)
+    
+    self.gradientLayer.startPoint = CGPoint(x: 0.5,y: 0.0)
+    self.gradientLayer.endPoint   = CGPoint(x: 0.5,y: 1.0)
+    
+    let gradientColors     = UIColor.colorWithName("gradientColors") as! [UIColor]
+    var gradientColorsRefs = [CGColor]()
+    
+    for c in gradientColors
+    { gradientColorsRefs.append(c.CGColor)
+    }
+    
+    self.gradientLayer.colors = gradientColorsRefs
+    self.gradientLayer.type   = kCAGradientLayerAxial
   }
   
   func addAnimation (duration:CFTimeInterval)
@@ -94,23 +115,5 @@ class CustomView: UIView
       self.innerRing.path = path
 
     }
-  }
-  
-  override func drawRect(rect: CGRect)
-  {
-    let ctx        = UIGraphicsGetCurrentContext()
-    let color0     = UIColor.orangeColor()
-    let color1     = UIColor.redColor()
-    
-    let colorSpace = CGColorSpaceCreateDeviceRGB();
-    let locations  = [ CGFloat(0.1),CGFloat(0.9) ];
-    
-    let gradient   = CGGradientCreateWithColors(colorSpace, [color0.CGColor,color1.CGColor], locations)
-    
-    let startPoint = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMinY(self.frame))
-    let endPoint   = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame))
-    
-    CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint, CGGradientDrawingOptions(rawValue: 0))
-    
   }
 }
