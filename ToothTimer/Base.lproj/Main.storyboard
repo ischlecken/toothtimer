@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0me-Vy-0Pa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="yl2-sM-qoP">
-            <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="3NW-ad-JMA" kind="relationship" relationship="viewControllers" id="pQo-0W-Xbg"/>
-                        <segue destination="ftV-mw-3dT" kind="relationship" relationship="viewControllers" id="cye-Ks-2dc"/>
-                        <segue destination="PfI-JD-6Ry" kind="relationship" relationship="viewControllers" id="BWu-41-5YH"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-112" y="0.0"/>
-        </scene>
-        <!--Timer View Controller-->
+        <!--TimerViewController-->
         <scene sceneID="xkp-iq-qQy">
             <objects>
-                <viewController id="6MP-AZ-qqB" customClass="TimerViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimerViewController" id="6MP-AZ-qqB" userLabel="TimerViewController" customClass="TimerViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cR6-Iv-wnT"/>
                         <viewControllerLayoutGuide type="bottom" id="j8K-rZ-7H7"/>
@@ -51,45 +31,14 @@
                             <constraint firstItem="Sar-Y8-QHe" firstAttribute="centerY" secondItem="fc6-Iu-mU3" secondAttribute="centerY" id="mPE-Pb-MQn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="J9N-DN-MJd">
-                        <barButtonItem key="leftBarButtonItem" title="Start" id="Dw8-sx-V0X">
-                            <connections>
-                                <action selector="startAction:" destination="6MP-AZ-qqB" id="801-5R-ISg"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Stop" id="UyR-GO-Krn">
-                            <connections>
-                                <action selector="stopAction:" destination="6MP-AZ-qqB" id="Ijw-A6-3pt"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="customView" destination="fc6-Iu-mU3" id="f7h-Lx-o1G"/>
-                        <outlet property="startButton" destination="Dw8-sx-V0X" id="h2v-sP-LtQ"/>
-                        <outlet property="stopButton" destination="UyR-GO-Krn" id="SLi-u6-s0h"/>
                         <outlet property="timeLabel" destination="Sar-Y8-QHe" id="B25-3P-KGK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7O-Ig-pN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1497" y="0.0"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="511-mB-wyo">
-            <objects>
-                <navigationController id="ftV-mw-3dT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="setting" id="s5g-Dx-8hH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vec-Mi-mLR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="AEd-Nd-UJd" kind="relationship" relationship="rootViewController" id="Eaf-gw-4oi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6SJ-Cw-fZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="677" y="-695"/>
+            <point key="canvasLocation" x="1233" y="1576"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Tv9-l9-wfM">
@@ -103,12 +52,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ky9-8S-h3M">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ky9-8S-h3M">
                                 <rect key="frame" x="0.0" y="20" width="600" height="575"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="ANO-zT-bow" style="IBUITableViewCellStyleDefault" id="Fgp-9p-Tfi">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fgp-9p-Tfi" id="zdF-Hl-8af">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -125,7 +74,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="qBX-2F-8WH" detailTextLabel="VsA-cU-lAh" style="IBUITableViewCellStyleValue1" id="YUd-ja-UAY">
-                                        <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YUd-ja-UAY" id="0tt-G8-lLk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -172,27 +121,60 @@
             </objects>
             <point key="canvasLocation" x="1473" y="-714"/>
         </scene>
-        <!--Logs-->
-        <scene sceneID="6M1-od-46g">
+        <!--Navigation Controller-->
+        <scene sceneID="LE6-1q-EjQ">
             <objects>
-                <navigationController id="PfI-JD-6Ry" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Logs" image="list" id="fgD-QG-ju5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYg-lc-ha1">
+                <navigationController id="0me-Vy-0Pa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GDv-Uq-Led">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="xVn-b7-TCo" kind="relationship" relationship="rootViewController" id="EE9-Na-hc6"/>
+                        <segue destination="Vgl-2p-Rhw" kind="relationship" relationship="rootViewController" id="798-63-BXJ"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K7T-gD-hc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VIl-CE-UEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="677" y="763"/>
+            <point key="canvasLocation" x="-376" y="1785"/>
         </scene>
-        <!--Logs-->
+        <!--ToothTimerViewController-->
+        <scene sceneID="qvk-Sw-M3h">
+            <objects>
+                <viewController id="Vgl-2p-Rhw" userLabel="ToothTimerViewController" customClass="ToothTimerViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sWX-gK-SUx"/>
+                        <viewControllerLayoutGuide type="bottom" id="abl-Ck-igY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m90-5o-c8v" customClass="GradientView" customModule="ToothTimer" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tooth Timer" id="tCk-Un-Bkl">
+                        <barButtonItem key="leftBarButtonItem" image="time" id="GY7-aa-GnT">
+                            <connections>
+                                <action selector="timerAction:" destination="Vgl-2p-Rhw" id="5zv-ma-wrX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="setting" id="F4w-CO-cgT">
+                            <connections>
+                                <action selector="settingsAction:" destination="Vgl-2p-Rhw" id="8zc-3u-T8F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="settingsButton" destination="F4w-CO-cgT" id="ASO-rE-hVb"/>
+                        <outlet property="startButton" destination="GY7-aa-GnT" id="tcv-cC-SOr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FNA-bn-1Co" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="380" y="1785"/>
+        </scene>
+        <!--LogViewController-->
         <scene sceneID="NIr-Bi-os1">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="xVn-b7-TCo" customClass="LogViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogViewController" automaticallyAdjustsScrollViewInsets="NO" id="xVn-b7-TCo" userLabel="LogViewController" customClass="LogViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hpk-9v-wBp"/>
                         <viewControllerLayoutGuide type="bottom" id="ibM-Od-nuW"/>
@@ -202,7 +184,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cXq-Qq-lW4">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="jyz-7O-Jdf" detailTextLabel="seU-mg-PlA" style="IBUITableViewCellStyleSubtitle" id="2g7-cM-8t4">
@@ -252,28 +234,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcX-91-6zP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="758"/>
-        </scene>
-        <!--Timer-->
-        <scene sceneID="fhx-QS-8BT">
-            <objects>
-                <navigationController id="3NW-ad-JMA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Timer" image="time" id="inM-kZ-CNr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EAV-kF-vO7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="6MP-AZ-qqB" kind="relationship" relationship="rootViewController" id="AUN-61-77r"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w8U-AO-Ygg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="677" y="0.0"/>
+            <point key="canvasLocation" x="1233" y="2286"/>
         </scene>
     </scenes>
     <resources>
-        <image name="list" width="24" height="24"/>
         <image name="setting" width="24" height="24"/>
         <image name="time" width="24" height="24"/>
     </resources>

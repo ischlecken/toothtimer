@@ -19,6 +19,7 @@
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
+		85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */; };
 		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
 		85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A3A1B491A5900C88E95 /* NSFileManager.swift */; };
@@ -68,6 +69,7 @@
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToothTimerViewController.swift; sourceTree = "<group>"; };
 		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		85C03A3A1B491A5900C88E95 /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				85C03A371B4919E700C88E95 /* Utilities */,
 				85D7D1FF1B3ED72600807955 /* AppDelegate.swift */,
 				85D7D2011B3ED72600807955 /* TimerViewController.swift */,
+				85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */,
 				85D7D2051B3ED72600807955 /* Main.storyboard */,
 				851313F71B3F2023009D713F /* LogViewController.swift */,
 				85C0EDC81B40223B00102F72 /* MyPlayground.playground */,
@@ -372,6 +375,7 @@
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
 				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
+				85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */,
 				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,
 				85C03A361B49199900C88E95 /* UIColor.swift in Sources */,
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,

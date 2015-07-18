@@ -12,8 +12,6 @@ class TimerViewController: UIViewController
 {
 
   @IBOutlet weak var timeLabel  : UILabel!
-  @IBOutlet weak var startButton: UIBarButtonItem!
-  @IBOutlet weak var stopButton : UIBarButtonItem!
   @IBOutlet weak var customView : CustomView!
   
                  var actTimer   : Int = 0
@@ -22,9 +20,6 @@ class TimerViewController: UIViewController
   override func viewDidLoad()
   { super.viewDidLoad()
 
-    startButton.enabled = true
-    stopButton.enabled  = false
-    
     if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
     { timeLabel.textColor = tintColor }
     
@@ -41,7 +36,7 @@ class TimerViewController: UIViewController
       
       DataModel.sharedInstance.save()
       
-      self.stopAction(nil)
+      self.stopTimer()
     }
   }
   
@@ -49,32 +44,31 @@ class TimerViewController: UIViewController
   { timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
   }
 
-  @IBAction func startAction(sender: UIBarButtonItem)
-  { startButton.enabled = false
-    stopButton.enabled  = true
-    actTimer            = AppConfig .sharedInstance().timerInSeconds
+  func startTimer()
+  { self.actTimer            = AppConfig .sharedInstance().timerInSeconds
     
     self.updateTimerLabel()
     
     timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
     
     self.customView.addAnimation( CFTimeInterval(actTimer) )
-    
-    self.navigationController?.tabBarController?.tabBar.hidden = true
   }
   
-  @IBAction func stopAction(sender: UIBarButtonItem?)
+  func stopTimer()
   { timer?.invalidate()
     timer = nil
     
-    startButton.enabled = true
-    stopButton.enabled  = false
-    
-    self.navigationController?.tabBarController?.tabBar.hidden = false
-    
-    if let _ = sender
-    { self.customView.removeAnimation()
-    } /* of if */
+    self.customView.removeAnimation()
+  }
+  
+  func isTimerRunning() -> Bool
+  { return timer != nil }
+  
+  func toggleTimer()
+  { if isTimerRunning()
+    { self.stopTimer() }
+    else
+    { self.startTimer() }
   }
 }
 
