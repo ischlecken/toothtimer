@@ -20,13 +20,11 @@
 @interface SettingsViewController () <MFMailComposeViewControllerDelegate,
                                       TextfieldTableViewCellDelegate,
                                       BooleanTableViewCellDelegate,
-                                      UITableViewDelegate,UITableViewDataSource,
                                       UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property(nonatomic, strong)          NSArray*         sections;
 @property(nonatomic, strong)          NSIndexPath*     pickerIndexPath;
 @property(nonatomic, strong)          NSArray*         configParameter;
-@property(nonatomic, weak  ) IBOutlet UITableView*     tableView;
 @property(nonatomic, copy  )          SelectActionType pickerSelectAction;
 @end
 
@@ -598,7 +596,7 @@
   [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark - Navigation
+#pragma mark Navigation
 
 /**
  *
@@ -620,5 +618,12 @@
   if( [keyPath isEqualToString:@"serviceNames"] )
   {
   } /* of if */
+}
+
+/**
+ *
+ */
+-(IBAction) settingsDoneAction:(id)sender
+{ [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end

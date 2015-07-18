@@ -8,23 +8,78 @@
 
 import UIKit
 
-class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource
+private var kvoToothTimerViewControllerContext = 0
+
+class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIPopoverPresentationControllerDelegate
 {
-  var pageViewController  : UIPageViewController?
-  var timerViewController : TimerViewController?
-  var logViewController   : LogViewController?
+                 var pageViewController  : UIPageViewController?
+                 var timerViewController : TimerViewController?
+                 var logViewController   : LogViewController?
+  @IBOutlet weak var gradientView        : GradientView!
+  @IBOutlet weak var settingsButton      : UIBarButtonItem!
+  @IBOutlet weak var startButton         : UIBarButtonItem!
   
-  @IBOutlet weak var settingsButton: UIBarButtonItem!
-  @IBOutlet weak var startButton   : UIBarButtonItem!
+  override func prefersStatusBarHidden() -> Bool
+  { var result = false
+    
+    if let tvc = self.timerViewController
+    { if tvc.isTimerRunning { result = true } }
+    
+    return result
+  }
   
   @IBAction func timerAction(sender: UIBarButtonItem)
-  { self.timerViewController?.toggleTimer()
+  {
+    if let isRunning = self.timerViewController?.isTimerRunning
+    { if !isRunning
+      { self.timerViewController?.startTimer() }
+      else
+      { self.timerViewController?.stopTimer() }
+    } /* of if */
   }
   
   @IBAction func settingsAction(sender: UIBarButtonItem?)
   { NSLog("settingsAction")
+    
+    let vc:UIViewController? = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController")
+    
+    vc?.modalPresentationStyle                                  = UIModalPresentationStyle.Popover
+    vc?.popoverPresentationController?.barButtonItem            = self.settingsButton
+    vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
+    vc?.popoverPresentationController?.delegate                 = self
+    
+    self.presentViewController(vc!, animated: true, completion: nil)
   }
   
+  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
+  { return UIModalPresentationStyle.None
+  }
+  
+  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>)
+  {
+    if context == &kvoToothTimerViewControllerContext && keyPath == "isTimerRunning"
+    {
+      if let newValue = change?[NSKeyValueChangeNewKey] as? Bool
+      { NSLog("isTimerRunning changed: \(newValue)")
+        
+        if newValue
+        { self.gradientView.dimGradient()
+          self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+        else
+        { self.gradientView.resetGradient()
+          self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+      } /* of if */
+    } /* of if */
+    else
+    { super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    } /* of else */
+  }
+  
+  deinit
+  { self.timerViewController!.removeObserver(self, forKeyPath: "isTimerRunning", context: &kvoToothTimerViewControllerContext)
+  }
   
   override func viewDidLoad()
   { super.viewDidLoad()
@@ -34,6 +89,13 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     self.timerViewController = self.storyboard!.instantiateViewControllerWithIdentifier("TimerViewController") as? TimerViewController
     self.logViewController   = self.storyboard!.instantiateViewControllerWithIdentifier("LogViewController") as? LogViewController
+    
+    self.timerViewController!.addObserver(self, forKeyPath: "isTimerRunning", options: .New, context: &kvoToothTimerViewControllerContext)
+    
+    
+    let ei =  UIEdgeInsetsMake(64, 0, 0, 0)
+    self.logViewController?.tableView.contentInset          = ei
+    self.logViewController?.tableView.scrollIndicatorInsets = ei
     
     let viewControllers = [timerViewController!]
     self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)

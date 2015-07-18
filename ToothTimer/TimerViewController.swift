@@ -10,12 +10,11 @@ import UIKit
 
 class TimerViewController: UIViewController
 {
-
-  @IBOutlet weak var timeLabel  : UILabel!
-  @IBOutlet weak var customView : CustomView!
-  
-                 var actTimer   : Int = 0
-            weak var timer      : NSTimer?
+            dynamic var isTimerRunning : Bool = false
+  @IBOutlet weak    var timeLabel      : UILabel!
+  @IBOutlet weak    var customView     : CustomView!
+                    var actTimer       : Int = 0
+            weak    var timer          : NSTimer?
   
   override func viewDidLoad()
   { super.viewDidLoad()
@@ -26,6 +25,12 @@ class TimerViewController: UIViewController
     self.updateTimerLabel()
   }
 
+  @IBAction func tappedAction(sender: AnyObject)
+  { NSLog("TimerView tapped")
+    
+    self.toggleTimer()
+  }
+  
   func timerFired()
   { self.updateTimerLabel()
     
@@ -35,6 +40,7 @@ class TimerViewController: UIViewController
     { _ = Log.createLog(Int32(AppConfig.sharedInstance().timerInSeconds),noOfSlices: Int16(AppConfig.sharedInstance().noOfSlices),status:"success")
       
       DataModel.sharedInstance.save()
+      self.updateTimerLabel()
       
       self.stopTimer()
     }
@@ -45,27 +51,33 @@ class TimerViewController: UIViewController
   }
 
   func startTimer()
-  { self.actTimer            = AppConfig .sharedInstance().timerInSeconds
-    
-    self.updateTimerLabel()
-    
-    timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
-    
-    self.customView.addAnimation( CFTimeInterval(actTimer) )
+  { if !self.isTimerRunning
+    { self.isTimerRunning = true
+      
+      self.actTimer = AppConfig .sharedInstance().timerInSeconds
+      
+      self.updateTimerLabel()
+      
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
+      
+      self.customView.addAnimation( CFTimeInterval(actTimer) )
+      
+    } /* of if */
   }
   
   func stopTimer()
-  { timer?.invalidate()
-    timer = nil
+  { if self.isTimerRunning
+    { self.timer?.invalidate()
+      self.timer = nil
     
-    self.customView.removeAnimation()
+      self.customView.removeAnimation()
+      
+      self.isTimerRunning = false
+    } /* of if */
   }
   
-  func isTimerRunning() -> Bool
-  { return timer != nil }
-  
   func toggleTimer()
-  { if isTimerRunning()
+  { if self.isTimerRunning
     { self.stopTimer() }
     else
     { self.startTimer() }

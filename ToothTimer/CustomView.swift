@@ -25,60 +25,24 @@ class CustomView: UIView
     self.initView()
   }
   
-  override class func layerClass() -> AnyClass
-  { return CAGradientLayer.self
-  }
-  
-  var gradientLayer : CAGradientLayer
-    { return self.layer as! CAGradientLayer
-  }
-  
-  var circleRect : CGRect
-  { var result = self.frame
-    
-    result.inset(dx: 40, dy: 80)
-    
-    return result
-  }
-  
   private func initView()
   { self.innerRing.fillColor       = UIColor(white: 1.0, alpha: 0.1) .CGColor
     self.innerRing.strokeColor     = UIColor(red: 0.3, green: 0.0, blue: 1.0, alpha: 0.8 ).CGColor
-    self.innerRing.lineWidth       = 24
+    self.innerRing.lineWidth       = 32
     self.innerRing.strokeStart     = 0.0
     self.innerRing.strokeEnd       = 0.0
     self.innerRing.lineCap         = kCALineCapRound
-    self.innerRing.shadowColor     = UIColor.whiteColor().CGColor
+    self.innerRing.shadowColor     = UIColor.lightGrayColor().CGColor
     self.innerRing.shadowOffset    = CGSize(width: 0, height: 6)
     self.innerRing.shadowRadius    = 2
     self.innerRing.shadowOpacity   = 1.0
     self.innerRing.frame           = CGRectNull
     
     self.layer.addSublayer(self.innerRing)
-    
-    self.gradientLayer.startPoint = CGPoint(x: 0.5,y: 0.0)
-    self.gradientLayer.endPoint   = CGPoint(x: 0.5,y: 1.0)
-    self.gradientLayer.type       = kCAGradientLayerAxial
-    
-    self.initGradientColors()
-  }
-  
-  func initGradientColors()
-  {
-    let gradientColors     = UIColor.colorWithName("gradientColors") as! [UIColor]
-    var gradientColorsRefs = [CGColor]()
-    
-    for c in gradientColors
-    { gradientColorsRefs.append(c.CGColor)
-    }
-    
-    self.gradientLayer.colors = gradientColorsRefs
   }
   
   func addAnimation (duration:CFTimeInterval)
   { NSLog("addAnimation(\(duration))")
-    
-    self.initGradientColors()
     
     CATransaction.begin()
     CATransaction.setCompletionBlock
@@ -93,20 +57,6 @@ class CustomView: UIView
     end.toValue      = 1.0
     
     self.innerRing.addAnimation(end, forKey: "strokeEnd")
-    
-    let colors = [UIColor(hexString: "#404040").CGColor,UIColor(hexString:"#000000").CGColor]
-    
-    CATransaction.begin()
-    CATransaction.setCompletionBlock { () -> Void in
-      self.gradientLayer.colors = colors
-    }
-    
-    let colorsAnim = CABasicAnimation(keyPath: "colors")
-    colorsAnim.duration = 4
-    colorsAnim.toValue  = colors
-    
-    self.layer.addAnimation(colorsAnim, forKey: "colorsAnimation")
-    CATransaction.commit()
     
     CATransaction.commit()
   }
@@ -142,7 +92,7 @@ class CustomView: UIView
       NSLog("frame:\(self.frame) f:\(r)")
       
       r = self.innerRing.bounds
-      r.inset(dx: self.innerRing.lineWidth*2.0, dy: self.innerRing.lineWidth*2.0)
+      r.inset(dx: self.innerRing.lineWidth*1.0, dy: self.innerRing.lineWidth*1.0)
       
       let path = CGPathCreateMutable()
       CGPathAddArc(path, nil,

@@ -9,10 +9,9 @@
 import UIKit
 import CoreData
 
-class LogViewController: UIViewController,NSFetchedResultsControllerDelegate,UITableViewDelegate,UITableViewDataSource
+class LogViewController: UITableViewController,NSFetchedResultsControllerDelegate
 {
                  var logs      : NSFetchedResultsController!
-  @IBOutlet weak var tableView : UITableView!
   
   override func viewDidLoad()
   { super.viewDidLoad()
@@ -30,13 +29,13 @@ class LogViewController: UIViewController,NSFetchedResultsControllerDelegate,UIT
   //
   //
   //
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int
   { return (logs.sections?.count)! }
 
   //
   //
   //
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   { var result = 0
     
     if let s=logs.sections
@@ -48,7 +47,7 @@ class LogViewController: UIViewController,NSFetchedResultsControllerDelegate,UIT
   //
   //
   //
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
     let log  = logs.objectAtIndexPath(indexPath) as! Log
     
