@@ -113,7 +113,7 @@
   @[ [SettingsItem settingItemWithTitle:@"timerInSeconds"
                               andCellId:@"DetailCell"
                         andSelectAction:self.pickerSelectAction
-                        andPickerValues:@[@60,@120,@180,@240,@300,@360,@420,@480,@540,@600]],
+                        andPickerValues:@[@30,@60,@120,@180,@240,@300,@360,@420,@480,@540,@600]],
      
      [SettingsItem settingItemWithTitle:@"noOfSlices"
                               andCellId:@"DetailCell"

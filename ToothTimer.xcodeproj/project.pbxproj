@@ -42,6 +42,10 @@
 		85D7D2071B3ED72600807955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D2051B3ED72600807955 /* Main.storyboard */; };
 		85D7D2091B3ED72600807955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D2081B3ED72600807955 /* Assets.xcassets */; };
 		85D7D20C1B3ED72600807955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D7D20A1B3ED72600807955 /* LaunchScreen.storyboard */; };
+		85DB25F41B5C4134006CD370 /* AudioUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB25F31B5C4134006CD370 /* AudioUtil.swift */; };
+		85DB25FA1B5C42AB006CD370 /* lap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 85DB25F61B5C42AB006CD370 /* lap.caf */; };
+		85DB25FB1B5C42AB006CD370 /* start.caf in Resources */ = {isa = PBXBuildFile; fileRef = 85DB25F71B5C42AB006CD370 /* start.caf */; };
+		85DB25FC1B5C42AB006CD370 /* stop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 85DB25F81B5C42AB006CD370 /* stop.caf */; };
 		85DD47181B3EE6A9005BD7BE /* colorscheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 85DD47171B3EE6A9005BD7BE /* colorscheme.json */; };
 		85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD471B1B3EEBDB005BD7BE /* AppConfig.m */; };
 		85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD471E1B3EEBDB005BD7BE /* CommonCoreGraphics.m */; };
@@ -103,6 +107,10 @@
 		85D7D2081B3ED72600807955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85D7D20B1B3ED72600807955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85D7D20D1B3ED72600807955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85DB25F31B5C4134006CD370 /* AudioUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUtil.swift; sourceTree = "<group>"; };
+		85DB25F61B5C42AB006CD370 /* lap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lap.caf; sourceTree = "<group>"; };
+		85DB25F71B5C42AB006CD370 /* start.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = start.caf; sourceTree = "<group>"; };
+		85DB25F81B5C42AB006CD370 /* stop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = stop.caf; sourceTree = "<group>"; };
 		85DD47171B3EE6A9005BD7BE /* colorscheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colorscheme.json; sourceTree = "<group>"; };
 		85DD47191B3EE8E0005BD7BE /* ToothTimer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToothTimer-Bridging-Header.h"; sourceTree = "<group>"; };
 		85DD471A1B3EEBDB005BD7BE /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 				858669131B4C82D20091F8E5 /* CustomView.swift */,
 				858B73C51B52EE27006CC0A7 /* GradientView.swift */,
 				851511C91B5BE61300D6EBDA /* TickTimer.swift */,
+				85DB25F31B5C4134006CD370 /* AudioUtil.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -206,6 +215,9 @@
 		85CA7BD41B3EED7A004DF6E0 /* Supported Files */ = {
 			isa = PBXGroup;
 			children = (
+				85DB25F61B5C42AB006CD370 /* lap.caf */,
+				85DB25F71B5C42AB006CD370 /* start.caf */,
+				85DB25F81B5C42AB006CD370 /* stop.caf */,
 				851AF9EA1B498BC500C42489 /* InfoPlist.strings */,
 				85CFF8BF1B498B5900C262F0 /* Localizable.strings */,
 				85D7D2081B3ED72600807955 /* Assets.xcassets */,
@@ -350,14 +362,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				85DD47181B3EE6A9005BD7BE /* colorscheme.json in Resources */,
+				85DB25FC1B5C42AB006CD370 /* stop.caf in Resources */,
 				85CFF8A61B49815D00C262F0 /* PickerTableViewCell.xib in Resources */,
 				85D7D20C1B3ED72600807955 /* LaunchScreen.storyboard in Resources */,
 				85D7D2091B3ED72600807955 /* Assets.xcassets in Resources */,
 				85CFF8C11B498B5900C262F0 /* Localizable.strings in Resources */,
 				85CFF8A41B49815D00C262F0 /* BooleanTableViewCell.xib in Resources */,
 				85CFF8A81B49815D00C262F0 /* TextfieldBooleanTableViewCell.xib in Resources */,
+				85DB25FB1B5C42AB006CD370 /* start.caf in Resources */,
 				85D7D2071B3ED72600807955 /* Main.storyboard in Resources */,
 				85CFF8AA1B49815D00C262F0 /* TextfieldTableViewCell.xib in Resources */,
+				85DB25FA1B5C42AB006CD370 /* lap.caf in Resources */,
 				851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +414,7 @@
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,
 				85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */,
 				851313F31B3F1DDC009D713F /* TimerParameter.swift in Sources */,
+				85DB25F41B5C4134006CD370 /* AudioUtil.swift in Sources */,
 				851313ED1B3F1C33009D713F /* toothtimer.xcdatamodeld in Sources */,
 				85CFF8AD1B49817900C262F0 /* SettingsViewController.m in Sources */,
 			);

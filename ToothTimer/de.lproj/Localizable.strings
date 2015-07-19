@@ -20,16 +20,17 @@
 "settings.title.about"                                      = "Über «%1$@»";
 "settings.title.colorSchemeName"                            = "Farbschema";
 
-"settings.picker.timerInSeconds.60"                         = "1 minute";
-"settings.picker.timerInSeconds.120"                        = "2 minutes";
-"settings.picker.timerInSeconds.180"                        = "3 minutes";
-"settings.picker.timerInSeconds.240"                        = "4 minutes";
-"settings.picker.timerInSeconds.300"                        = "5 minutes";
-"settings.picker.timerInSeconds.360"                        = "6 minutes";
-"settings.picker.timerInSeconds.420"                        = "7 minutes";
-"settings.picker.timerInSeconds.480"                        = "8 minutes";
-"settings.picker.timerInSeconds.540"                        = "9 minutes";
-"settings.picker.timerInSeconds.600"                        = "10 minutes";
+"settings.picker.timerInSeconds.30"                         = "30 Sekunden";
+"settings.picker.timerInSeconds.60"                         = "1 Minute";
+"settings.picker.timerInSeconds.120"                        = "2 Minuten";
+"settings.picker.timerInSeconds.180"                        = "3 Minuten";
+"settings.picker.timerInSeconds.240"                        = "4 Minuten";
+"settings.picker.timerInSeconds.300"                        = "5 Minuten";
+"settings.picker.timerInSeconds.360"                        = "6 Minuten";
+"settings.picker.timerInSeconds.420"                        = "7 Minuten";
+"settings.picker.timerInSeconds.480"                        = "8 Minuten";
+"settings.picker.timerInSeconds.540"                        = "9 Minuten";
+"settings.picker.timerInSeconds.600"                        = "10 Minuten";
 
 "settings.picker.noOfSlices.1"                              = "1";
 "settings.picker.noOfSlices.2"                              = "2";

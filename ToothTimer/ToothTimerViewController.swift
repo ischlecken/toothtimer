@@ -63,11 +63,15 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
       { NSLog("isTimerRunning changed: \(newValue)")
         
         if newValue
-        { self.gradientView.dimGradient()
+        { AudioUtil.playSound("start")
+          
+          self.gradientView.dimGradient()
           self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
         else
-        { self.gradientView.resetGradient()
+        { AudioUtil.playSound("stop")
+          
+          self.gradientView.resetGradient()
           self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
       } /* of if */
@@ -91,7 +95,6 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     self.logViewController   = self.storyboard!.instantiateViewControllerWithIdentifier("LogViewController") as? LogViewController
     
     self.timerViewController!.addObserver(self, forKeyPath: "isTimerRunning", options: .New, context: &kvoToothTimerViewControllerContext)
-    
     
     let ei =  UIEdgeInsetsMake(64, 0, 0, 0)
     self.logViewController?.tableView.contentInset          = ei
