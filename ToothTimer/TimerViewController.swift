@@ -13,9 +13,11 @@ class TimerViewController: UIViewController
             dynamic var isTimerRunning : Bool = false
   @IBOutlet weak    var timeLabel      : UILabel!
   @IBOutlet weak    var customView     : CustomView!
-                    var actTimer       : Int = 0
             weak    var timer          : NSTimer?
+                    var actTimer       : Int = 0
+                    var tickTimer      : TickTimer = TickTimer()
   
+  // MARK: init view
   override func viewDidLoad()
   { super.viewDidLoad()
 
@@ -25,14 +27,11 @@ class TimerViewController: UIViewController
     self.updateTimerLabel()
   }
 
-  @IBAction func tappedAction(sender: AnyObject)
-  { NSLog("TimerView tapped")
-    
-    self.toggleTimer()
-  }
-  
   func timerFired()
-  { self.updateTimerLabel()
+  { let elapsedTime = self.tickTimer.lap()
+    NSLog("elapsedTime:\(elapsedTime)")
+    
+    self.updateTimerLabel()
     
     actTimer--
     
@@ -58,7 +57,8 @@ class TimerViewController: UIViewController
       
       self.updateTimerLabel()
       
-      self.timer = NSTimer.scheduledTimerWithTimeInterval(0.9, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
+      self.tickTimer.start()
+      self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
       
       self.customView.addAnimation( CFTimeInterval(actTimer) )
       
@@ -72,6 +72,9 @@ class TimerViewController: UIViewController
     
       self.customView.removeAnimation()
       
+      let elapsedTime = self.tickTimer.stop()
+      NSLog("stopp elapsedTime:\(elapsedTime)")
+      
       self.isTimerRunning = false
     } /* of if */
   }
@@ -81,6 +84,13 @@ class TimerViewController: UIViewController
     { self.stopTimer() }
     else
     { self.startTimer() }
+  }
+  
+  // MARK: Actions
+  @IBAction func tappedAction(sender: AnyObject)
+  { NSLog("TimerView tapped")
+    
+    self.toggleTimer()
   }
 }
 
