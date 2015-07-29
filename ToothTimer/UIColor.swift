@@ -55,9 +55,9 @@ extension UIColor
   }
   
   static var selectedColorSchemeName : String? = nil
-    {
+  {
     didSet
-  { UIColor.colorCache = [String:AnyObject](minimumCapacity: 10)
+    { UIColor.colorCache = [String:AnyObject](minimumCapacity: 10)
     }
   }
   
@@ -66,17 +66,18 @@ extension UIColor
     
     if result==nil
     { if let cs = UIColor.colorScheme, currentColorScheme = cs[UIColor.selectedColorSchemeName!] as? [String:AnyObject]
-    { if let colorValue = currentColorScheme[colorName] as? String
-    { result = UIColor(hexString: colorValue)
-    } /* of if */
-    else if let colorValue = currentColorScheme[colorName] as? [String]
-    { var colors = [UIColor]()
-      
-      for c in colorValue
-      { colors.append(UIColor(hexString: c)) }
-      
-      result = colors
-      } /* of else if */
+      { if let colorValue = currentColorScheme[colorName] as? String
+        { result = UIColor(hexString: colorValue)
+        } /* of if */
+        else if let colorValue = currentColorScheme[colorName] as? [String]
+        { var colors = [UIColor]()
+          
+          for c in colorValue
+          { colors.append(UIColor(hexString: c))
+          }
+          
+          result = colors
+        } /* of else if */
       } /* of if */
       
       if result != nil

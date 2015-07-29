@@ -12,6 +12,8 @@ import UIKit
 class CustomView: UIView
 {
          var innerRing:[CAShapeLayer] = []
+         var actualAnimatedRing       = -1
+         var segmentAnimationDuration:CFTimeInterval = 0.0
   static let lineWidth                = 32
   
   required init?(coder aDecoder: NSCoder)
@@ -29,14 +31,16 @@ class CustomView: UIView
   private func initView()
   { self.innerRing = []
     
-    for _ in 0..<AppConfig.sharedInstance().noOfSlices
+    let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
+    
+    for i in 0..<AppConfig.sharedInstance().noOfSlices
     { let l = CAShapeLayer()
       
       l.fillColor       = UIColor.clearColor() .CGColor
-      l.strokeColor     = UIColor(hexString: "#FF8000").CGColor
+      l.strokeColor     = ringColors[i].CGColor
       l.lineWidth       = CGFloat(CustomView.lineWidth)
-      l.strokeStart     = 0.0
-      l.strokeEnd       = 0.0
+      l.strokeStart     = 0.05
+      l.strokeEnd       = 0.05
       l.lineCap         = kCALineCapRound
       l.shadowColor     = UIColor.lightGrayColor().CGColor
       l.shadowOffset    = CGSize(width: 0, height: 6)
@@ -49,38 +53,69 @@ class CustomView: UIView
     } /* of for */
   }
   
-  func addAnimation (duration:CFTimeInterval)
-  { NSLog("addAnimation(\(duration))")
+  private func startNextAnimation() -> Void
+  { let animatedLayer = self.innerRing[actualAnimatedRing]
     
     CATransaction.begin()
     CATransaction.setCompletionBlock
-    { () -> Void in
-      
-      NSLog("Animation completed")
-    }
-
-    for i in 0..<self.innerRing.count
-    { let end = CABasicAnimation(keyPath: "strokeEnd")
-      end.duration     = duration
-      end.fromValue    = 0.0
-      end.toValue      = 1.0
-      
-      self.innerRing[i].addAnimation(end, forKey: "strokeEnd")
+      { () -> Void in
+        
+        NSLog("Animation \(self.actualAnimatedRing) completed")
+        
+        if self.actualAnimatedRing>=0 && self.actualAnimatedRing<self.innerRing.count-1
+        { self.actualAnimatedRing++
+          
+          self.startNextAnimation()
+          AudioUtil.playSound("lap")
+        }
     }
     
+    let end = CABasicAnimation(keyPath: "strokeEnd")
+    end.duration     = self.segmentAnimationDuration/Double(self.innerRing.count)
+    end.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+    end.fromValue    = 0.1
+    end.toValue      = 0.9
+    
+    animatedLayer.strokeStart = 0.1
+    animatedLayer.strokeEnd   = 0.9
+    
+    animatedLayer.addAnimation(end, forKey: "strokeEnd")
+    
     CATransaction.commit()
+    
+  }
+  
+  func addAnimation (duration:CFTimeInterval)
+  { NSLog("addAnimation(\(duration))")
+    
+    self.segmentAnimationDuration = duration
+    
+    if actualAnimatedRing<0
+    { actualAnimatedRing = 0
+      
+      for i in 0..<self.innerRing.count
+      { self.innerRing[i].strokeStart = 0.0
+        self.innerRing[i].strokeEnd   = 0.0
+      }
+      
+      self.startNextAnimation()
+    } /* of if */
   }
   
   func removeAnimation()
   { NSLog("removeAnimation")
     
-    for i in 0..<self.innerRing.count
-    { if let pl = self.innerRing[i].presentationLayer()
-      { self.innerRing[i].strokeEnd = pl.strokeEnd
-      }
-    
-      self.innerRing[i].removeAnimationForKey("strokeEnd")
-    } /* of for */
+    if actualAnimatedRing>=0
+    { for i in 0..<self.innerRing.count
+      { if let pl = self.innerRing[i].presentationLayer()
+        { self.innerRing[i].strokeEnd = pl.strokeEnd
+        }
+      
+        self.innerRing[i].removeAnimationForKey("strokeEnd")
+      } /* of for */
+      
+      actualAnimatedRing = -1
+    } /* of if */
   }
   
   override func drawRect(rect: CGRect)

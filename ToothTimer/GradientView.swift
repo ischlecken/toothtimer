@@ -40,7 +40,7 @@ class GradientView : UIView
   }
   
   func loadGradientColors() -> [CGColor]
-  { let gradientColors     = UIColor.colorWithName("gradientColors") as! [UIColor]
+  { let gradientColors     = UIColor.colorWithName(ColorName.gradientColors.rawValue) as! [UIColor]
     var gradientColorsRefs = [CGColor]()
     
     for c in gradientColors

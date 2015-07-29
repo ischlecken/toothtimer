@@ -16,6 +16,8 @@ class AudioUtil
     
     AudioServicesCreateSystemSoundID(soundPath!,&soundId)
     
+    NSLog("playSound(\(soundName)): path:\(soundPath) soundId:\(soundId)")
+    
     AudioServicesPlaySystemSound(soundId)
   }
 }
