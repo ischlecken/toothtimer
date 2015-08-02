@@ -21,6 +21,11 @@
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
 		85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */; };
+		85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */; };
+		85B781701B6E48E900B1A0C1 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7816E1B6E48E900B1A0C1 /* Badge.swift */; };
+		85B781721B6E507C00B1A0C1 /* BadgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B781711B6E507C00B1A0C1 /* BadgeTableViewCell.swift */; };
+		85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B781731B6E517700B1A0C1 /* BadgeTableViewController.swift */; };
+		85B781761B6E586F00B1A0C1 /* BadgeAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B781751B6E586F00B1A0C1 /* BadgeAllocator.swift */; };
 		85C03A361B49199900C88E95 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A351B49199900C88E95 /* UIColor.swift */; };
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
 		85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A3A1B491A5900C88E95 /* NSFileManager.swift */; };
@@ -76,6 +81,11 @@
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToothTimerViewController.swift; sourceTree = "<group>"; };
+		85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Badge+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		85B7816E1B6E48E900B1A0C1 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		85B781711B6E507C00B1A0C1 /* BadgeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeTableViewCell.swift; sourceTree = "<group>"; };
+		85B781731B6E517700B1A0C1 /* BadgeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeTableViewController.swift; sourceTree = "<group>"; };
+		85B781751B6E586F00B1A0C1 /* BadgeAllocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeAllocator.swift; sourceTree = "<group>"; };
 		85C03A351B49199900C88E95 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		85C03A381B491A1800C88E95 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		85C03A3A1B491A5900C88E95 /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
@@ -149,11 +159,14 @@
 			isa = PBXGroup;
 			children = (
 				851313EB1B3F1C33009D713F /* toothtimer.xcdatamodeld */,
+				85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */,
+				85B7816E1B6E48E900B1A0C1 /* Badge.swift */,
 				851313EE1B3F1DDC009D713F /* TimerParameter+CoreDataProperties.swift */,
 				851313EF1B3F1DDC009D713F /* TimerParameter.swift */,
 				851313F01B3F1DDC009D713F /* Log+CoreDataProperties.swift */,
 				851313F11B3F1DDC009D713F /* Log.swift */,
 				85C0EDC61B401B4600102F72 /* DataModel.swift */,
+				85B781751B6E586F00B1A0C1 /* BadgeAllocator.swift */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -246,6 +259,7 @@
 				85CFF8A01B49815D00C262F0 /* TextfieldTableViewCell.h */,
 				85CFF8A11B49815D00C262F0 /* TextfieldTableViewCell.m */,
 				85CFF8A21B49815D00C262F0 /* TextfieldTableViewCell.xib */,
+				85B781711B6E507C00B1A0C1 /* BadgeTableViewCell.swift */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -275,10 +289,11 @@
 				851313F61B3F1E1E009D713F /* dao */,
 				85CA7BD31B3EED55004DF6E0 /* Utilities-objc */,
 				85C03A371B4919E700C88E95 /* Utilities */,
+				85D7D2051B3ED72600807955 /* Main.storyboard */,
 				85D7D1FF1B3ED72600807955 /* AppDelegate.swift */,
 				85D7D2011B3ED72600807955 /* TimerViewController.swift */,
 				85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */,
-				85D7D2051B3ED72600807955 /* Main.storyboard */,
+				85B781731B6E517700B1A0C1 /* BadgeTableViewController.swift */,
 				851313F71B3F2023009D713F /* LogViewController.swift */,
 				85C0EDC81B40223B00102F72 /* MyPlayground.playground */,
 			);
@@ -393,9 +408,12 @@
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
 				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
+				85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */,
+				85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */,
 				85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */,
 				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,
 				85C03A361B49199900C88E95 /* UIColor.swift in Sources */,
+				85B781721B6E507C00B1A0C1 /* BadgeTableViewCell.swift in Sources */,
 				851313F41B3F1DDC009D713F /* Log+CoreDataProperties.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
 				85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */,
@@ -404,6 +422,8 @@
 				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
 				851313F51B3F1DDC009D713F /* Log.swift in Sources */,
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
+				85B781761B6E586F00B1A0C1 /* BadgeAllocator.swift in Sources */,
+				85B781701B6E48E900B1A0C1 /* Badge.swift in Sources */,
 				85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */,
 				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
 				851511CA1B5BE61300D6EBDA /* TickTimer.swift in Sources */,

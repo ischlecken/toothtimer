@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0me-Vy-0Pa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0me-Vy-0Pa">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -59,6 +59,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="0.82999999999999996" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="ZKG-gO-xuO" detailTextLabel="pO1-V6-Lm1" style="IBUITableViewCellStyleSubtitle" id="NmT-ks-mKL">
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
@@ -75,7 +76,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pO1-V6-Lm1">
-                                            <rect key="frame" x="15" y="25.5" width="41" height="13.5"/>
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.75513756789999997" green="0.75513756789999997" blue="0.75513756789999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,6 +98,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyO-eA-MoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1229" y="2284"/>
+        </scene>
+        <!--BadgeTableViewController-->
+        <scene sceneID="rD8-93-2j6">
+            <objects>
+                <tableViewController storyboardIdentifier="BadgeTableViewController" extendedLayoutIncludesOpaqueBars="YES" id="5nF-NT-gSj" userLabel="BadgeTableViewController" customClass="BadgeTableViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="10" sectionFooterHeight="10" id="8Hh-aw-0VY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="badgeCell" rowHeight="80" id="P35-SG-Ak3" customClass="BadgeTableViewCell" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P35-SG-Ak3" id="c1v-cy-q1L">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p5P-7m-QlI">
+                                            <rect key="frame" x="20" y="8" width="64" height="64"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="64" id="Ush-p3-civ"/>
+                                                <constraint firstAttribute="width" constant="64" id="urZ-Cc-ir5"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bma-SC-pYZ" userLabel="Badge Name Label">
+                                            <rect key="frame" x="108" y="8" width="472" height="31.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <color key="textColor" red="0.11764706671237946" green="0.5215686559677124" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDM-7J-BHQ">
+                                            <rect key="frame" x="108" y="53.5" width="472" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bma-SC-pYZ" secondAttribute="trailing" constant="12" id="1BI-Qh-VuG"/>
+                                        <constraint firstItem="zDM-7J-BHQ" firstAttribute="bottom" secondItem="p5P-7m-QlI" secondAttribute="bottom" id="1Hm-3G-iXi"/>
+                                        <constraint firstItem="zDM-7J-BHQ" firstAttribute="trailing" secondItem="bma-SC-pYZ" secondAttribute="trailing" id="HKL-vh-hug"/>
+                                        <constraint firstItem="bma-SC-pYZ" firstAttribute="leading" secondItem="p5P-7m-QlI" secondAttribute="trailing" constant="24" id="K9S-am-stz"/>
+                                        <constraint firstItem="p5P-7m-QlI" firstAttribute="centerY" secondItem="c1v-cy-q1L" secondAttribute="centerY" id="Kbf-e8-gLV"/>
+                                        <constraint firstItem="zDM-7J-BHQ" firstAttribute="leading" secondItem="bma-SC-pYZ" secondAttribute="leading" id="Mjn-gx-8ei"/>
+                                        <constraint firstItem="p5P-7m-QlI" firstAttribute="leading" secondItem="c1v-cy-q1L" secondAttribute="leadingMargin" constant="12" id="nHb-4G-gEd"/>
+                                        <constraint firstItem="bma-SC-pYZ" firstAttribute="top" secondItem="p5P-7m-QlI" secondAttribute="top" id="zNR-BG-3RU"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.44" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="badgeImageView" destination="p5P-7m-QlI" id="Zv0-Ba-6dv"/>
+                                    <outlet property="badgeNameLabel" destination="bma-SC-pYZ" id="nNd-Pk-2oc"/>
+                                    <outlet property="badgeTimestampLabel" destination="zDM-7J-BHQ" id="GNQ-6b-zRV"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5nF-NT-gSj" id="uQL-sf-QiD"/>
+                            <outlet property="delegate" destination="5nF-NT-gSj" id="aLD-Dr-Ffb"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="toN-3b-ZcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="2990"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zUR-1n-55S">
@@ -134,22 +203,14 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rtF-n3-EXF">
-                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rtF-n3-EXF" id="gnC-jN-EEo">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="NqD-Ei-XeE" detailTextLabel="Rqi-pn-fw2" style="IBUITableViewCellStyleValue1" id="20a-TS-bbC">
-                                <rect key="frame" x="0.0" y="201.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20a-TS-bbC" id="GY4-fs-RKb">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -159,7 +220,7 @@
                                             <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rqi-pn-fw2">

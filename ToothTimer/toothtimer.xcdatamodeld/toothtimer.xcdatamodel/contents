@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8154.4" systemVersion="14E46" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8166.2" systemVersion="14E46" minimumToolsVersion="Xcode 7.0">
+    <entity name="Badge" representedClassName="Badge" syncable="YES">
+        <attribute name="createts" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Log" representedClassName="Log" syncable="YES">
         <attribute name="durationinseconds" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="logts" attributeType="Date" syncable="YES"/>
@@ -12,6 +16,7 @@
         <attribute name="noofslices" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Badge" positionX="-13860" positionY="-10051" width="128" height="73"/>
         <element name="Log" positionX="-13862" positionY="-10204" width="128" height="103"/>
         <element name="TimerParameter" positionX="-13689" positionY="-10204" width="128" height="88"/>
     </elements>

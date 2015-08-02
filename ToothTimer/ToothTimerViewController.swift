@@ -12,12 +12,13 @@ private var kvoToothTimerViewControllerContext = 0
 
 class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIPopoverPresentationControllerDelegate
 {
-                 var pageViewController  : UIPageViewController?
-                 var timerViewController : TimerViewController?
-                 var logViewController   : LogViewController?
-  @IBOutlet weak var gradientView        : GradientView!
-  @IBOutlet weak var settingsButton      : UIBarButtonItem!
-  @IBOutlet weak var startButton         : UIBarButtonItem!
+                 var pageViewController       : UIPageViewController?
+                 var timerViewController      : TimerViewController?
+                 var logViewController        : LogViewController?
+                 var badgeTableViewController : BadgeTableViewController?
+  @IBOutlet weak var gradientView             : GradientView!
+  @IBOutlet weak var settingsButton           : UIBarButtonItem!
+  @IBOutlet weak var startButton              : UIBarButtonItem!
   
   override func prefersStatusBarHidden() -> Bool
   { var result = false
@@ -73,6 +74,8 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
           
           self.gradientView.resetGradient()
           self.navigationController?.setNavigationBarHidden(false, animated: true)
+          
+          BadgeAllocator.allocateBadge()
         }
       } /* of if */
     } /* of if */
@@ -91,14 +94,19 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
     self.pageViewController!.delegate = self
     
-    self.timerViewController = self.storyboard!.instantiateViewControllerWithIdentifier("TimerViewController") as? TimerViewController
-    self.logViewController   = self.storyboard!.instantiateViewControllerWithIdentifier("LogViewController") as? LogViewController
+    self.timerViewController      = self.storyboard!.instantiateViewControllerWithIdentifier("TimerViewController") as? TimerViewController
+    self.logViewController        = self.storyboard!.instantiateViewControllerWithIdentifier("LogViewController") as? LogViewController
+    self.badgeTableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("BadgeTableViewController") as? BadgeTableViewController
     
     self.timerViewController!.addObserver(self, forKeyPath: "isTimerRunning", options: .New, context: &kvoToothTimerViewControllerContext)
     
     let ei =  UIEdgeInsetsMake(64, 0, 0, 0)
     self.logViewController?.tableView.contentInset          = ei
     self.logViewController?.tableView.scrollIndicatorInsets = ei
+    
+    self.badgeTableViewController?.tableView.contentInset          = ei
+    self.badgeTableViewController?.tableView.scrollIndicatorInsets = ei
+    
     
     let viewControllers = [timerViewController!]
     self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
@@ -153,6 +161,8 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     if viewController==self.logViewController
     { result = self.timerViewController }
+    else if viewController==self.badgeTableViewController
+    { result = self.logViewController }
     
     return result
   }
@@ -164,18 +174,34 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     if viewController==self.timerViewController
     { result = self.logViewController }
+    else if viewController==self.logViewController
+    { result = self.badgeTableViewController }
     
     return result
   }
 
   func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
-  { return 2 }
+  { return 3 }
   
   func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
   {
     let currentViewController = self.pageViewController!.viewControllers![0]
+    var result = 0
     
-    return currentViewController==timerViewController ? 0 : 1
+    switch currentViewController
+    {
+    case self.logViewController!:
+      result = 1
+      break
+    case self.badgeTableViewController!:
+      result = 2
+      break
+    default:
+      result = 0
+      break;
+    }
+    
+    return result
   }
 
 }

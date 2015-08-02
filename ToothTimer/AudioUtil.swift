@@ -14,10 +14,12 @@ class AudioUtil
   { let soundPath               = NSBundle.mainBundle().URLForResource(soundName, withExtension: "caf")
     var soundId : SystemSoundID = 0
     
-    AudioServicesCreateSystemSoundID(soundPath!,&soundId)
+    let createResult = AudioServicesCreateSystemSoundID(soundPath!,&soundId)
     
-    NSLog("playSound(\(soundName)): path:\(soundPath) soundId:\(soundId)")
+    NSLog("playSound(\(soundName)): path:\(soundPath) soundId:\(soundId) createResult:\(createResult)")
     
-    AudioServicesPlaySystemSound(soundId)
+    if createResult==0
+    { AudioServicesPlaySystemSound(soundId)
+    }
   }
 }

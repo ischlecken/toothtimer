@@ -160,7 +160,6 @@ class CustomView: UIView
         
         for i in 0..<AppConfig.sharedInstance().noOfSlices
         { self.innerRing[i].frame = r
-          NSLog("frame:\(self.frame) f:\(r)")
           
           var bounds = self.innerRing[i].bounds
           bounds.inset(dx: self.innerRing[i].lineWidth*1.0, dy: self.innerRing[i].lineWidth*1.0)

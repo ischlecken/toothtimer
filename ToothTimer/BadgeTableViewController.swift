@@ -9,20 +9,20 @@
 import UIKit
 import CoreData
 
-class LogViewController: UITableViewController,NSFetchedResultsControllerDelegate
+class BadgeTableViewController: UITableViewController,NSFetchedResultsControllerDelegate
 {
-                 var logs      : NSFetchedResultsController!
+                 var badges      : NSFetchedResultsController!
   
   override func viewDidLoad()
   { super.viewDidLoad()
     
-    logs = Log.FetchedResultsController()
-    logs.delegate = self
+    badges = Badge.FetchedResultsController()
+    badges.delegate = self
     
     self.tableView.backgroundColor = UIColor.clearColor()
     
     do
-    { try logs.performFetch() }
+    { try badges.performFetch() }
     catch
     { NSLog("performFetch failed") }
   }
@@ -32,7 +32,7 @@ class LogViewController: UITableViewController,NSFetchedResultsControllerDelegat
   //
   //
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int
-  { return (logs.sections?.count)! }
+  { return (badges.sections?.count)! }
 
   //
   //
@@ -40,7 +40,7 @@ class LogViewController: UITableViewController,NSFetchedResultsControllerDelegat
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   { var result = 0
     
-    if let s=logs.sections
+    if let s=badges.sections
     { result = s[section].numberOfObjects }
     
     return result
@@ -50,11 +50,13 @@ class LogViewController: UITableViewController,NSFetchedResultsControllerDelegat
   //
   //
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-  { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    let log  = logs.objectAtIndexPath(indexPath) as! Log
+  { let cell   = tableView.dequeueReusableCellWithIdentifier("badgeCell", forIndexPath: indexPath) as! BadgeTableViewCell
+    let badge  = badges.objectAtIndexPath(indexPath) as! Badge
     
-    cell.textLabel?.text = "\(log.status!):\(log.durationinseconds)"
-    cell.detailTextLabel?.text = "ts:\(log.logts)"
+    cell.badgeNameLabel.text      = badge.name
+    cell.badgeTimestampLabel.text = "ts:\(badge.createts)"
+    cell.badgeImageView.image     = UIImage(named: "badge-"+badge.name)
+    
     return cell
   }
   
