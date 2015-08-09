@@ -10,6 +10,36 @@ import UIKit
 
 private var kvoToothTimerViewControllerContext = 0
 
+extension UIViewController {
+  func createBlur(effectStyle: UIBlurEffectStyle = .Light) {
+    NSLog("UIViewController.createBlur")
+    
+    if !UIAccessibilityIsReduceTransparencyEnabled() {
+      view.backgroundColor = UIColor.clearColor()
+      
+      let blurView = UIVisualEffectView(effect: UIBlurEffect(style: effectStyle))
+      blurView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight , UIViewAutoresizing.FlexibleWidth]
+      blurView.frame = view.bounds
+      
+      view.insertSubview(blurView, atIndex: 0)
+    }
+  }
+}
+
+extension UITableViewController {
+  override func createBlur(effectStyle: UIBlurEffectStyle = UIBlurEffectStyle.Light) {
+    NSLog("UITableViewController.createBlur")
+    
+    if !UIAccessibilityIsReduceTransparencyEnabled() {
+      tableView.backgroundColor = UIColor.clearColor()
+      
+      let blurEffect = UIBlurEffect(style: effectStyle)
+      tableView.backgroundView = UIVisualEffectView(effect: blurEffect)
+      tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+    }
+  }
+}
+
 class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIPopoverPresentationControllerDelegate
 {
                  var pageViewController       : UIPageViewController?
@@ -48,12 +78,22 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     vc?.popoverPresentationController?.barButtonItem            = self.settingsButton
     vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
     vc?.popoverPresentationController?.delegate                 = self
+    vc?.popoverPresentationController?.backgroundColor          = UIColor.clearColor()
     
     self.presentViewController(vc!, animated: true, completion: nil)
   }
   
   func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
-  { return UIModalPresentationStyle.None
+  { NSLog("adaptivePresentationStyleForPresentationController()")
+    
+    
+    return UIModalPresentationStyle.None
+  }
+  
+  func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    NSLog("presentationController()")
+    
+    return nil
   }
   
   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>)

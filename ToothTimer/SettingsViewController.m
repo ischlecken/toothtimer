@@ -39,6 +39,9 @@
   [self.tableView registerNib:[UINib nibWithNibName:@"TextfieldTableViewCell" bundle:nil] forCellReuseIdentifier:@"TextfieldCell"];
   [self.tableView registerNib:[UINib nibWithNibName:@"BooleanTableViewCell"   bundle:nil] forCellReuseIdentifier:@"BooleanCell"];
   [self.tableView registerNib:[UINib nibWithNibName:@"PickerTableViewCell"    bundle:nil] forCellReuseIdentifier:@"PickerCell"];
+  
+  [self createBlur:UIBlurEffectStyleLight];
+  self.tableView.backgroundColor = [UIColor clearColor];
 
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 56.0f;
@@ -439,7 +442,7 @@
                                                        [[self valueForConfig:setting.title] description];
   } /* of else */
   
-  cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+  cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
   
   return cell;
 }
