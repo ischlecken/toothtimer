@@ -20,6 +20,8 @@
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
+		85A38F131B77F73A00430E76 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38F121B77F73A00430E76 /* File.swift */; };
+		85A38F151B77FE2900430E76 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38F141B77FE2900430E76 /* UIImage.swift */; };
 		85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */; };
 		85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */; };
 		85B781701B6E48E900B1A0C1 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7816E1B6E48E900B1A0C1 /* Badge.swift */; };
@@ -59,7 +61,6 @@
 		85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47251B3EEBDB005BD7BE /* SectionInfo.m */; };
 		85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47271B3EEBDB005BD7BE /* SettingsItem.m */; };
 		85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */; };
-		85DD47361B3EEBDB005BD7BE /* UIImage+Tint.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,8 @@
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		85A38F121B77F73A00430E76 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		85A38F141B77FE2900430E76 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToothTimerViewController.swift; sourceTree = "<group>"; };
 		85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Badge+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		85B7816E1B6E48E900B1A0C1 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -138,8 +141,6 @@
 		85DD47271B3EEBDB005BD7BE /* SettingsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsItem.m; sourceTree = "<group>"; };
 		85DD472A1B3EEBDB005BD7BE /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		85DD472C1B3EEBDB005BD7BE /* UIImage+Tint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Tint.h"; sourceTree = "<group>"; };
-		85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tint.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				855F5A811B482C5F003448D1 /* AppGlobal.swift */,
+				85A38F141B77FE2900430E76 /* UIImage.swift */,
 				85C03A351B49199900C88E95 /* UIColor.swift */,
 				85C03A381B491A1800C88E95 /* NSURL.swift */,
 				85C03A3A1B491A5900C88E95 /* NSFileManager.swift */,
@@ -182,6 +184,7 @@
 				858B73C51B52EE27006CC0A7 /* GradientView.swift */,
 				851511C91B5BE61300D6EBDA /* TickTimer.swift */,
 				85DB25F31B5C4134006CD370 /* AudioUtil.swift */,
+				85A38F121B77F73A00430E76 /* File.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -219,8 +222,6 @@
 				85DD47271B3EEBDB005BD7BE /* SettingsItem.m */,
 				85DD472A1B3EEBDB005BD7BE /* UIImage+ImageEffects.h */,
 				85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */,
-				85DD472C1B3EEBDB005BD7BE /* UIImage+Tint.h */,
-				85DD472D1B3EEBDB005BD7BE /* UIImage+Tint.m */,
 			);
 			name = "Utilities-objc";
 			sourceTree = "<group>";
@@ -400,8 +401,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				85CFF8A71B49815D00C262F0 /* TextfieldBooleanTableViewCell.m in Sources */,
+				85A38F151B77FE2900430E76 /* UIImage.swift in Sources */,
 				855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */,
-				85DD47361B3EEBDB005BD7BE /* UIImage+Tint.m in Sources */,
 				85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */,
 				851313F21B3F1DDC009D713F /* TimerParameter+CoreDataProperties.swift in Sources */,
 				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
@@ -409,6 +410,7 @@
 				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
 				85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */,
+				85A38F131B77F73A00430E76 /* File.swift in Sources */,
 				85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */,
 				85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */,
 				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,

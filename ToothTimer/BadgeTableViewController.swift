@@ -56,6 +56,12 @@ class BadgeTableViewController: UITableViewController,NSFetchedResultsController
     cell.badgeNameLabel.text      = badge.name
     cell.badgeTimestampLabel.text = "ts:\(badge.createts)"
     cell.badgeImageView.image     = UIImage(named: "badge-"+badge.name)
+      
+    cell.badgeImageView.image     = cell.badgeImageView.image?.circleImageWithSize((cell.badgeImageView.image?.size)!,
+      circleColor: UIColor.colorWithName(ColorName.titleColor.rawValue) as! UIColor,
+      disabled: false)
+    
+    cell.badgeImageView.image     = cell.badgeImageView.image?.dropShadow(UIColor.whiteColor())
     
     return cell
   }

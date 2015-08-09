@@ -131,5 +131,17 @@ extension UIColor
     
     return result
   }
+  
+  func cgColorToString() -> String
+  { let components = CGColorGetComponents(self.CGColor)
+    let result = String(format: "#%0.2X%0.2X%0.2X%0.2X",
+                        arguments: [Int(components[0]*255.0),
+                                    Int(components[0]*255.0),
+                                    Int(components[0]*255.0),
+                                    Int(components[0]*255.0)])
+    
+    return result
+  }
+  
 
 }
