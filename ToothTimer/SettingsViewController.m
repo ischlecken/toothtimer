@@ -121,7 +121,7 @@
      [SettingsItem settingItemWithTitle:@"noOfSlices"
                               andCellId:@"DetailCell"
                         andSelectAction:self.pickerSelectAction
-                        andPickerValues:@[@1,@2,@3,@4,@4,@5,@6]],
+                        andPickerValues:@[@1,@2,@3,@4,@5,@6]],
      
   ];
   [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleTimer andItems:[[NSMutableArray alloc] initWithArray:timerSectionItems]]];

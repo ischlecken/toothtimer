@@ -17,7 +17,25 @@ class TimerViewController: UIViewController
                     var actTimer       : Int = 0
                     var tickTimer      : TickTimer = TickTimer()
   
-  // MARK: init view
+  
+  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    if let keyPathValue = keyPath
+    {
+      NSLog("observeValueForKeyPath:\(keyPathValue)")
+      
+      if keyPathValue=="noOfSlices"
+      {
+        
+      }
+    }
+  }
+
+
+  deinit {
+    AppConfig.sharedInstance().removeObserver(self, forKeyPath: "noOfSlices")
+  }
+
+
   override func viewDidLoad()
   { super.viewDidLoad()
 
@@ -25,6 +43,8 @@ class TimerViewController: UIViewController
     { timeLabel.textColor = tintColor }
     
     self.updateTimerLabel()
+    
+    AppConfig.sharedInstance().addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
   }
 
   func timerFired()
