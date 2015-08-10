@@ -24,7 +24,6 @@
 
 @property(nonatomic, strong)          NSArray*         sections;
 @property(nonatomic, strong)          NSIndexPath*     pickerIndexPath;
-@property(nonatomic, strong)          NSArray*         configParameter;
 @property(nonatomic, copy  )          SelectActionType pickerSelectAction;
 @end
 
@@ -196,14 +195,6 @@
   
   self.sections = sectionInfo;
   
-  self.configParameter = @[@"serviceNames"];
-  
-  for( NSString* configKeyPath in self.configParameter )
-    [[AppConfig sharedInstance] addObserver:self
-                                      forKeyPath:configKeyPath
-                                         options:NSKeyValueObservingOptionNew
-                                         context:NULL];
-  
   self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithName:@"titleColor"]};
 }
 
@@ -245,13 +236,6 @@
 }
 
 
-/**
- *
- */
--(void) dealloc
-{ for( NSString* configKeyPath in self.configParameter )
-    [[AppConfig sharedInstance] removeObserver:self forKeyPath:configKeyPath];
-}
 
 
 #pragma mark Datamodel
@@ -611,17 +595,6 @@
 }
 
 #pragma mark Notifications
-
-/**
- *
- */
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{ _NSLOG(@"keyPath=%@",keyPath);
-  
-  if( [keyPath isEqualToString:@"serviceNames"] )
-  {
-  } /* of if */
-}
 
 /**
  *

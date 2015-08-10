@@ -20,7 +20,8 @@
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
-		85A38F131B77F73A00430E76 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38F121B77F73A00430E76 /* File.swift */; };
+		859E1C021B794A1000C9C0E0 /* SwiftSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */; };
+		859E1C041B794D8900C9C0E0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E1C031B794D8900C9C0E0 /* String.swift */; };
 		85A38F151B77FE2900430E76 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38F141B77FE2900430E76 /* UIImage.swift */; };
 		85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */; };
 		85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */; };
@@ -57,7 +58,6 @@
 		85DD472E1B3EEBDB005BD7BE /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD471B1B3EEBDB005BD7BE /* AppConfig.m */; };
 		85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD471E1B3EEBDB005BD7BE /* CommonCoreGraphics.m */; };
 		85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47211B3EEBDB005BD7BE /* NSArray+SectionInfo.m */; };
-		85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47231B3EEBDB005BD7BE /* NSString+Date.m */; };
 		85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47251B3EEBDB005BD7BE /* SectionInfo.m */; };
 		85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD47271B3EEBDB005BD7BE /* SettingsItem.m */; };
 		85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD472B1B3EEBDB005BD7BE /* UIImage+ImageEffects.m */; };
@@ -81,7 +81,8 @@
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		85A38F121B77F73A00430E76 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSettingsItem.swift; sourceTree = "<group>"; };
+		859E1C031B794D8900C9C0E0 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		85A38F141B77FE2900430E76 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToothTimerViewController.swift; sourceTree = "<group>"; };
 		85B7816D1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Badge+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -133,8 +134,6 @@
 		85DD471F1B3EEBDB005BD7BE /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
 		85DD47201B3EEBDB005BD7BE /* NSArray+SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SectionInfo.h"; sourceTree = "<group>"; };
 		85DD47211B3EEBDB005BD7BE /* NSArray+SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SectionInfo.m"; sourceTree = "<group>"; };
-		85DD47221B3EEBDB005BD7BE /* NSString+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Date.h"; sourceTree = "<group>"; };
-		85DD47231B3EEBDB005BD7BE /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
 		85DD47241B3EEBDB005BD7BE /* SectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfo.h; sourceTree = "<group>"; };
 		85DD47251B3EEBDB005BD7BE /* SectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInfo.m; sourceTree = "<group>"; };
 		85DD47261B3EEBDB005BD7BE /* SettingsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsItem.h; sourceTree = "<group>"; };
@@ -175,6 +174,8 @@
 		85C03A371B4919E700C88E95 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				859E1C031B794D8900C9C0E0 /* String.swift */,
+				859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */,
 				855F5A811B482C5F003448D1 /* AppGlobal.swift */,
 				85A38F141B77FE2900430E76 /* UIImage.swift */,
 				85C03A351B49199900C88E95 /* UIColor.swift */,
@@ -184,7 +185,6 @@
 				858B73C51B52EE27006CC0A7 /* GradientView.swift */,
 				851511C91B5BE61300D6EBDA /* TickTimer.swift */,
 				85DB25F31B5C4134006CD370 /* AudioUtil.swift */,
-				85A38F121B77F73A00430E76 /* File.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -214,8 +214,6 @@
 				85DD471F1B3EEBDB005BD7BE /* macros.h */,
 				85DD47201B3EEBDB005BD7BE /* NSArray+SectionInfo.h */,
 				85DD47211B3EEBDB005BD7BE /* NSArray+SectionInfo.m */,
-				85DD47221B3EEBDB005BD7BE /* NSString+Date.h */,
-				85DD47231B3EEBDB005BD7BE /* NSString+Date.m */,
 				85DD47241B3EEBDB005BD7BE /* SectionInfo.h */,
 				85DD47251B3EEBDB005BD7BE /* SectionInfo.m */,
 				85DD47261B3EEBDB005BD7BE /* SettingsItem.h */,
@@ -410,7 +408,6 @@
 				85C0EDC71B401B4600102F72 /* DataModel.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
 				85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */,
-				85A38F131B77F73A00430E76 /* File.swift in Sources */,
 				85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */,
 				85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */,
 				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,
@@ -423,6 +420,7 @@
 				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
 				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
 				851313F51B3F1DDC009D713F /* Log.swift in Sources */,
+				859E1C041B794D8900C9C0E0 /* String.swift in Sources */,
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85B781761B6E586F00B1A0C1 /* BadgeAllocator.swift in Sources */,
 				85B781701B6E48E900B1A0C1 /* Badge.swift in Sources */,
@@ -434,11 +432,11 @@
 				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
 				85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */,
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,
-				85DD47311B3EEBDB005BD7BE /* NSString+Date.m in Sources */,
 				851313F31B3F1DDC009D713F /* TimerParameter.swift in Sources */,
 				85DB25F41B5C4134006CD370 /* AudioUtil.swift in Sources */,
 				851313ED1B3F1C33009D713F /* toothtimer.xcdatamodeld in Sources */,
 				85CFF8AD1B49817900C262F0 /* SettingsViewController.m in Sources */,
+				859E1C021B794A1000C9C0E0 /* SwiftSettingsItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
