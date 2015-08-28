@@ -126,9 +126,9 @@ class DataModel : NSObject
     var resultError:ErrorType? = nil
     
     persistentStoreCoordinator .performBlockAndWait
-    { let coreDataCloudContent = ubiquityURL.path?.stringByAppendingPathComponent("CoreDataLogs");
+    { let coreDataCloudContent = ubiquityURL.URLByAppendingPathComponent("CoreDataLogs");
       let options              = [ NSPersistentStoreUbiquitousContentNameKey:DataModel.kDatabaseName,
-                                   NSPersistentStoreUbiquitousContentURLKey:NSURL.fileURLWithPath(coreDataCloudContent!),
+                                   NSPersistentStoreUbiquitousContentURLKey:NSURL.fileURLWithPath(coreDataCloudContent.path!),
                                    NSMigratePersistentStoresAutomaticallyOption:true
                                  ]
     

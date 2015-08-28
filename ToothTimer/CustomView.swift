@@ -162,7 +162,7 @@ class CustomView: UIView
         { self.innerRing[i].frame = r
           
           var bounds = self.innerRing[i].bounds
-          bounds.inset(dx: self.innerRing[i].lineWidth*1.0, dy: self.innerRing[i].lineWidth*1.0)
+          bounds.insetInPlace(dx: self.innerRing[i].lineWidth*1.0, dy: self.innerRing[i].lineWidth*1.0)
           
           let path       = CGPathCreateMutable()
           let sliceAngle = 2.0 * M_PI / Double(AppConfig.sharedInstance().noOfSlices)
