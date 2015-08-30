@@ -56,9 +56,21 @@ class TimerViewController: UIViewController
     actTimer--
     
     if actTimer<=0
-    { _ = Log.createLog(Int32(AppConfig.sharedInstance().timerInSeconds),noOfSlices: Int16(AppConfig.sharedInstance().noOfSlices),status:"success")
+    {
+      /*
+      _ = Log.createLog(Int32(AppConfig.sharedInstance().timerInSeconds),noOfSlices: Int16(AppConfig.sharedInstance().noOfSlices),status:"success")
       
       DataModel.sharedInstance.save()
+      */
+      
+      let log = CKLog()
+      log.durationinseconds = Int64(AppConfig.sharedInstance().timerInSeconds)
+      log.noofslices = Int64(AppConfig.sharedInstance().noOfSlices)
+      log.logts = NSDate()
+      log.status = "success"
+      
+      CKDataModel.sharedInstance.addLog(log)
+      
       self.updateTimerLabel()
       
       self.stopTimer()

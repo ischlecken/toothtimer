@@ -8,7 +8,6 @@
 import Foundation
 import CloudKit
 
-let LogType = "Log"
 
 protocol ModelDelegate {
   func errorUpdating(error: NSError)
@@ -41,7 +40,7 @@ class CKDataModel
   func fetchLogs()
   {
     let predicate = NSPredicate(format: "TRUEPREDICATE")
-    let queryOperation = CKQueryOperation(query: CKQuery(recordType: LogType, predicate: predicate))
+    let queryOperation = CKQueryOperation(query: CKQuery(recordType: CKLog.recordType, predicate: predicate))
     var newItems = [CKLog]()
     
     queryOperation.resultsLimit = 10
@@ -76,6 +75,25 @@ class CKDataModel
   
   func addLog(log:CKLog)
   {
+    let modifyRecordsOperation = CKModifyRecordsOperation()
+    
+    modifyRecordsOperation.recordsToSave = [log.record]
+    
+    modifyRecordsOperation.modifyRecordsCompletionBlock = {
+      (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
+      
+      if let error = error {
+        self.delegate?.errorUpdating(error)
+      }
+      else {
+        self.logItems.append(log)
+        
+        self.delegate?.modelUpdatesDone()
+      }
+    };
+    
+    self.delegate?.modelUpdatesWillBegin()
+    self.privateDB.addOperation(modifyRecordsOperation)
     
   }
 }

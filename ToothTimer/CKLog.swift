@@ -11,6 +11,7 @@ import CloudKit
 
 class CKLog
 {
+  static let recordType = "Log"
   
   var logts: NSDate
     {
@@ -65,10 +66,14 @@ class CKLog
   weak var database : CKDatabase?
   
   
-  init(record:CKRecord,database:CKDatabase?)
-  {
-    self.record = record
+  init(record:CKRecord, database:CKDatabase?)
+  { self.record = record
     self.database = database
+  }
+  
+  convenience init()
+  {
+    self.init( record: CKRecord(recordType: CKLog.recordType), database: CKDataModel.sharedInstance.privateDB )
   }
  
 
