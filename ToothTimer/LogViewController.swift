@@ -9,161 +9,66 @@
 import UIKit
 import CoreData
 
-class LogViewController: UITableViewController,NSFetchedResultsControllerDelegate
+class LogViewController: UITableViewController, ModelDelegate
 {
-                 var logs      : NSFetchedResultsController!
+  var logs = [CKLog]()
   
   override func viewDidLoad()
   { super.viewDidLoad()
     
-    logs = Log.FetchedResultsController()
-    logs.delegate = self
-    
     self.tableView.backgroundColor = UIColor.clearColor()
     
-    do
-    { try logs.performFetch() }
-    catch
-    { NSLog("performFetch failed") }
+    CKDataModel.sharedInstance.delegate = self
+    
+    CKDataModel.sharedInstance.fetchLogs()
+    
   }
 
-
-  //
-  //
-  //
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int
-  { return (logs.sections?.count)! }
+  { return 1 }
 
-  //
-  //
-  //
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-  { var result = 0
-    
-    if let s=logs.sections
-    { result = s[section].numberOfObjects }
+  { let result = self.logs.count
     
     return result
   }
 
-  //
-  //
-  //
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    let log  = logs.objectAtIndexPath(indexPath) as! Log
+    let log  = logs[indexPath.row]
     
-    cell.textLabel?.text = "\(log.status!):\(log.durationinseconds)"
+    cell.textLabel?.text = "\(log.status):\(log.durationinseconds)"
     cell.detailTextLabel?.text = "ts:\(log.logts)"
+    
     return cell
   }
   
+  // MARK: ModelDelegate
   
-  func controllerWillChangeContent(controller: NSFetchedResultsController) {
-    self.tableView.beginUpdates()
-  }
-  
-  func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-    switch(type) {
-      
-    case .Insert:
-      if let newIndexPath = newIndexPath {
-        tableView.insertRowsAtIndexPaths([newIndexPath],
-          withRowAnimation:UITableViewRowAnimation.Fade)
-      }
-      
-    case .Delete:
-      if let indexPath = indexPath {
-        tableView.deleteRowsAtIndexPaths([indexPath],
-          withRowAnimation: UITableViewRowAnimation.Fade)
-      }
-      
-    case .Update:
-      if let indexPath = indexPath {
-        tableView.cellForRowAtIndexPath(indexPath)
-      }
-      
-    case .Move:
-      if let indexPath = indexPath {
-        if let newIndexPath = newIndexPath {
-          tableView.deleteRowsAtIndexPaths([indexPath],
-            withRowAnimation: UITableViewRowAnimation.Fade)
-          tableView.insertRowsAtIndexPaths([newIndexPath],
-            withRowAnimation: UITableViewRowAnimation.Fade)
-        }
-      }
-    }
+  func errorUpdating(error: NSError) {
+    NSLog("errorUpdating(%@)",error)
+    
   }
   
-  
-  func controller(controller: NSFetchedResultsController,
-    didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
-    atIndex sectionIndex: Int,
-    forChangeType type: NSFetchedResultsChangeType)
-  {
-    switch(type) {
-      
-    case .Insert:
-      tableView.insertSections(NSIndexSet(index: sectionIndex),
-        withRowAnimation: UITableViewRowAnimation.Fade)
-      
-    case .Delete:
-      tableView.deleteSections(NSIndexSet(index: sectionIndex),
-        withRowAnimation: UITableViewRowAnimation.Fade)
-      
-    default:
-      break
-    }
+  func modelUpdatesWillBegin() {
+    NSLog("modelUpdatesWillBegin()")
+    
   }
   
-  func controllerDidChangeContent(controller: NSFetchedResultsController)
-  {
-    tableView.endUpdates()
+  func modelUpdatesDone() {
+    NSLog("modelUpdatesDone()")
+    
+    self.logs = CKDataModel.sharedInstance.logItems
   }
   
-  /*
-  // Override to support conditional editing of the table view.
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      // Return false if you do not want the specified item to be editable.
-      return true
+  func recordAdded(indexPath:NSIndexPath!) {
+    NSLog("recordAdded()")
+    
   }
-  */
-
-  /*
-  // Override to support editing the table view.
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-      if editingStyle == .Delete {
-          // Delete the row from the data source
-          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-      } else if editingStyle == .Insert {
-          // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-      }    
+  
+  func recordUpdated(indexPath:NSIndexPath!) {
+    NSLog("recordUpdated()")
+    
   }
-  */
-
-  /*
-  // Override to support rearranging the table view.
-  override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-  }
-  */
-
-  /*
-  // Override to support conditional rearranging of the table view.
-  override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-      // Return NO if you do not want the item to be re-orderable.
-      return true
-  }
-  */
-
-  /*
-  // MARK: - Navigation
-
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      // Get the new view controller using segue.destinationViewController.
-      // Pass the selected object to the new view controller.
-  }
-  */
 
 }

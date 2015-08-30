@@ -20,6 +20,10 @@
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
+		859310D61B91E3D60064B33E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859310D51B91E3D60064B33E /* CloudKit.framework */; };
+		8597AF301B92FDE100A01BE4 /* CKDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8597AF2F1B92FDE100A01BE4 /* CKDataModel.swift */; settings = {ASSET_TAGS = (); }; };
+		8597AF321B92FE2100A01BE4 /* CKLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8597AF311B92FE2100A01BE4 /* CKLog.swift */; settings = {ASSET_TAGS = (); }; };
+		8597AF341B93019200A01BE4 /* CKUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8597AF331B93019200A01BE4 /* CKUserInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		859E1C021B794A1000C9C0E0 /* SwiftSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */; };
 		859E1C041B794D8900C9C0E0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E1C031B794D8900C9C0E0 /* String.swift */; };
 		85A38F151B77FE2900430E76 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38F141B77FE2900430E76 /* UIImage.swift */; };
@@ -81,6 +85,10 @@
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		859310D51B91E3D60064B33E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		8597AF2F1B92FDE100A01BE4 /* CKDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKDataModel.swift; sourceTree = "<group>"; };
+		8597AF311B92FE2100A01BE4 /* CKLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKLog.swift; sourceTree = "<group>"; };
+		8597AF331B93019200A01BE4 /* CKUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKUserInfo.swift; sourceTree = "<group>"; };
 		859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSettingsItem.swift; sourceTree = "<group>"; };
 		859E1C031B794D8900C9C0E0 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		85A38F141B77FE2900430E76 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -147,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859310D61B91E3D60064B33E /* CloudKit.framework in Frameworks */,
 				85C0EDC11B4015ED00102F72 /* CoreData.framework in Frameworks */,
 				850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */,
 			);
@@ -164,9 +173,12 @@
 				851313EE1B3F1DDC009D713F /* TimerParameter+CoreDataProperties.swift */,
 				851313EF1B3F1DDC009D713F /* TimerParameter.swift */,
 				851313F01B3F1DDC009D713F /* Log+CoreDataProperties.swift */,
+				8597AF311B92FE2100A01BE4 /* CKLog.swift */,
 				851313F11B3F1DDC009D713F /* Log.swift */,
 				85C0EDC61B401B4600102F72 /* DataModel.swift */,
+				8597AF2F1B92FDE100A01BE4 /* CKDataModel.swift */,
 				85B781751B6E586F00B1A0C1 /* BadgeAllocator.swift */,
+				8597AF331B93019200A01BE4 /* CKUserInfo.swift */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -192,6 +204,7 @@
 		85C0EDC21B4015FA00102F72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				859310D51B91E3D60064B33E /* CloudKit.framework */,
 				85C0EDC01B4015ED00102F72 /* CoreData.framework */,
 				850529831B3EDB5C00DE1E6F /* HealthKit.framework */,
 			);
@@ -344,6 +357,9 @@
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -402,6 +418,7 @@
 				85A38F151B77FE2900430E76 /* UIImage.swift in Sources */,
 				855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */,
 				85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */,
+				8597AF341B93019200A01BE4 /* CKUserInfo.swift in Sources */,
 				851313F21B3F1DDC009D713F /* TimerParameter+CoreDataProperties.swift in Sources */,
 				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
 				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
@@ -409,6 +426,7 @@
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
 				85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */,
 				85B7816F1B6E48E900B1A0C1 /* Badge+CoreDataProperties.swift in Sources */,
+				8597AF321B92FE2100A01BE4 /* CKLog.swift in Sources */,
 				85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */,
 				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,
 				85C03A361B49199900C88E95 /* UIColor.swift in Sources */,
@@ -419,6 +437,7 @@
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
 				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
 				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
+				8597AF301B92FDE100A01BE4 /* CKDataModel.swift in Sources */,
 				851313F51B3F1DDC009D713F /* Log.swift in Sources */,
 				859E1C041B794D8900C9C0E0 /* String.swift in Sources */,
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
