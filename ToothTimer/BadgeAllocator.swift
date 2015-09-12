@@ -16,9 +16,10 @@ class BadgeAllocator
   {
     let r = Int(arc4random()) % badgeNames.count
     
-    _ = Badge.createBadge(badgeNames[r])
+    let badge = CKBadge()
     
-    DataModel.sharedInstance.save()
-    
+    badge.name = badgeNames[r]
+   
+    CKBadgesDataModel.sharedInstance.addBadge(badge)
   }
 }

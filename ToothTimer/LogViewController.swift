@@ -18,9 +18,9 @@ class LogViewController: UITableViewController, ModelDelegate
     
     self.tableView.backgroundColor = UIColor.clearColor()
     
-    CKDataModel.sharedInstance.delegate = self
+    CKLogsDataModel.sharedInstance.delegate = self
     
-    CKDataModel.sharedInstance.fetchLogs()
+    CKLogsDataModel.sharedInstance.fetchLogs()
     
   }
 
@@ -50,7 +50,7 @@ class LogViewController: UITableViewController, ModelDelegate
   func errorUpdating(error: NSError) {
     NSLog("errorUpdating(%@)",error)
     
-    self.logs = CKDataModel.sharedInstance.logItems
+    self.logs = CKLogsDataModel.sharedInstance.logItems
     
     self.tableView.reloadData();
   }
@@ -61,7 +61,7 @@ class LogViewController: UITableViewController, ModelDelegate
   }
   
   func modelUpdatesDone() {
-    self.logs = CKDataModel.sharedInstance.logItems
+    self.logs = CKLogsDataModel.sharedInstance.logItems
     
     NSLog("modelUpdatesDone(): logsCount=\(self.logs.count)")
     

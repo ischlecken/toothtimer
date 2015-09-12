@@ -68,7 +68,7 @@ class TimerViewController: UIViewController
       log.noofslices = Int64(AppConfig.sharedInstance().noOfSlices)
       log.status = "success"
       
-      CKDataModel.sharedInstance.addLog(log)
+      CKLogsDataModel.sharedInstance.addLog(log)
       
       self.updateTimerLabel()
       

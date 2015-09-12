@@ -79,7 +79,7 @@ class CKLog
   
   convenience init()
   {
-    self.init( record: CKRecord(recordType: CKLog.recordType), database: CKDataModel.sharedInstance.privateDB )
+    self.init( record: CKRecord(recordType: CKLog.recordType), database: CKLogsDataModel.sharedInstance.privateDB )
   }
  
 
