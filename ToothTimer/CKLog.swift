@@ -11,17 +11,12 @@ import CloudKit
 
 class CKLog
 {
-  static let recordType = "Log"
+  static let recordType = "Logs"
   
   var logts: NSDate
     {
     get {
-      let result = record.objectForKey("logts")
-      
-      return result! as! NSDate
-    }
-    set(logts) {
-      record.setObject(logts, forKey: "logts")
+      return record.creationDate!
     }
   }
   
@@ -61,6 +56,17 @@ class CKLog
     }
   }
 
+  var user: CKReference
+    {
+    get {
+      let result = record.objectForKey("user")
+      
+      return result! as! CKReference
+    }
+    set(status) {
+      record.setObject(status, forKey: "user")
+    }
+  }
   
   var record : CKRecord
   weak var database : CKDatabase?

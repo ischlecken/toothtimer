@@ -30,6 +30,8 @@ class LogViewController: UITableViewController, ModelDelegate
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   { let result = self.logs.count
     
+    NSLog("tableView(): numberOfRowsInSection=\(result)")
+    
     return result
   }
 
@@ -48,6 +50,9 @@ class LogViewController: UITableViewController, ModelDelegate
   func errorUpdating(error: NSError) {
     NSLog("errorUpdating(%@)",error)
     
+    self.logs = CKDataModel.sharedInstance.logItems
+    
+    self.tableView.reloadData();
   }
   
   func modelUpdatesWillBegin() {
@@ -56,9 +61,11 @@ class LogViewController: UITableViewController, ModelDelegate
   }
   
   func modelUpdatesDone() {
-    NSLog("modelUpdatesDone()")
-    
     self.logs = CKDataModel.sharedInstance.logItems
+    
+    NSLog("modelUpdatesDone(): logsCount=\(self.logs.count)")
+    
+    self.tableView.reloadData();
   }
   
   func recordAdded(indexPath:NSIndexPath!) {

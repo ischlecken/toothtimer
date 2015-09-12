@@ -19,6 +19,7 @@
 "settings.title.about"                                      = "About «%1$@»";
 "settings.title.colorSchemeName"                            = "Color Scheme";
 
+"settings.picker.timerInSeconds.10"                         = "10 seconds";
 "settings.picker.timerInSeconds.30"                         = "30 seconds";
 "settings.picker.timerInSeconds.60"                         = "1 minute";
 "settings.picker.timerInSeconds.120"                        = "2 minutes";

@@ -66,7 +66,6 @@ class TimerViewController: UIViewController
       let log = CKLog()
       log.durationinseconds = Int64(AppConfig.sharedInstance().timerInSeconds)
       log.noofslices = Int64(AppConfig.sharedInstance().noOfSlices)
-      log.logts = NSDate()
       log.status = "success"
       
       CKDataModel.sharedInstance.addLog(log)
