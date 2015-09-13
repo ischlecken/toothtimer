@@ -19,6 +19,8 @@ class BadgeTableViewController: UITableViewController, ModelDelegate
     CKBadgesDataModel.sharedInstance.delegate = self
     CKBadgesDataModel.sharedInstance.fetchBadges()
     
+    CKBadgesDataModel.sharedInstance.addSubscriptionForBadges()
+    
     self.tableView.backgroundColor = UIColor.clearColor()
   }
 

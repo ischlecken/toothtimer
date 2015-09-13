@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -23,7 +24,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
     { window?.tintColor = tintColor }
     
+    let settings = UIUserNotificationSettings(forTypes: [.Alert,.Badge,.Sound], categories: nil)
+    
+    application.registerUserNotificationSettings(settings)
+    application.registerForRemoteNotifications()
+    
     return true
+  }
+  
+  //func application(application: UIApplication, didReceiveRemoteNotification userInfo: [String : NSObject])
+  
+  func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    let notification: CKNotification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String:NSObject])
+    
+    if (notification.notificationType == CKNotificationType.Query) {
+        
+      let queryNotification = notification as! CKQueryNotification
+        
+      let recordID = queryNotification.recordID
+        
+      NSLog("recordID:\(recordID)");
+    }
   }
 
   func applicationWillResignActive(application: UIApplication) {

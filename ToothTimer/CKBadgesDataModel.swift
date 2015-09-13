@@ -22,6 +22,27 @@ class CKBadgesDataModel : CKDataModel
   }
   
   
+  func addSubscriptionForBadges()
+  {
+    let predicate = NSPredicate(format: "TRUEPREDICATE")
+    let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .FiresOnRecordCreation)
+    let notificationInfo = CKNotificationInfo()
+    
+    notificationInfo.alertBody = "A new Badge was added"
+    notificationInfo.shouldBadge = true
+    
+    subscription.notificationInfo = notificationInfo
+    
+    self.publicDB.saveSubscription(subscription,
+      completionHandler: ({ returnRecord, error in
+        if let err = error {
+          NSLog("subscription failed %@",err.localizedDescription)
+        } else {
+          NSLog("Subscription set up successfully")
+        }
+      }))
+  }
+  
   func fetchBadges()
   {
     userInfo.userID { (userRecordID, error) -> () in

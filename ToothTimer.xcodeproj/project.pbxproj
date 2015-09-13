@@ -21,6 +21,8 @@
 		8597AF341B93019200A01BE4 /* CKUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8597AF331B93019200A01BE4 /* CKUserInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		8598693C1BA4623400089E89 /* CKBadgesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8598693A1BA4623400089E89 /* CKBadgesDataModel.swift */; settings = {ASSET_TAGS = (); }; };
 		8598693D1BA4623400089E89 /* CKLogsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8598693B1BA4623400089E89 /* CKLogsDataModel.swift */; settings = {ASSET_TAGS = (); }; };
+		8599FD161BA613BB00E48B1D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599FD151BA613BB00E48B1D /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
+		8599FD181BA61CF700E48B1D /* ToothTimerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599FD171BA61CF700E48B1D /* ToothTimerSettings.swift */; settings = {ASSET_TAGS = (); }; };
 		859E1C021B794A1000C9C0E0 /* SwiftSettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */; };
 		859E1C041B794D8900C9C0E0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E1C031B794D8900C9C0E0 /* String.swift */; };
 		85A38F151B77FE2900430E76 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38F141B77FE2900430E76 /* UIImage.swift */; };
@@ -80,6 +82,8 @@
 		8597AF331B93019200A01BE4 /* CKUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKUserInfo.swift; sourceTree = "<group>"; };
 		8598693A1BA4623400089E89 /* CKBadgesDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBadgesDataModel.swift; sourceTree = "<group>"; };
 		8598693B1BA4623400089E89 /* CKLogsDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKLogsDataModel.swift; sourceTree = "<group>"; };
+		8599FD151BA613BB00E48B1D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		8599FD171BA61CF700E48B1D /* ToothTimerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToothTimerSettings.swift; sourceTree = "<group>"; };
 		859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSettingsItem.swift; sourceTree = "<group>"; };
 		859E1C031B794D8900C9C0E0 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		85A38F141B77FE2900430E76 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				858B73C51B52EE27006CC0A7 /* GradientView.swift */,
 				851511C91B5BE61300D6EBDA /* TickTimer.swift */,
 				85DB25F31B5C4134006CD370 /* AudioUtil.swift */,
+				8599FD171BA61CF700E48B1D /* ToothTimerSettings.swift */,
+				8599FD151BA613BB00E48B1D /* Settings.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -413,8 +419,10 @@
 				85B781721B6E507C00B1A0C1 /* BadgeTableViewCell.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
 				85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */,
+				8599FD161BA613BB00E48B1D /* Settings.swift in Sources */,
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
 				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
+				8599FD181BA61CF700E48B1D /* ToothTimerSettings.swift in Sources */,
 				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
 				8597AF301B92FDE100A01BE4 /* CKDataModel.swift in Sources */,
 				859E1C041B794D8900C9C0E0 /* String.swift in Sources */,
