@@ -9,71 +9,68 @@
 import Foundation
 
 enum ToothTimerSettingKey : String {
-  case colorSchemeName = "colorSchemeName"
-  case timerInSeconds = "timerInSeconds"
-  case usageCount = "usageCount"
-  case notificationEnabled = "notificationEnabled"
-  case noOfSlices = "noOfSlices"
+  case colorSchemeName                 = "colorSchemeName"
+  case usageCount                      = "usageCount"
+  
+  case timerInSeconds                  = "timerInSeconds"
+  case noOfSlices                      = "noOfSlices"
+  
+  case notificationEnabled             = "notificationEnabled"
+  
+  case mouthRinseEnabled               = "mouthRinseEnabled"
+  case mouthRinseIntervalInDays        = "mouthRinseIntervalInDays"
+  case mouthRinsePreferredDayOfWeek    = "mouthRinsePreferredDayOfWeek"
+  case mouthRinseTimerInSeconds        = "mouthRinseTimerInSeconds"
+  
+  case fluoridationEnabled             = "fluoridationEnabled"
+  case fluoridationIntervalInDays      = "fluoridationIntervalInDays"
+  case fluoridationPreferredDayOfWeek  = "fluoridationPreferredDayOfWeek"
+  case fluoridationTimerInSeconds      = "fluoridationTimerInSeconds"
 }
 
 class ToothTimerSettings : Settings
 {
   static let sharedInstance = ToothTimerSettings()
   
-  var colorSchemeName: String
-    {
+  var colorSchemeName: String? {
     get {
-      let result = self.getConfigValue(ToothTimerSettingKey.colorSchemeName.rawValue)
-      
-      return result! as! String
+      return self.getConfigValue(ToothTimerSettingKey.colorSchemeName.rawValue) as? String
     }
     set(colorSchemeName) {
       self.setConfigValue(colorSchemeName, forKey: ToothTimerSettingKey.colorSchemeName.rawValue)
     }
   }
   
-  var timerInSeconds: Int
-    {
+  var timerInSeconds: Int? {
     get {
-      let result = self.getConfigValue(ToothTimerSettingKey.timerInSeconds.rawValue)
-      
-      return result! as! Int
+      return self.getConfigValue(ToothTimerSettingKey.timerInSeconds.rawValue)! as? Int
     }
     set(timerInSeconds) {
       self.setConfigValue(timerInSeconds, forKey: ToothTimerSettingKey.timerInSeconds.rawValue)
     }
   }
   
-  var noOfSlices: Int
-    {
+  var noOfSlices: Int? {
     get {
-      let result = self.getConfigValue(ToothTimerSettingKey.noOfSlices.rawValue)
-      
-      return result! as! Int
+      return self.getConfigValue(ToothTimerSettingKey.noOfSlices.rawValue)! as? Int
     }
     set(noOfSlices) {
-      self.setConfigValue(timerInSeconds, forKey: ToothTimerSettingKey.noOfSlices.rawValue)
+      self.setConfigValue(noOfSlices, forKey: ToothTimerSettingKey.noOfSlices.rawValue)
     }
   }
 
-  var usageCount: Int
-    {
+  var usageCount: Int? {
     get {
-      let result = self.getConfigValue(ToothTimerSettingKey.usageCount.rawValue)
-      
-      return result! as! Int
+      return self.getConfigValue(ToothTimerSettingKey.usageCount.rawValue)! as? Int
     }
     set(usageCount) {
       self.setConfigValue(usageCount, forKey: ToothTimerSettingKey.usageCount.rawValue)
     }
   }
   
-  var notificationEnabled: Bool
-    {
+  var notificationEnabled: Bool? {
     get {
-      let result = self.getConfigValue(ToothTimerSettingKey.notificationEnabled.rawValue)
-      
-      return result! as! Bool
+      return self.getConfigValue(ToothTimerSettingKey.notificationEnabled.rawValue)! as? Bool
     }
     set(notificationEnabled) {
       self.setConfigValue(notificationEnabled, forKey: ToothTimerSettingKey.notificationEnabled.rawValue)
@@ -91,5 +88,7 @@ class ToothTimerSettings : Settings
   
   init() {
     super.init(withDefaults: udd)
+    
+    
   }
 }

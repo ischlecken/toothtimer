@@ -32,7 +32,7 @@ class TimerViewController: UIViewController
 
 
   deinit {
-    AppConfig.sharedInstance().removeObserver(self, forKeyPath: "noOfSlices")
+    ToothTimerSettings.sharedInstance.removeObserver(self, forKeyPath: "noOfSlices")
   }
 
 
@@ -44,7 +44,7 @@ class TimerViewController: UIViewController
     
     self.updateTimerLabel()
     
-    AppConfig.sharedInstance().addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
+    ToothTimerSettings.sharedInstance.addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
   }
 
   func timerFired()
@@ -58,14 +58,14 @@ class TimerViewController: UIViewController
     if actTimer<=0
     {
       /*
-      _ = Log.createLog(Int32(AppConfig.sharedInstance().timerInSeconds),noOfSlices: Int16(AppConfig.sharedInstance().noOfSlices),status:"success")
+      _ = Log.createLog(Int32(ToothTimerSettings.sharedInstance.timerInSeconds),noOfSlices: Int16(ToothTimerSettings.sharedInstance.noOfSlices),status:"success")
       
       DataModel.sharedInstance.save()
       */
       
       let log = CKLog()
-      log.durationinseconds = Int64(AppConfig.sharedInstance().timerInSeconds)
-      log.noofslices = Int64(AppConfig.sharedInstance().noOfSlices)
+      log.durationinseconds = Int64(ToothTimerSettings.sharedInstance.timerInSeconds!)
+      log.noofslices = Int64(ToothTimerSettings.sharedInstance.noOfSlices!)
       log.status = "success"
       
       CKLogsDataModel.sharedInstance.addLog(log)
@@ -84,7 +84,7 @@ class TimerViewController: UIViewController
   { if !self.isTimerRunning
     { self.isTimerRunning = true
       
-      self.actTimer = AppConfig .sharedInstance().timerInSeconds
+      self.actTimer = ToothTimerSettings.sharedInstance.timerInSeconds!
       
       self.updateTimerLabel()
       

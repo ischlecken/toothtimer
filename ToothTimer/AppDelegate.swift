@@ -15,11 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
-  { if AppConfig .sharedInstance().usageCount > Int(Constant.kUsageCountRemainderThreshold)
+  { ToothTimerSettings.sharedInstance.usageCount = ToothTimerSettings.sharedInstance.usageCount!+1
+    
+    if ToothTimerSettings.sharedInstance.usageCount > Int(Constant.kUsageCountRemainderThreshold)
     { NSLog("show rating dialogue")
     } /* of if */
     
-    UIColor.selectedColorSchemeName = AppConfig.sharedInstance().colorSchemeName
+    UIColor.selectedColorSchemeName = ToothTimerSettings.sharedInstance.colorSchemeName
     
     if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
     { window?.tintColor = tintColor }

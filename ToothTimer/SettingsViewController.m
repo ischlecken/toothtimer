@@ -7,7 +7,6 @@
 #import "SettingsItem.h"
 #import "SectionInfo.h"
 #import "NSArray+SectionInfo.h"
-#import "AppConfig.h"
 #import "AppUtil.h"
 #import "ToothTimer-swift.h"
 
@@ -57,7 +56,7 @@
     NSIndexPath*        pip       = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
     MutableSectionInfo* msi       = weakSelf.sections[indexPath.section];
     SettingsItem*       si        = msi.items[indexPath.row];
-    id                  rowValue  = [_APPCONFIG getConfigValue:si.title];
+    id                  rowValue  = [[ToothTimerSettings sharedInstance] getConfigValue:si.title];
     
     if( pip.row<msi.items.count && [[msi.items[pip.row] cellId] isEqualToString:@"PickerCell"] )
       addPicker = NO;
@@ -128,7 +127,8 @@
   NSMutableArray* notificationSectionItems = [[NSMutableArray alloc] initWithArray:
                                              @[ [SettingsItem settingItemWithTitle:@"notificationEnabled" andCellId:@"BooleanCell"] ]];
   
-  if( _APPCONFIG.notificationEnabled )
+  NSNumber* notificationEnabled = [[ToothTimerSettings sharedInstance] getConfigValue:@"notificationEnabled"];
+  if( [notificationEnabled boolValue] )
     [notificationSectionItems addObjectsFromArray:
     @[
      [SettingsItem settingItemWithTitle:useImperial ? @"notificationRadiusInYard" : @"notificationRadiusInMeter"
@@ -246,8 +246,8 @@
 -(id) valueForConfig:(NSString*)title
 { id result = nil;
   
-  if( [_APPCONFIG configValueExists:title] )
-    result = [_APPCONFIG getConfigValue:title];
+  if( [[ToothTimerSettings sharedInstance] configValueExists:title] )
+    result = [[ToothTimerSettings sharedInstance] getConfigValue:title];
   
   return result;
 }
@@ -258,8 +258,8 @@
 -(NSString*) stringValueForConfig:(NSString*)title
 { NSString* result = nil;
   
-  if( [_APPCONFIG configValueExists:title] )
-    result = [_APPCONFIG getConfigValue:title];
+  if( [[ToothTimerSettings sharedInstance] configValueExists:title] )
+    result = [[ToothTimerSettings sharedInstance] getConfigValue:title];
   
   return result;
 }
@@ -268,8 +268,8 @@
  *
  */
 -(void) updateStringValue:(NSString*)value forConfig:(NSString*)title
-{ if( [_APPCONFIG configValueExists:title] )
-    [_APPCONFIG setConfigValue:value forKey:title];
+{ if( [[ToothTimerSettings sharedInstance] configValueExists:title] )
+    [[ToothTimerSettings sharedInstance] setConfigValue:value forKey:title];
   
 }
 
@@ -280,8 +280,8 @@
 -(BOOL) boolValueForConfig:(NSString*)title
 { BOOL result = NO;
   
-  if( [_APPCONFIG configValueExists:title] )
-  { NSNumber* value = [_APPCONFIG getConfigValue:title];
+  if( [[ToothTimerSettings sharedInstance] configValueExists:title] )
+  { NSNumber* value = [[ToothTimerSettings sharedInstance] getConfigValue:title];
     
     result = [value boolValue];
   } /* of if */
@@ -293,8 +293,8 @@
  *
  */
 -(void) updateBoolValue:(BOOL)value forConfig:(NSString*)title
-{ if( [_APPCONFIG configValueExists:title] )
-    [_APPCONFIG setConfigValue:[NSNumber numberWithBool:value] forKey:title];
+{ if( [[ToothTimerSettings sharedInstance] configValueExists:title] )
+    [[ToothTimerSettings sharedInstance] setConfigValue:[NSNumber numberWithBool:value] forKey:title];
   
   if( [title isEqualToString:@"notificationEnabled"] )
   { SectionInfo* si = [self.sections findSectionInfo:kSectionTitleNotification];
@@ -563,7 +563,7 @@
   { SettingsItem* si       = [self.sections[indexPath.section] items][indexPath.row];
     id            rowValue = si.pickerValues[row];
     
-    [_APPCONFIG setConfigValue:rowValue forKey:si.title];
+    [[ToothTimerSettings sharedInstance] setConfigValue:rowValue forKey:si.title];
     
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section]]
                           withRowAnimation:UITableViewRowAnimationBottom];

@@ -33,7 +33,7 @@ class CustomView: UIView
     
     let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
     
-    for i in 0..<AppConfig.sharedInstance().noOfSlices
+    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!
     { let l = CAShapeLayer()
       
       l.fillColor       = UIColor.clearColor() .CGColor
@@ -158,14 +158,14 @@ class CustomView: UIView
       if self.innerRing.count>0
       { let r = self.calcRect()
         
-        for i in 0..<AppConfig.sharedInstance().noOfSlices
+        for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!
         { self.innerRing[i].frame = r
           
           var bounds = self.innerRing[i].bounds
           bounds.insetInPlace(dx: self.innerRing[i].lineWidth*1.0, dy: self.innerRing[i].lineWidth*1.0)
           
           let path       = CGPathCreateMutable()
-          let sliceAngle = 2.0 * M_PI / Double(AppConfig.sharedInstance().noOfSlices)
+          let sliceAngle = 2.0 * M_PI / Double(ToothTimerSettings.sharedInstance.noOfSlices!)
           let startAngle = Double(i  ) * sliceAngle
           let stopAngle  = Double(i+1) * sliceAngle
           

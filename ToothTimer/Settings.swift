@@ -31,11 +31,9 @@ class Settings : NSObject
     }
     
     self.configUserDefaultsStore = NSUserDefaults(suiteName: Constant.kAppGroup)!
-  }
-  
-  func registerUserDefaults()
-  { var defaultValues = [String:AnyObject]();
-  
+    
+    var defaultValues = [String:AnyObject]();
+    
     for (keyName,keyValue) in self.userDefaultDescription {
       defaultValues[keyName] = keyValue.defaultValue
     }
@@ -43,8 +41,8 @@ class Settings : NSObject
     self.configUserDefaultsStore.registerDefaults(defaultValues)
     self.configUserDefaultsStore.synchronize()
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "defaultsChanged", name: NSUserDefaultsDidChangeNotification, object: nil)
-  
+  // NSNotificationCenter.defaultCenter().addObserver(self, selector: "defaultsChanged", name: NSUserDefaultsDidChangeNotification, object: nil)
+    
   }
   
   func resetUserDefaults()
@@ -56,21 +54,16 @@ class Settings : NSObject
   }
   
   func configValueExists(key:String) -> Bool
-  {
-    return self.userDefaultDescription[key] != nil
+  { return self.userDefaultDescription[key] != nil
   }
   
   func getConfigValue(key:String) -> AnyObject?
-  { var result:AnyObject? = nil
-   
-    if self.configValueExists(key) {
-      result = self.configUserDefaultsStore.objectForKey(key)
-    }
+  { let result = self.configUserDefaultsStore.objectForKey(key)
     
     return result
   }
   
-  func setConfigValue(value:AnyObject, forKey key:String)
+  func setConfigValue(value:AnyObject?, forKey key:String)
   {
     let udd = self.userDefaultDescription[key];
     

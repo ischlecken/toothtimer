@@ -4,7 +4,6 @@
 #import "AppUtil.h"
 #import "UIImage+ImageEffects.h"
 #import "ToothTimer-swift.h"
-#import "AppConfig.h"
 
 #define _APPDELEGATE              ((AppDelegate*) [UIApplication sharedApplication].delegate)
 #define _APPWINDOW                _APPDELEGATE.window
@@ -176,16 +175,20 @@
                                                              preferredStyle:UIAlertControllerStyleAlert];
   
   [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"RatingReminder.RateNow.Title") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
-  { _APPCONFIG.usageCount = -1000;
+  {
+    [[ToothTimerSettings sharedInstance] setConfigValue:@-1000 forKey:@"usageCount"];
+    
     [AppUtil openAppStore];
   }]];
 
   [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"RatingReminder.RemindLater.Title") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
-  { _APPCONFIG.usageCount = 0;
+  { 
+    [[ToothTimerSettings sharedInstance] setConfigValue:@0 forKey:@"usageCount"];
   }]];
 
   [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"RatingReminder.NoNever.Title") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
-  { _APPCONFIG.usageCount = -10000;
+  {
+    [[ToothTimerSettings sharedInstance] setConfigValue:@-10000 forKey:@"usageCount"];
   }]];
 
   [_APPWINDOW.rootViewController presentViewController:alert animated:YES completion:NULL];
