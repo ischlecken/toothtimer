@@ -12,10 +12,13 @@ import CoreData
 class LogViewController: UITableViewController, ModelDelegate
 {
   var logs = [CKLog]()
+  let dateFormatter = NSDateFormatter()
   
   override func viewDidLoad()
   { super.viewDidLoad()
     
+    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
     self.tableView.backgroundColor = UIColor.clearColor()
     
     CKLogsDataModel.sharedInstance.delegate = self
@@ -40,7 +43,7 @@ class LogViewController: UITableViewController, ModelDelegate
     let log  = logs[indexPath.row]
     
     cell.textLabel?.text = "\(log.status):\(log.durationinseconds)"
-    cell.detailTextLabel?.text = "ts:\(log.logts)"
+    cell.detailTextLabel?.text = self.dateFormatter.stringFromDate(log.logts)
     
     return cell
   }
@@ -52,7 +55,9 @@ class LogViewController: UITableViewController, ModelDelegate
     
     self.logs = CKLogsDataModel.sharedInstance.logItems
     
-    self.tableView.reloadData();
+    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+      self.tableView.reloadData()
+    }
   }
   
   func modelUpdatesWillBegin() {
@@ -65,7 +70,9 @@ class LogViewController: UITableViewController, ModelDelegate
     
     NSLog("modelUpdatesDone(): logsCount=\(self.logs.count)")
     
-    self.tableView.reloadData();
+    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+      self.tableView.reloadData()
+    }
   }
   
   func recordAdded(indexPath:NSIndexPath!) {

@@ -22,7 +22,7 @@ class CKLogsDataModel : CKDataModel
       { NSLog("fetchLogs(): userId:\(userRecordID)");
         
         var newItems = [CKLog]()
-        let queryOperation = self.createQueryOperation(userRecordID,recordType: CKLog.recordType, resultLimit: 10)
+        let queryOperation = self.createQueryOperationForCurrentUser(userRecordID,recordType:CKLog.recordType, resultLimit: 10)
         
         queryOperation.queryCompletionBlock =
           { (queryCursor:CKQueryCursor?, error:NSError?) -> Void in
@@ -59,8 +59,6 @@ class CKLogsDataModel : CKDataModel
     userInfo.userID { (userRecordID, error) -> () in
       if let userRecordID = userRecordID
       { NSLog("addLog(): userId:\(userRecordID)");
-        
-        log.user = CKReference(recordID: userRecordID, action: CKReferenceAction.None)
         
         let modifyRecordsOperation = CKModifyRecordsOperation()
         

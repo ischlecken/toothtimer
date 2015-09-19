@@ -22,13 +22,34 @@ class CKBadgesDataModel : CKDataModel
   }
   
   
-  func addSubscriptionForBadges()
+  func addCreationSubscriptionForBadges()
   {
     let predicate = NSPredicate(format: "TRUEPREDICATE")
     let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .FiresOnRecordCreation)
     let notificationInfo = CKNotificationInfo()
     
-    notificationInfo.alertBody = "A new Badge was added"
+    notificationInfo.alertBody = "A Badge was added"
+    notificationInfo.shouldBadge = true
+    
+    subscription.notificationInfo = notificationInfo
+    
+    self.publicDB.saveSubscription(subscription,
+      completionHandler: ({ returnRecord, error in
+        if let err = error {
+          NSLog("subscription failed %@",err.localizedDescription)
+        } else {
+          NSLog("Subscription set up successfully")
+        }
+      }))
+  }
+  
+  func addDeletionSubscriptionForBadges()
+  {
+    let predicate = NSPredicate(format: "TRUEPREDICATE")
+    let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .FiresOnRecordDeletion)
+    let notificationInfo = CKNotificationInfo()
+    
+    notificationInfo.alertBody = "A Badge was deleted"
     notificationInfo.shouldBadge = true
     
     subscription.notificationInfo = notificationInfo
@@ -50,7 +71,7 @@ class CKBadgesDataModel : CKDataModel
       { NSLog("fetchBadges(): usvard:\(userRecordID)");
         
         var newItems = [CKBadge]()
-        let queryOperation = self.createQueryOperation(userRecordID,recordType: CKBadge.recordType,resultLimit: 10)
+        let queryOperation = self.createQueryOperation(userRecordID,recordType: CKBadge.recordType,resultLimit: 100)
         
         queryOperation.queryCompletionBlock =
           { (queryCursor:CKQueryCursor?, error:NSError?) -> Void in
@@ -87,8 +108,6 @@ class CKBadgesDataModel : CKDataModel
     userInfo.userID { (userRecordID, error) -> () in
       if let userRecordID = userRecordID
       { NSLog("addBadge(): userId:\(userRecordID)");
-        
-        badge.user = CKReference(recordID: userRecordID, action: CKReferenceAction.None)
         
         let modifyRecordsOperation = CKModifyRecordsOperation()
         

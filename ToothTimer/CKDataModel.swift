@@ -39,7 +39,19 @@ class CKDataModel
   
   func createQueryOperation(userRecordID:CKRecordID, recordType:String, resultLimit:Int) -> CKQueryOperation
   {
-    let predicate = NSPredicate(format: "user == %@", userRecordID)
+    return createQueryOperationWithPredicate(NSPredicate(format: "TRUEPREDICATE"),forUserId:userRecordID,andRecordType:recordType, andResultLimit:resultLimit)
+  }
+
+  func createQueryOperationForCurrentUser(userRecordID:CKRecordID, recordType:String, resultLimit:Int) -> CKQueryOperation
+  {
+    return createQueryOperationWithPredicate(NSPredicate(format: "creatorUserRecordID == %@", userRecordID),forUserId:userRecordID,andRecordType:recordType, andResultLimit:resultLimit)
+  }
+
+  func createQueryOperationWithPredicate(predicate: NSPredicate,
+                                         forUserId userRecordID:CKRecordID,
+                                         andRecordType recordType:String,
+                                         andResultLimit resultLimit:Int) -> CKQueryOperation
+  {
     let sort = NSSortDescriptor(key: "creationDate", ascending: false)
     let query = CKQuery(recordType: recordType, predicate: predicate)
     

@@ -12,14 +12,19 @@ import CoreData
 class BadgeTableViewController: UITableViewController, ModelDelegate
 {
   var badges = [CKBadge]()
+  let dateFormatter = NSDateFormatter()
   
   override func viewDidLoad()
   { super.viewDidLoad()
     
+    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    
     CKBadgesDataModel.sharedInstance.delegate = self
     CKBadgesDataModel.sharedInstance.fetchBadges()
     
-    CKBadgesDataModel.sharedInstance.addSubscriptionForBadges()
+    CKBadgesDataModel.sharedInstance.addCreationSubscriptionForBadges()
+    CKBadgesDataModel.sharedInstance.addDeletionSubscriptionForBadges()
     
     self.tableView.backgroundColor = UIColor.clearColor()
   }
@@ -28,14 +33,19 @@ class BadgeTableViewController: UITableViewController, ModelDelegate
   { return 1 }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-  { return self.badges.count }
+  { let rowCount = self.badges.count
+  
+    NSLog("tableRowCount:\(rowCount)")
+    
+    return rowCount
+  }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   { let cell   = tableView.dequeueReusableCellWithIdentifier("badgeCell", forIndexPath: indexPath) as! BadgeTableViewCell
     let badge  = self.badges[indexPath.row]
     
     cell.badgeNameLabel.text      = badge.name
-    cell.badgeTimestampLabel.text = "ts:\(badge.createts)"
+    cell.badgeTimestampLabel.text = self.dateFormatter.stringFromDate(badge.createts) + badge.userID.recordName
     cell.badgeImageView.image     = UIImage(named: "badge-"+badge.name)
       
     cell.badgeImageView.image     = cell.badgeImageView.image?.circleImageWithSize((cell.badgeImageView.image?.size)!,
@@ -43,6 +53,8 @@ class BadgeTableViewController: UITableViewController, ModelDelegate
       disabled: false)
     
     cell.badgeImageView.image     = cell.badgeImageView.image?.dropShadow(UIColor.whiteColor())
+    
+    NSLog("cellForRowAtIndex:\(indexPath.row)")
     
     return cell
   }
@@ -54,7 +66,10 @@ class BadgeTableViewController: UITableViewController, ModelDelegate
     
     self.badges = CKBadgesDataModel.sharedInstance.badges
     
-    self.tableView.reloadData();
+    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+      self.tableView.reloadData()
+    }
+    
   }
   
   func modelUpdatesWillBegin() {
@@ -67,7 +82,10 @@ class BadgeTableViewController: UITableViewController, ModelDelegate
     
     NSLog("modelUpdatesDone(): logsCount=\(self.badges.count)")
     
-    self.tableView.reloadData();
+    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+      self.tableView.reloadData()
+    }
+
   }
   
   func recordAdded(indexPath:NSIndexPath!) {

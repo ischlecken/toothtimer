@@ -56,15 +56,12 @@ class CKLog
     }
   }
 
-  var user: CKReference
+  var userID: CKRecordID
     {
     get {
-      let result = record.objectForKey("user")
+      let result = record.creatorUserRecordID
       
-      return result! as! CKReference
-    }
-    set(status) {
-      record.setObject(status, forKey: "user")
+      return result!
     }
   }
   

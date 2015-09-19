@@ -45,7 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
       let recordID = queryNotification.recordID
         
-      NSLog("recordID:\(recordID)");
+      NSLog("remoteNotification() recordID:\(recordID?.recordName) reason:\(queryNotification.queryNotificationReason.rawValue)");
+      
+      CKBadgesDataModel.sharedInstance.fetchBadges()
     }
   }
 
