@@ -22,7 +22,7 @@ class CKLogsDataModel : CKDataModel
       { NSLog("fetchLogs(): userId:\(userRecordID)");
         
         var newItems = [CKLog]()
-        let queryOperation = self.createQueryOperationForCurrentUser(userRecordID,recordType:CKLog.recordType, resultLimit: 10)
+        let queryOperation = self.createQueryOperationForCurrentUser(userRecordID,recordType:CKLog.recordType, resultLimit: 40)
         
         queryOperation.queryCompletionBlock =
           { (queryCursor:CKQueryCursor?, error:NSError?) -> Void in
@@ -56,31 +56,25 @@ class CKLogsDataModel : CKDataModel
   func addLog(log:CKLog)
   { NSLog("addLog(\(log))");
     
-    userInfo.userID { (userRecordID, error) -> () in
-      if let userRecordID = userRecordID
-      { NSLog("addLog(): userId:\(userRecordID)");
-        
-        let modifyRecordsOperation = CKModifyRecordsOperation()
-        
-        modifyRecordsOperation.recordsToSave = [log.record]
-        
-        modifyRecordsOperation.modifyRecordsCompletionBlock = {
-          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
-          
-          if let error = error {
-            self.delegate?.errorUpdating(error)
-          }
-          else {
-            self.logItems.insert(log, atIndex: 0)
-            
-            self.delegate?.modelUpdatesDone()
-          }
-        };
-        
-        self.delegate?.modelUpdatesWillBegin()
-        self.usedDB.addOperation(modifyRecordsOperation)
+    let modifyRecordsOperation = CKModifyRecordsOperation()
+    
+    modifyRecordsOperation.recordsToSave = [log.record]
+    
+    modifyRecordsOperation.modifyRecordsCompletionBlock = {
+      (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
+      
+      if let error = error {
+        self.delegate?.errorUpdating(error)
       }
-    }
+      else {
+        self.logItems.insert(log, atIndex: 0)
+        
+        self.delegate?.modelUpdatesDone()
+      }
+    };
+    
+    self.delegate?.modelUpdatesWillBegin()
+    self.usedDB.addOperation(modifyRecordsOperation)
   }
 
 }

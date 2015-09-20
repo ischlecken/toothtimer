@@ -105,31 +105,25 @@ class CKBadgesDataModel : CKDataModel
   func addBadge(badge:CKBadge)
   { NSLog("addBadge(\(badge))");
     
-    userInfo.userID { (userRecordID, error) -> () in
-      if let userRecordID = userRecordID
-      { NSLog("addBadge(): userId:\(userRecordID)");
-        
-        let modifyRecordsOperation = CKModifyRecordsOperation()
-        
-        modifyRecordsOperation.recordsToSave = [badge.record]
-        
-        modifyRecordsOperation.modifyRecordsCompletionBlock = {
-          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
-          
-          if let error = error {
-            self.delegate?.errorUpdating(error)
-          }
-          else {
-            self.badges.insert(badge, atIndex: 0)
-            
-            self.delegate?.modelUpdatesDone()
-          }
-        };
-        
-        self.delegate?.modelUpdatesWillBegin()
-        self.usedDB.addOperation(modifyRecordsOperation)
+    let modifyRecordsOperation = CKModifyRecordsOperation()
+    
+    modifyRecordsOperation.recordsToSave = [badge.record]
+    
+    modifyRecordsOperation.modifyRecordsCompletionBlock = {
+      (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
+      
+      if let error = error {
+        self.delegate?.errorUpdating(error)
       }
-    }
+      else {
+        self.badges.insert(badge, atIndex: 0)
+        
+        self.delegate?.modelUpdatesDone()
+      }
+    };
+    
+    self.delegate?.modelUpdatesWillBegin()
+    self.usedDB.addOperation(modifyRecordsOperation)
   }
 
 }

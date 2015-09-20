@@ -20,50 +20,34 @@ class CKLog
     }
   }
   
+  var userID: CKRecordID
+    {
+    get {
+      return record.creatorUserRecordID!
+    }
+  }
+  
   var durationinseconds: Int64
     {
     get {
-      let result = record.objectForKey("durationinseconds")
-      
-      return (result! as! NSNumber).longLongValue
+      return (record.objectForKey("durationinseconds")! as! NSNumber).longLongValue
     }
     set(durationinseconds) {
       record.setObject(NSNumber(longLong: durationinseconds), forKey: "durationinseconds")
     }
   }
 
-  var noofslices: Int64
+  var what: String
     {
     get {
-      let result = record.objectForKey("noofslices")
-      
-      return (result! as! NSNumber).longLongValue
-    }
-    set(noofslices) {
-      record.setObject(NSNumber(longLong: noofslices), forKey: "noofslices")
-    }
-  }
-
-  var status: String
-    {
-    get {
-      let result = record.objectForKey("status")
-      
-      return result! as! String
+      return record.objectForKey("what")! as! String
     }
     set(status) {
-      record.setObject(status, forKey: "status")
+      record.setObject(status, forKey: "what")
     }
   }
 
-  var userID: CKRecordID
-    {
-    get {
-      let result = record.creatorUserRecordID
-      
-      return result!
-    }
-  }
+  
   
   var record : CKRecord
   weak var database : CKDatabase?

@@ -47,34 +47,7 @@ class TimerViewController: UIViewController
     ToothTimerSettings.sharedInstance.addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
   }
 
-  func timerFired()
-  { let elapsedTime = self.tickTimer.lap()
-    NSLog("elapsedTime:\(elapsedTime)")
-    
-    self.updateTimerLabel()
-    
-    actTimer--
-    
-    if actTimer<=0
-    {
-      /*
-      _ = Log.createLog(Int32(ToothTimerSettings.sharedInstance.timerInSeconds),noOfSlices: Int16(ToothTimerSettings.sharedInstance.noOfSlices),status:"success")
-      
-      DataModel.sharedInstance.save()
-      */
-      
-      let log = CKLog()
-      log.durationinseconds = Int64(ToothTimerSettings.sharedInstance.timerInSeconds!)
-      log.noofslices = Int64(ToothTimerSettings.sharedInstance.noOfSlices!)
-      log.status = "success"
-      
-      CKLogsDataModel.sharedInstance.addLog(log)
-      
-      self.updateTimerLabel()
-      
-      self.stopTimer()
-    }
-  }
+  
   
   func updateTimerLabel()
   { timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
@@ -85,7 +58,6 @@ class TimerViewController: UIViewController
     { self.isTimerRunning = true
       
       self.actTimer = ToothTimerSettings.sharedInstance.timerInSeconds!
-      
       self.updateTimerLabel()
       
       self.tickTimer.start()
@@ -93,7 +65,20 @@ class TimerViewController: UIViewController
       
       self.customView.addAnimation( CFTimeInterval(actTimer) )
       
+      UIApplication.sharedApplication().idleTimerDisabled = true
     } /* of if */
+  }
+  
+  func timerFired()
+  { let elapsedTime = self.tickTimer.lap()
+    NSLog("elapsedTime:\(elapsedTime)")
+    
+    self.actTimer--
+    self.updateTimerLabel()
+    
+    if self.actTimer<=0
+    { self.stopTimer()
+    }
   }
   
   func stopTimer()
@@ -107,6 +92,14 @@ class TimerViewController: UIViewController
       NSLog("stopp elapsedTime:\(elapsedTime)")
       
       self.isTimerRunning = false
+      
+      let log = CKLog()
+      log.durationinseconds = Int64(elapsedTime)
+      log.what = "toothtimer"
+      
+      CKLogsDataModel.sharedInstance.addLog(log)
+      
+      UIApplication.sharedApplication().idleTimerDisabled = false
     } /* of if */
   }
   

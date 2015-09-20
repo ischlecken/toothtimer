@@ -42,7 +42,7 @@ class LogViewController: UITableViewController, ModelDelegate
   { let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
     let log  = logs[indexPath.row]
     
-    cell.textLabel?.text = "\(log.status):\(log.durationinseconds)"
+    cell.textLabel?.text = "\(log.what):\(log.durationinseconds)"
     cell.detailTextLabel?.text = self.dateFormatter.stringFromDate(log.logts)
     
     return cell
