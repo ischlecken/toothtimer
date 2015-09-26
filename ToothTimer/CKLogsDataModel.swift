@@ -56,25 +56,31 @@ class CKLogsDataModel : CKDataModel
   func addLog(log:CKLog)
   { NSLog("addLog(\(log))");
     
-    let modifyRecordsOperation = CKModifyRecordsOperation()
-    
-    modifyRecordsOperation.recordsToSave = [log.record]
-    
-    modifyRecordsOperation.modifyRecordsCompletionBlock = {
-      (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
-      
-      if let error = error {
-        self.delegate?.errorUpdating(error)
-      }
-      else {
-        self.logItems.insert(log, atIndex: 0)
+    userInfo.userID { (userRecordID, error) -> () in
+      if let userRecordID = userRecordID
+      { NSLog("addLog(): userId:\(userRecordID)");
         
-        self.delegate?.modelUpdatesDone()
-      }
-    };
+        let modifyRecordsOperation = CKModifyRecordsOperation()
     
-    self.delegate?.modelUpdatesWillBegin()
-    self.usedDB.addOperation(modifyRecordsOperation)
+        modifyRecordsOperation.recordsToSave = [log.record]
+        
+        modifyRecordsOperation.modifyRecordsCompletionBlock = {
+          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
+          
+          if let error = error {
+            self.delegate?.errorUpdating(error)
+          }
+          else {
+            self.logItems.insert(log, atIndex: 0)
+            
+            self.delegate?.modelUpdatesDone()
+          }
+        };
+        
+        self.delegate?.modelUpdatesWillBegin()
+        self.usedDB.addOperation(modifyRecordsOperation)
+      }
+    }
   }
 
 }

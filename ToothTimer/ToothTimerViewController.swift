@@ -105,12 +105,14 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
         
         if newValue
         { AudioUtil.playSound("start")
+          AudioUtil.vibrate()
           
           self.gradientView.dimGradient()
           self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
         else
         { AudioUtil.playSound("stop")
+          AudioUtil.vibrate()
           
           self.gradientView.resetGradient()
           self.navigationController?.setNavigationBarHidden(false, animated: true)

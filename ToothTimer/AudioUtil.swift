@@ -22,4 +22,9 @@ class AudioUtil
     { AudioServicesPlaySystemSound(soundId)
     }
   }
+  
+  class func vibrate() -> Void
+  {
+    AudioServicesPlaySystemSound( kSystemSoundID_Vibrate )
+  }
 }
