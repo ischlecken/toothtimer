@@ -26,10 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
     { window?.tintColor = tintColor }
     
+    window?.backgroundColor = UIColor.whiteColor()
+    
     let settings = UIUserNotificationSettings(forTypes: [.Alert,.Badge,.Sound], categories: nil)
     
     application.registerUserNotificationSettings(settings)
     application.registerForRemoteNotifications()
+    
+    CKBadgesDataModel.sharedInstance.addCreationSubscriptionForBadges()
+    CKBadgesDataModel.sharedInstance.addDeletionSubscriptionForBadges()
     
     return true
   }

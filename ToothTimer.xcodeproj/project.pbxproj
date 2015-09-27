@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850529831B3EDB5C00DE1E6F /* HealthKit.framework */; };
-		851313F81B3F2023009D713F /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851313F71B3F2023009D713F /* LogViewController.swift */; };
 		851511CA1B5BE61300D6EBDA /* TickTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851511C91B5BE61300D6EBDA /* TickTimer.swift */; };
 		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
 		851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AF9EF1B49A8C500C42489 /* AppUtil.m */; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
+		858ACB421BB894320001B942 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858ACB411BB894320001B942 /* LogsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
 		8592C6811BB805A800F31A54 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C6801BB805A800F31A54 /* IAPProduct.swift */; settings = {ASSET_TAGS = (); }; };
 		8592C6831BB805B300F31A54 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8592C6821BB805B300F31A54 /* StoreKit.framework */; };
@@ -70,7 +70,6 @@
 		850529821B3EDAFC00DE1E6F /* ToothTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ToothTimer.entitlements; sourceTree = "<group>"; };
 		850529831B3EDB5C00DE1E6F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		850529D01B3EE2A500DE1E6F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		851313F71B3F2023009D713F /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		851511C91B5BE61300D6EBDA /* TickTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickTimer.swift; sourceTree = "<group>"; };
 		851AF9EB1B498BC500C42489 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851AF9ED1B498BCC00C42489 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		851AF9EF1B49A8C500C42489 /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CustomView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		858ACB411BB894320001B942 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8592C6801BB805A800F31A54 /* IAPProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
 		8592C6821BB805B300F31A54 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -297,11 +297,11 @@
 				85CA7BD31B3EED55004DF6E0 /* Utilities-objc */,
 				85C03A371B4919E700C88E95 /* Utilities */,
 				85D7D2051B3ED72600807955 /* Main.storyboard */,
+				858ACB411BB894320001B942 /* LogsViewController.swift */,
 				85D7D1FF1B3ED72600807955 /* AppDelegate.swift */,
 				85D7D2011B3ED72600807955 /* TimerViewController.swift */,
 				85A83D7C1B5A88DE006A814E /* ToothTimerViewController.swift */,
 				85B781731B6E517700B1A0C1 /* BadgeTableViewController.swift */,
-				851313F71B3F2023009D713F /* LogViewController.swift */,
 				85C0EDC81B40223B00102F72 /* MyPlayground.playground */,
 			);
 			path = ToothTimer;
@@ -418,11 +418,11 @@
 				85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */,
 				8597AF341B93019200A01BE4 /* CKUserInfo.swift in Sources */,
 				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
-				851313F81B3F2023009D713F /* LogViewController.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
 				85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */,
 				85B7816F1B6E48E900B1A0C1 /* CKBadge.swift in Sources */,
 				8597AF321B92FE2100A01BE4 /* CKLog.swift in Sources */,
+				858ACB421BB894320001B942 /* LogsViewController.swift in Sources */,
 				85A83D7D1B5A88DE006A814E /* ToothTimerViewController.swift in Sources */,
 				851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */,
 				8598693C1BA4623400089E89 /* CKBadgesDataModel.swift in Sources */,

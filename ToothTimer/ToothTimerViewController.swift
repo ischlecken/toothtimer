@@ -44,7 +44,6 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
 {
                  var pageViewController       : UIPageViewController?
                  var timerViewController      : TimerViewController?
-                 var logViewController        : LogViewController?
                  var badgeTableViewController : BadgeTableViewController?
   @IBOutlet weak var gradientView             : GradientView!
   @IBOutlet weak var settingsButton           : UIBarButtonItem!
@@ -83,9 +82,8 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     self.presentViewController(vc!, animated: true, completion: nil)
   }
   
-  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle
-  { NSLog("adaptivePresentationStyleForPresentationController()")
-    
+  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    NSLog("adaptivePresentationStyleForPresentationController()")
     
     return UIModalPresentationStyle.None
   }
@@ -126,8 +124,8 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     } /* of else */
   }
   
-  deinit
-  { self.timerViewController!.removeObserver(self, forKeyPath: "isTimerRunning", context: &kvoToothTimerViewControllerContext)
+  deinit {
+    self.timerViewController!.removeObserver(self, forKeyPath: "isTimerRunning", context: &kvoToothTimerViewControllerContext)
   }
   
   override func viewDidLoad()
@@ -137,15 +135,11 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     self.pageViewController!.delegate = self
     
     self.timerViewController      = self.storyboard!.instantiateViewControllerWithIdentifier("TimerViewController") as? TimerViewController
-    self.logViewController        = self.storyboard!.instantiateViewControllerWithIdentifier("LogViewController") as? LogViewController
     self.badgeTableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("BadgeTableViewController") as? BadgeTableViewController
     
     self.timerViewController!.addObserver(self, forKeyPath: "isTimerRunning", options: .New, context: &kvoToothTimerViewControllerContext)
     
     let ei =  UIEdgeInsetsMake(64, 0, 0, 0)
-    self.logViewController?.tableView.contentInset          = ei
-    self.logViewController?.tableView.scrollIndicatorInsets = ei
-    
     self.badgeTableViewController?.tableView.contentInset          = ei
     self.badgeTableViewController?.tableView.scrollIndicatorInsets = ei
     
@@ -175,8 +169,7 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
   
   func pageViewController(pageViewController                              : UIPageViewController,
                           spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation
-                         ) -> UIPageViewControllerSpineLocation
-  {
+                         ) -> UIPageViewControllerSpineLocation {
     if (orientation == .Portrait) || (orientation == .PortraitUpsideDown) || (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
     { let currentViewController = self.pageViewController!.viewControllers![0]
       let viewControllers = [currentViewController]
@@ -187,7 +180,7 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
       return .Min
     } /* of if */
     
-    let viewControllers = [timerViewController!,logViewController!]
+    let viewControllers = [timerViewController!,badgeTableViewController!]
     
     self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
     
@@ -201,10 +194,8 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     var result:UIViewController? = nil
     
-    if viewController==self.logViewController
+    if viewController==self.badgeTableViewController
     { result = self.timerViewController }
-    else if viewController==self.badgeTableViewController
-    { result = self.logViewController }
     
     return result
   }
@@ -215,15 +206,13 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     var result:UIViewController? = nil
     
     if viewController==self.timerViewController
-    { result = self.logViewController }
-    else if viewController==self.logViewController
     { result = self.badgeTableViewController }
     
     return result
   }
 
   func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
-  { return 3 }
+  { return 2 }
   
   func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
   {
@@ -232,15 +221,10 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     switch currentViewController
     {
-    case self.logViewController!:
-      result = 1
-      break
     case self.badgeTableViewController!:
-      result = 2
-      break
+      result = 1
     default:
       result = 0
-      break;
     }
     
     return result
