@@ -9,16 +9,16 @@
 import Foundation
 import StoreKit
 
-typealias productsRequestCompletionType = (Bool,[String:IAPProduct]) -> Void
+typealias productsRequestCompletionType = (Bool,[IAPProduct]) -> Void
 
 class IAPUtil : NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver
 {
-  let products : [String:IAPProduct]
+  let products : [IAPProduct]
   var productsRequest : SKProductsRequest?
   var productsRequestCompletion : productsRequestCompletionType?
   var transactionObserverAdded = false
   
-  init(withProducts products:[String:IAPProduct]) {
+  init(withProducts products:[IAPProduct]) {
     self.products = products
   }
   
@@ -37,25 +37,55 @@ class IAPUtil : NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver
     
     var productIdentifiers = Set<String>()
     
-    for (productIdentifier,product) in self.products {
-      productIdentifiers.insert(productIdentifier)
+    for product in self.products {
+      productIdentifiers.insert(product.productIdentifier)
       product.availableForPurchase = false
     }
     
-    self.productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+    NSLog("products:\(productIdentifiers)")
+    
+    let productRequests = SKProductsRequest(productIdentifiers: productIdentifiers)
+    self.productsRequest = productRequests
     self.productsRequestCompletion = completion
+    
+    productRequests.delegate = self
+    productRequests.start()
+  }
+  
+  func findProduct(usingProductIdentifier productIdentifier:String) -> IAPProduct? {
+    var result : IAPProduct? = nil
+    
+    for product in self.products {
+      if product.productIdentifier == productIdentifier {
+        result = product
+        
+        break
+      }
+    }
+    
+    return result
   }
   
   // MARK: SKProductsRequestDelegate
   func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
     
+    NSLog("response:\(response)")
+    
     for skProduct in response.products {
-      self.products[skProduct.productIdentifier]?.availableForPurchase = true
-      self.products[skProduct.productIdentifier]?.skProduct = skProduct
+      let product = self.findProduct(usingProductIdentifier: skProduct.productIdentifier)
+      
+      if let product = product {
+        product.availableForPurchase = true
+        product.skProduct = skProduct
+      }
     }
     
     for invalidProductIdentifier in response.invalidProductIdentifiers {
-      self.products[invalidProductIdentifier]?.availableForPurchase = false
+      let product = self.findProduct(usingProductIdentifier: invalidProductIdentifier)
+      
+      if let product = product {
+        product.availableForPurchase = false
+      }
     }
     
     if let productsRequestCompletion = self.productsRequestCompletion {
@@ -90,15 +120,17 @@ class IAPUtil : NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver
   // MARK: ---
   
   func productArrived(transaction:SKPaymentTransaction) {
-    let product = self.products[transaction.payment.productIdentifier]
-    product?.purchaseInProgress = false
+    let product = self.findProduct(usingProductIdentifier: transaction.payment.productIdentifier)
+    
+    if let product = product {
+      product.purchaseInProgress = false
+    }
     
     SKPaymentQueue.defaultQueue().finishTransaction(transaction)
   }
   
   func buyProduct(product:IAPProduct) {
-    
-    if let skProduct = product.skProduct {
+    if let skProduct = product.skProduct where product.availableForPurchase {
       NSLog("Buying %@...", product.productIdentifier);
       
       product.purchaseInProgress = true;

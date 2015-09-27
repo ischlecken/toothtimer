@@ -85,7 +85,25 @@
   [_APPWINDOW.rootViewController presentViewController:alert animated:YES completion:NULL];
 }
 
-
+/**
+ *
+ */
++(void) fullVersionDialogue
+{
+  NSString*          aboutTitleTmpl   = _LSTR(@"apputil.FullVersionTitle");
+  NSString*          aboutMessageTmpl = _LSTR(@"apputil.FullVersionMessage");
+  NSString*          aboutTitle       = [NSString stringWithFormat:aboutTitleTmpl,[Constant appName]];
+  NSString*          aboutMessage     = [NSString stringWithFormat:aboutMessageTmpl,[Constant appVersion],[Constant appBuild]];
+  UIAlertController* alert            = [UIAlertController alertControllerWithTitle:aboutTitle message:aboutMessage preferredStyle:UIAlertControllerStyleAlert];
+  
+  [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"apputil.CancelButtonTitle") style:UIAlertActionStyleCancel handler:NULL]];
+  [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"apputil.BuyButtonTitle")    style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action)
+  {
+    _NSLOG(@"kaufen");
+  }]];
+  
+  [_APPWINDOW.rootViewController presentViewController:alert animated:YES completion:NULL];
+}
 
 /**
  *

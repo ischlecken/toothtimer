@@ -18,6 +18,7 @@
 "settings.title.rate"                                       = "Rate «%1$@»";
 "settings.title.about"                                      = "About «%1$@»";
 "settings.title.colorSchemeName"                            = "Color Scheme";
+"settings.title.fullversion"                                = "Buy full version";
 
 "settings.picker.timerInSeconds.10"                         = "10 seconds";
 "settings.picker.timerInSeconds.30"                         = "30 seconds";
@@ -91,8 +92,12 @@
 /**
  * about dialogue
  */
-"apputil.AboutTitle"                                            = "About «%1$@»";
-"apputil.AboutMessage"                                          = "Version %1$@ Build %2$@\n\nBrush your teeth\njust in time.";
-"apputil.CancelButtonTitle"                            = "Cancel";
-"apputil.OKButtonTitle"                                = "OK";
+"apputil.AboutTitle"                                        = "About «%1$@»";
+"apputil.AboutMessage"                                      = "Version %1$@ Build %2$@\n\nBrush your teeth\njust in time.";
+"apputil.CancelButtonTitle"                                 = "Cancel";
+"apputil.OKButtonTitle"                                     = "OK";
+"apputil.BuyButtonTitle"                                    = "Buy";
+
+"apputil.FullVersionTitle"                                  = "Buy Full Version";
+"apputil.FullVersionMessage"                                = "Do you want to buy the Full Version of %1$@ ?";
 

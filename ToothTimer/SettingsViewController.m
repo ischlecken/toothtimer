@@ -154,7 +154,7 @@
    ];
   [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleGUI andItems:[[NSMutableArray alloc] initWithArray:guiSectionItems]]];
 
-  NSArray* aboutSectionItems =
+  NSMutableArray* aboutSectionItems = [[NSMutableArray alloc] initWithArray:
   @[
      [SettingsItem settingItemWithTitle:@"contact"
                               andCellId:@"BasicCell"
@@ -188,10 +188,20 @@
      [SettingsItem settingItemWithTitle:@"about"
                               andCellId:@"BasicCell"
                         andSelectAction:^(NSIndexPath* indexPath,SettingsItem *item)
-      { [[AppUtil class] performSelector:@selector(aboutDialogue) withObject:nil afterDelay:1.0];
+      { [self settingsDoneAction:self];
+        [[AppUtil class] performSelector:@selector(aboutDialogue) withObject:nil afterDelay:1.0];
       }],
-  ];
-  [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleAbout andItems:[[NSMutableArray alloc] initWithArray:aboutSectionItems]]];
+  ]];
+  
+  if( ![[ToothTimerSettings sharedInstance] fullVersion] )
+    [aboutSectionItems addObject:[SettingsItem settingItemWithTitle:@"fullversion"
+                                                         andCellId:@"BasicCell"
+                                                   andSelectAction:^(NSIndexPath* indexPath,SettingsItem *item)
+     { [self settingsDoneAction:self];
+       [[AppUtil class] performSelector:@selector(fullVersionDialogue) withObject:nil afterDelay:1.0];
+     }]];
+  
+  [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleAbout andItems:aboutSectionItems]];
   
   self.sections = sectionInfo;
   

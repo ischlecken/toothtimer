@@ -19,6 +19,8 @@
 "settings.title.rate"                                       = "«%1$@» bewerten";
 "settings.title.about"                                      = "Über «%1$@»";
 "settings.title.colorSchemeName"                            = "Farbschema";
+"settings.title.fullversion"                                = "Vollversion";
+
 
 "settings.picker.timerInSeconds.10"                         = "10 Sekunden";
 "settings.picker.timerInSeconds.30"                         = "30 Sekunden";
@@ -92,3 +94,8 @@
 "apputil.AboutMessage"                                      = "Version %1$@ Build %2$@\n\nPutzen Sie ihre Zähne lang genug.";
 "apputil.CancelButtonTitle"                                 = "Abbrechen";
 "apputil.OKButtonTitle"                                     = "OK";
+"apputil.BuyButtonTitle"                                    = "Kaufen";
+
+"apputil.FullVersionTitle"                                  = "Vollversion kaufen";
+"apputil.FullVersionMessage"                                = "Wollen Sie die Vollversion von %1$@ kaufen ?";
+

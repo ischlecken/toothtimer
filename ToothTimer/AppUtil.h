@@ -9,6 +9,7 @@
 +(UIImage*)     blurredBackgroundImage:(BOOL)extraLight;
 +(UIImage*)     backgroundImage;
 +(void)         aboutDialogue;
++(void)         fullVersionDialogue;
 +(void)         openAppStore;
 +(void)         appStoreRatingReminderDialogue;
 

@@ -26,6 +26,8 @@ enum ToothTimerSettingKey : String {
   case fluoridationIntervalInDays      = "fluoridationIntervalInDays"
   case fluoridationPreferredDayOfWeek  = "fluoridationPreferredDayOfWeek"
   case fluoridationTimerInSeconds      = "fluoridationTimerInSeconds"
+  
+  case fullVersion                     = "fullVersion"
 }
 
 class ToothTimerSettings : Settings
@@ -68,12 +70,21 @@ class ToothTimerSettings : Settings
     }
   }
   
-  var notificationEnabled: Bool? {
+  var notificationEnabled: Bool {
     get {
-      return self.getConfigValue(ToothTimerSettingKey.notificationEnabled.rawValue)! as? Bool
+      return self.getConfigValue(ToothTimerSettingKey.notificationEnabled.rawValue)! as! Bool
     }
     set(notificationEnabled) {
       self.setConfigValue(notificationEnabled, forKey: ToothTimerSettingKey.notificationEnabled.rawValue)
+    }
+  }
+  
+  var fullVersion: Bool {
+    get {
+      return self.getConfigValue(ToothTimerSettingKey.fullVersion.rawValue)! as! Bool
+    }
+    set(fullVersion) {
+      self.setConfigValue(fullVersion, forKey: ToothTimerSettingKey.fullVersion.rawValue)
     }
   }
   
@@ -83,12 +94,17 @@ class ToothTimerSettings : Settings
     DefaultSetting(withKeyName: ToothTimerSettingKey.noOfSlices.rawValue,andDefaultValue: 4),
     DefaultSetting(withKeyName: ToothTimerSettingKey.usageCount.rawValue,andDefaultValue: 0),
     DefaultSetting(withKeyName: ToothTimerSettingKey.notificationEnabled.rawValue,andDefaultValue: false),
+    DefaultSetting(withKeyName: ToothTimerSettingKey.fullVersion.rawValue,andDefaultValue: false),
     DefaultSetting(withKeyName: ToothTimerSettingKey.colorSchemeName.rawValue,andDefaultValue: "bonbon")
   ]
+  
+  let iapUtil = IAPUtil(withProducts: [IAPProduct(productIdentifier: "bla.fasel"),IAPProduct(productIdentifier: "hugo")])
   
   init() {
     super.init(withDefaults: udd)
     
-    
+    iapUtil.requestProducts { (success:Bool, products:[IAPProduct]) -> Void in
+      NSLog("requestProducts success:\(success)")
+    }
   }
 }
