@@ -28,6 +28,7 @@ enum ToothTimerSettingKey : String {
   case fluoridationTimerInSeconds      = "fluoridationTimerInSeconds"
   
   case fullVersion                     = "fullVersion"
+  case fullVersionProductId            = "toothtimer.fullversion"
 }
 
 class ToothTimerSettings : Settings
@@ -84,7 +85,23 @@ class ToothTimerSettings : Settings
       return self.getConfigValue(ToothTimerSettingKey.fullVersion.rawValue)! as! Bool
     }
     set(fullVersion) {
+      NSLog("set fullVersion:\(fullVersion)")
+      
       self.setConfigValue(fullVersion, forKey: ToothTimerSettingKey.fullVersion.rawValue)
+    }
+  }
+  
+  func buyFullVersion() {
+    let product = iapUtil.findProduct(usingProductIdentifier: ToothTimerSettingKey.fullVersionProductId.rawValue)
+    
+    if let product = product {
+      iapUtil.buyProduct(product)
+      
+      let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
+      
+      dispatch_after(popTime, dispatch_get_main_queue(), { () -> Void in
+        self.fullVersion = true
+      })
     }
   }
   
@@ -98,7 +115,8 @@ class ToothTimerSettings : Settings
     DefaultSetting(withKeyName: ToothTimerSettingKey.colorSchemeName.rawValue,andDefaultValue: "bonbon")
   ]
   
-  let iapUtil = IAPUtil(withProducts: [IAPProduct(productIdentifier: "bla.fasel"),IAPProduct(productIdentifier: "hugo")])
+  let iapUtil = IAPUtil(withProducts: [IAPProduct(productIdentifier: "bla.fasel"),
+                                       IAPProduct(productIdentifier: ToothTimerSettingKey.fullVersionProductId.rawValue)])
   
   init() {
     super.init(withDefaults: udd)

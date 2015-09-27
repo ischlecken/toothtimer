@@ -99,7 +99,7 @@
   [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"apputil.CancelButtonTitle") style:UIAlertActionStyleCancel handler:NULL]];
   [alert addAction:[UIAlertAction actionWithTitle:_LSTR(@"apputil.BuyButtonTitle")    style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action)
   {
-    _NSLOG(@"kaufen");
+    [[ToothTimerSettings sharedInstance] buyFullVersion];
   }]];
   
   [_APPWINDOW.rootViewController presentViewController:alert animated:YES completion:NULL];

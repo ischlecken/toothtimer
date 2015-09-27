@@ -69,9 +69,12 @@ class IAPUtil : NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver
   // MARK: SKProductsRequestDelegate
   func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
     
-    NSLog("response:\(response)")
-    
     for skProduct in response.products {
+      NSLog("productId:\(skProduct.productIdentifier)")
+      NSLog("title:\(skProduct.localizedTitle)")
+      NSLog("description:\(skProduct.localizedDescription)")
+      NSLog("price:\(skProduct.price)")
+      
       let product = self.findProduct(usingProductIdentifier: skProduct.productIdentifier)
       
       if let product = product {
@@ -81,6 +84,8 @@ class IAPUtil : NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver
     }
     
     for invalidProductIdentifier in response.invalidProductIdentifiers {
+      NSLog("invalidProductId:\(invalidProductIdentifier)")
+      
       let product = self.findProduct(usingProductIdentifier: invalidProductIdentifier)
       
       if let product = product {
@@ -130,6 +135,8 @@ class IAPUtil : NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver
   }
   
   func buyProduct(product:IAPProduct) {
+    NSLog("buyProduct()")
+    
     if let skProduct = product.skProduct where product.availableForPurchase {
       NSLog("Buying %@...", product.productIdentifier);
       
