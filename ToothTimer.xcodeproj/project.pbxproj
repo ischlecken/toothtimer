@@ -15,6 +15,9 @@
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
 		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
+		8592C6811BB805A800F31A54 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C6801BB805A800F31A54 /* IAPProduct.swift */; settings = {ASSET_TAGS = (); }; };
+		8592C6831BB805B300F31A54 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8592C6821BB805B300F31A54 /* StoreKit.framework */; };
+		8592C6851BB8089500F31A54 /* IAPUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C6841BB8089500F31A54 /* IAPUtil.swift */; settings = {ASSET_TAGS = (); }; };
 		859310D61B91E3D60064B33E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859310D51B91E3D60064B33E /* CloudKit.framework */; };
 		8597AF301B92FDE100A01BE4 /* CKDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8597AF2F1B92FDE100A01BE4 /* CKDataModel.swift */; settings = {ASSET_TAGS = (); }; };
 		8597AF321B92FE2100A01BE4 /* CKLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8597AF311B92FE2100A01BE4 /* CKLog.swift */; settings = {ASSET_TAGS = (); }; };
@@ -76,6 +79,9 @@
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
 		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CustomView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		8592C6801BB805A800F31A54 /* IAPProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
+		8592C6821BB805B300F31A54 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		8592C6841BB8089500F31A54 /* IAPUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPUtil.swift; sourceTree = "<group>"; };
 		859310D51B91E3D60064B33E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8597AF2F1B92FDE100A01BE4 /* CKDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKDataModel.swift; sourceTree = "<group>"; };
 		8597AF311B92FE2100A01BE4 /* CKLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKLog.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8592C6831BB805B300F31A54 /* StoreKit.framework in Frameworks */,
 				859310D61B91E3D60064B33E /* CloudKit.framework in Frameworks */,
 				850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */,
 			);
@@ -185,6 +192,8 @@
 				85DB25F31B5C4134006CD370 /* AudioUtil.swift */,
 				8599FD171BA61CF700E48B1D /* ToothTimerSettings.swift */,
 				8599FD151BA613BB00E48B1D /* Settings.swift */,
+				8592C6801BB805A800F31A54 /* IAPProduct.swift */,
+				8592C6841BB8089500F31A54 /* IAPUtil.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 		85C0EDC21B4015FA00102F72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8592C6821BB805B300F31A54 /* StoreKit.framework */,
 				859310D51B91E3D60064B33E /* CloudKit.framework */,
 				850529831B3EDB5C00DE1E6F /* HealthKit.framework */,
 			);
@@ -342,6 +352,9 @@
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -417,10 +430,12 @@
 				85B781721B6E507C00B1A0C1 /* BadgeTableViewCell.swift in Sources */,
 				85DD47321B3EEBDB005BD7BE /* SectionInfo.m in Sources */,
 				85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */,
+				8592C6851BB8089500F31A54 /* IAPUtil.swift in Sources */,
 				8599FD161BA613BB00E48B1D /* Settings.swift in Sources */,
 				85DD47351B3EEBDB005BD7BE /* UIImage+ImageEffects.m in Sources */,
 				85C03A391B491A1800C88E95 /* NSURL.swift in Sources */,
 				8599FD181BA61CF700E48B1D /* ToothTimerSettings.swift in Sources */,
+				8592C6811BB805A800F31A54 /* IAPProduct.swift in Sources */,
 				85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */,
 				8597AF301B92FDE100A01BE4 /* CKDataModel.swift in Sources */,
 				859E1C041B794D8900C9C0E0 /* String.swift in Sources */,
