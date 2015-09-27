@@ -35,6 +35,7 @@
 		85C03A391B491A1800C88E95 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A381B491A1800C88E95 /* NSURL.swift */; };
 		85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C03A3A1B491A5900C88E95 /* NSFileManager.swift */; };
 		85C0EDC51B40180A00102F72 /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C0EDC41B40180A00102F72 /* Error.m */; };
+		85C8576A1BB7ECB100984DB8 /* CKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C857691BB7ECB100984DB8 /* CKUser.swift */; settings = {ASSET_TAGS = (); }; };
 		85CFF8A31B49815D00C262F0 /* BooleanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF8981B49815D00C262F0 /* BooleanTableViewCell.m */; };
 		85CFF8A41B49815D00C262F0 /* BooleanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CFF8991B49815D00C262F0 /* BooleanTableViewCell.xib */; };
 		85CFF8A51B49815D00C262F0 /* PickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85CFF89B1B49815D00C262F0 /* PickerTableViewCell.m */; };
@@ -97,6 +98,7 @@
 		85C0EDC31B40180A00102F72 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		85C0EDC41B40180A00102F72 /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		85C0EDC81B40223B00102F72 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		85C857691BB7ECB100984DB8 /* CKUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKUser.swift; sourceTree = "<group>"; };
 		85CFF8971B49815D00C262F0 /* BooleanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooleanTableViewCell.h; sourceTree = "<group>"; };
 		85CFF8981B49815D00C262F0 /* BooleanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooleanTableViewCell.m; sourceTree = "<group>"; };
 		85CFF8991B49815D00C262F0 /* BooleanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BooleanTableViewCell.xib; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		851313F61B3F1E1E009D713F /* dao */ = {
 			isa = PBXGroup;
 			children = (
+				85C857691BB7ECB100984DB8 /* CKUser.swift */,
 				8598693A1BA4623400089E89 /* CKBadgesDataModel.swift */,
 				8598693B1BA4623400089E89 /* CKLogsDataModel.swift */,
 				85B7816D1B6E48E900B1A0C1 /* CKBadge.swift */,
@@ -424,6 +427,7 @@
 				85DD47301B3EEBDB005BD7BE /* NSArray+SectionInfo.m in Sources */,
 				85B781761B6E586F00B1A0C1 /* BadgeAllocator.swift in Sources */,
 				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
+				85C8576A1BB7ECB100984DB8 /* CKUser.swift in Sources */,
 				851511CA1B5BE61300D6EBDA /* TickTimer.swift in Sources */,
 				858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */,
 				858669141B4C82D20091F8E5 /* CustomView.swift in Sources */,
@@ -575,6 +579,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToothTimer/ToothTimer-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -593,6 +598,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ToothTimer/ToothTimer-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

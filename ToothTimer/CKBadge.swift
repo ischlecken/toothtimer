@@ -24,16 +24,43 @@ class CKBadge {
     }
   }
   
-  
   var name: String
     {
     get {
-      let result = record.objectForKey("name")
-      
-      return result! as! String
+      return record.objectForKey("name")! as! String
     }
     set(name) {
       record.setObject(name, forKey: "name")
+    }
+  }
+  
+  var badgeClass: String
+    {
+    get {
+      return record.objectForKey("class")! as! String
+    }
+    set(name) {
+      record.setObject(name, forKey: "class")
+    }
+  }
+  
+  var period: NSDate
+    {
+    get {
+      return record.objectForKey("period")! as! NSDate
+    }
+    set(name) {
+      record.setObject(name, forKey: "period")
+    }
+  }
+  
+  var periodClass: String
+    {
+    get {
+      return record.objectForKey("periodclass")! as! String
+    }
+    set(name) {
+      record.setObject(name, forKey: "periodclass")
     }
   }
   
