@@ -35,7 +35,7 @@ class ToothTimerSettings : Settings
 {
   static let sharedInstance = ToothTimerSettings()
   
-  var colorSchemeName: String? {
+  dynamic var colorSchemeName: String? {
     get {
       return self.getConfigValue(ToothTimerSettingKey.colorSchemeName.rawValue) as? String
     }
@@ -44,34 +44,34 @@ class ToothTimerSettings : Settings
     }
   }
   
-  var timerInSeconds: Int? {
+  dynamic var timerInSeconds: NSNumber? {
     get {
-      return self.getConfigValue(ToothTimerSettingKey.timerInSeconds.rawValue)! as? Int
+      return self.getConfigValue(ToothTimerSettingKey.timerInSeconds.rawValue)! as? NSNumber
     }
     set(timerInSeconds) {
       self.setConfigValue(timerInSeconds, forKey: ToothTimerSettingKey.timerInSeconds.rawValue)
     }
   }
   
-  var noOfSlices: Int? {
+  dynamic var noOfSlices: NSNumber? {
     get {
-      return self.getConfigValue(ToothTimerSettingKey.noOfSlices.rawValue)! as? Int
+      return self.getConfigValue(ToothTimerSettingKey.noOfSlices.rawValue)! as? NSNumber
     }
     set(noOfSlices) {
       self.setConfigValue(noOfSlices, forKey: ToothTimerSettingKey.noOfSlices.rawValue)
     }
   }
 
-  var usageCount: Int? {
+  dynamic var usageCount: NSNumber? {
     get {
-      return self.getConfigValue(ToothTimerSettingKey.usageCount.rawValue)! as? Int
+      return self.getConfigValue(ToothTimerSettingKey.usageCount.rawValue)! as? NSNumber
     }
     set(usageCount) {
       self.setConfigValue(usageCount, forKey: ToothTimerSettingKey.usageCount.rawValue)
     }
   }
   
-  var notificationEnabled: Bool {
+  dynamic var notificationEnabled: Bool {
     get {
       return self.getConfigValue(ToothTimerSettingKey.notificationEnabled.rawValue)! as! Bool
     }
@@ -80,7 +80,7 @@ class ToothTimerSettings : Settings
     }
   }
   
-  var fullVersion: Bool {
+  dynamic var fullVersion: Bool {
     get {
       return self.getConfigValue(ToothTimerSettingKey.fullVersion.rawValue)! as! Bool
     }
@@ -103,6 +103,10 @@ class ToothTimerSettings : Settings
         self.fullVersion = true
       })
     }
+  }
+  
+  func revertFullVersion() {
+    self.fullVersion = false
   }
   
 

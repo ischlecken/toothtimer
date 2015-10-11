@@ -11,10 +11,11 @@ import UIKit
 
 class CustomView: UIView
 {
-         var innerRing:[CAShapeLayer] = []
-         var actualAnimatedRing       = -1
+         var innerRing:[CAShapeLayer]                = []
+         var actualAnimatedRing                      = -1
          var segmentAnimationDuration:CFTimeInterval = 0.0
-  static let lineWidth                = 32
+         var timeLabel                               = UILabel()
+         var lineWidth                               : CGFloat = 0.0
   
   required init?(coder aDecoder: NSCoder)
   { super.init(coder: aDecoder)
@@ -26,21 +27,31 @@ class CustomView: UIView
   { super.init(frame: frame)
     
     self.initView()
+    
   }
   
-  private func initView()
-  { self.innerRing = []
+  func initView()
+  { self.timeLabel.removeFromSuperview()
+    self.addSubview(self.timeLabel)
+    
+    self.timeLabel.textAlignment = NSTextAlignment.Center
+    self.timeLabel.font = UIFont.monospacedDigitSystemFontOfSize(48.0, weight: UIFontWeightBold)
+    
+    for l in self.innerRing {
+      l.removeFromSuperlayer()
+    }
+    
+    self.innerRing = []
     
     let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
     
-    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!
+    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
     { let l = CAShapeLayer()
       
       l.fillColor       = UIColor.clearColor() .CGColor
       l.strokeColor     = ringColors[i].CGColor
-      l.lineWidth       = CGFloat(CustomView.lineWidth)
-      l.strokeStart     = 0.05
-      l.strokeEnd       = 0.05
+      l.strokeStart     = 0.0
+      l.strokeEnd       = 0.0
       l.lineCap         = kCALineCapRound
       l.shadowColor     = UIColor.lightGrayColor().CGColor
       l.shadowOffset    = CGSize(width: 0, height: 6)
@@ -71,13 +82,18 @@ class CustomView: UIView
     }
     
     let end = CABasicAnimation(keyPath: "strokeEnd")
-    end.duration     = self.segmentAnimationDuration/Double(self.innerRing.count)
-    end.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-    end.fromValue    = 0.1
-    end.toValue      = 0.9
+    end.duration       = self.segmentAnimationDuration/Double(self.innerRing.count)
     
-    animatedLayer.strokeStart = 0.1
-    animatedLayer.strokeEnd   = 0.9
+    let mediaTimingFkt = actualAnimatedRing==0 ?
+                         kCAMediaTimingFunctionEaseIn :
+                         (actualAnimatedRing == self.innerRing.count-1 ? kCAMediaTimingFunctionEaseOut: kCAMediaTimingFunctionLinear )
+    
+    end.timingFunction = CAMediaTimingFunction(name: mediaTimingFkt)
+    end.fromValue      = 0.0
+    end.toValue        = 1.0
+    
+    animatedLayer.strokeStart = 0.0
+    animatedLayer.strokeEnd   = 1.0
     
     animatedLayer.addAnimation(end, forKey: "strokeEnd")
     
@@ -124,14 +140,15 @@ class CustomView: UIView
     let r         = self.calcRect()
     let path      = CGPathCreateMutable()
     let stopAngle = 2.0 * M_PI
-    let radius    = min( CGRectGetWidth(r),CGRectGetHeight(r))*0.5 - CGFloat(Double(CustomView.lineWidth))
+    let radius    = min( CGRectGetWidth(r),CGRectGetHeight(r))*0.5 - CGFloat(Double(lineWidth))
     
     CGPathAddArc(path, nil, r.origin.x + CGRectGetMidX(r), r.origin.y + CGRectGetMidX(r),radius,CGFloat(0.0-M_PI_2),CGFloat(stopAngle-M_PI_2), false)
     
     CGContextAddPath(ctx, path)
-    CGContextSetShadowWithColor(ctx, CGSize(width: 0,height: 6), 2.0, UIColor.lightGrayColor().CGColor)
-    CGContextSetFillColorWithColor(ctx,UIColor(white: 1.0, alpha: 0.2).CGColor)
-    CGContextFillPath(ctx)
+    //CGContextSetShadowWithColor(ctx, CGSize(width: 0,height: 6), 2.0, UIColor.lightGrayColor().CGColor)
+    CGContextSetStrokeColorWithColor(ctx,UIColor(white: 1.0, alpha: 0.2).CGColor)
+    CGContextSetLineWidth(ctx, CGFloat(lineWidth))
+    CGContextStrokePath(ctx)
   }
   
   func calcRect() -> CGRect
@@ -152,30 +169,44 @@ class CustomView: UIView
     return r
   }
   
-  override var frame : CGRect
-  { didSet
-    {
-      if self.innerRing.count>0
-      { let r = self.calcRect()
+  func updateGeometry() {
+    if self.innerRing.count>0
+    { let r = self.calcRect()
+      
+      var labelFrame = r
+      labelFrame = labelFrame.offsetBy(dx:0, dy: labelFrame.size.height)
+      labelFrame.size.height = 64
+      
+      self.timeLabel.frame = labelFrame
+      
+      self.lineWidth = (min(CGRectGetWidth(bounds),CGRectGetHeight(bounds)) * 0.5) / CGFloat(self.innerRing.count)
+      let maxCircleR = self.lineWidth * CGFloat(self.innerRing.count) - self.lineWidth * 0.5
+      
+      var circleBounds = CGRect(origin: CGPoint(x: 0.0,y: 0.0), size: r.size)
+      circleBounds.insetInPlace(dx: CGFloat(self.lineWidth), dy: CGFloat(self.lineWidth))
+      
+      
+      for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
+      { let path       = CGPathCreateMutable()
+        let circleX    = CGRectGetMidX(circleBounds)
+        let circleY    = circleX
+        let circleR    = maxCircleR - CGFloat(Double(lineWidth+4)*Double(i))
+        let sliceAngle = 2.0 * M_PI
+        let startAngle = 0.0
+        let stopAngle  = sliceAngle
         
-        for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!
-        { self.innerRing[i].frame = r
-          
-          var bounds = self.innerRing[i].bounds
-          bounds.insetInPlace(dx: self.innerRing[i].lineWidth*1.0, dy: self.innerRing[i].lineWidth*1.0)
-          
-          let path       = CGPathCreateMutable()
-          let sliceAngle = 2.0 * M_PI / Double(ToothTimerSettings.sharedInstance.noOfSlices!)
-          let startAngle = Double(i  ) * sliceAngle
-          let stopAngle  = Double(i+1) * sliceAngle
-          
-          CGPathAddArc(path, nil,
-                       CGRectGetMidX(bounds), CGRectGetMidX(bounds),min( CGRectGetWidth(bounds),CGRectGetHeight(bounds))*0.5,
-                       CGFloat(startAngle-M_PI_2),CGFloat(stopAngle-M_PI_2), false)
-          
-          self.innerRing[i].path = path
-        } /* of for */
-      } /* of if */
-    } /* of didSet */
+        CGPathAddArc(path, nil, circleX, circleY, circleR, CGFloat(startAngle-M_PI_2),CGFloat(stopAngle-M_PI_2), false)
+        
+        self.innerRing[i].frame     = r
+        self.innerRing[i].lineWidth = CGFloat(self.lineWidth)
+        self.innerRing[i].path      = path
+      } /* of for */
+    } /* of if */
+  }
+  
+  override var frame : CGRect
+  { didSet {
+      self.updateGeometry()
+    }
   }
 }

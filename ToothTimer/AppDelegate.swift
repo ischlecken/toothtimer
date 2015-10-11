@@ -15,9 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
   var window: UIWindow?
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
-  { ToothTimerSettings.sharedInstance.usageCount = ToothTimerSettings.sharedInstance.usageCount!+1
+  { let newUsageCount = ToothTimerSettings.sharedInstance.usageCount!.integerValue+1
     
-    if ToothTimerSettings.sharedInstance.usageCount > Int(Constant.kUsageCountRemainderThreshold)
+    //ToothTimerSettings.sharedInstance.usageCount = NSNumber(newUsageCount)
+    
+    if ToothTimerSettings.sharedInstance.usageCount!.integerValue > Int(Constant.kUsageCountRemainderThreshold)
     { NSLog("show rating dialogue")
     } /* of if */
     

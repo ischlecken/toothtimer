@@ -19,6 +19,7 @@
 "settings.title.about"                                      = "About «%1$@»";
 "settings.title.colorSchemeName"                            = "Color Scheme";
 "settings.title.fullversion"                                = "Buy full version";
+"settings.title.revertfullversion"                          = "Revert full version";
 
 "settings.picker.timerInSeconds.10"                         = "10 seconds";
 "settings.picker.timerInSeconds.30"                         = "30 seconds";

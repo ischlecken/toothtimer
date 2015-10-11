@@ -11,7 +11,6 @@ import UIKit
 class TimerViewController: UIViewController
 {
             dynamic var isTimerRunning : Bool = false
-  @IBOutlet weak    var timeLabel      : UILabel!
   @IBOutlet weak    var customView     : CustomView!
             weak    var timer          : NSTimer?
                     var actTimer       : Int = 0
@@ -23,9 +22,9 @@ class TimerViewController: UIViewController
     {
       NSLog("observeValueForKeyPath:\(keyPathValue)")
       
-      if keyPathValue=="noOfSlices"
-      {
-        
+      if keyPathValue=="noOfSlices" {
+        self.customView.initView()
+        self.customView.updateGeometry()
       }
     }
   }
@@ -40,7 +39,7 @@ class TimerViewController: UIViewController
   { super.viewDidLoad()
 
     if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
-    { timeLabel.textColor = tintColor }
+    { customView.timeLabel.textColor = tintColor }
     
     self.updateTimerLabel()
     
@@ -50,14 +49,14 @@ class TimerViewController: UIViewController
   
   
   func updateTimerLabel()
-  { timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
+  { customView.timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
   }
 
   func startTimer()
   { if !self.isTimerRunning
     { self.isTimerRunning = true
       
-      self.actTimer = ToothTimerSettings.sharedInstance.timerInSeconds!
+      self.actTimer = ToothTimerSettings.sharedInstance.timerInSeconds!.integerValue
       self.updateTimerLabel()
       
       self.tickTimer.start()

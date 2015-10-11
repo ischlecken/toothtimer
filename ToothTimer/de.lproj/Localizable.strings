@@ -20,7 +20,7 @@
 "settings.title.about"                                      = "Über «%1$@»";
 "settings.title.colorSchemeName"                            = "Farbschema";
 "settings.title.fullversion"                                = "Vollversion";
-
+"settings.title.revertfullversion"                          = "Keine Vollversion";
 
 "settings.picker.timerInSeconds.10"                         = "10 Sekunden";
 "settings.picker.timerInSeconds.30"                         = "30 Sekunden";
