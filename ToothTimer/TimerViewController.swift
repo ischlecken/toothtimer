@@ -25,6 +25,7 @@ class TimerViewController: UIViewController
       if keyPathValue=="noOfSlices" {
         self.customView.initView()
         self.customView.updateGeometry()
+        self.customView.setNeedsDisplay()
       }
     }
   }
@@ -38,9 +39,6 @@ class TimerViewController: UIViewController
   override func viewDidLoad()
   { super.viewDidLoad()
 
-    if let tintColor = UIColor.colorWithName(ColorName.tintColor.rawValue) as? UIColor
-    { customView.timeLabel.textColor = tintColor }
-    
     self.updateTimerLabel()
     
     ToothTimerSettings.sharedInstance.addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
