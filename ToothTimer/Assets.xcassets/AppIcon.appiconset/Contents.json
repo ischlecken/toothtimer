@@ -27,7 +27,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "logo@2x-2.png",
+      "filename" : "logo@3x-10.png",
       "scale" : "2x"
     },
     {
@@ -39,43 +39,43 @@
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "logo@2x-3.png",
+      "filename" : "logo.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "logo@3x-3.png",
+      "filename" : "logo@2x-2.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "logo-1.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "logo@2x-3.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "logo-2.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
       "idiom" : "ipad",
       "filename" : "logo@2x-4.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "logo@3x-4.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "76x76",
-      "idiom" : "ipad",
-      "filename" : "logo@2x-5.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "76x76",
-      "idiom" : "ipad",
-      "filename" : "logo@3x-5.png",
       "scale" : "2x"
     },
     {
       "size" : "24x24",
       "idiom" : "watch",
-      "filename" : "logo@2x-6.png",
+      "filename" : "logo@2x-5.png",
       "scale" : "2x",
       "role" : "notificationCenter",
       "subtype" : "38mm"
@@ -83,7 +83,7 @@
     {
       "size" : "27.5x27.5",
       "idiom" : "watch",
-      "filename" : "logo@3x-6.png",
+      "filename" : "logo@2x-6.png",
       "scale" : "2x",
       "role" : "notificationCenter",
       "subtype" : "42mm"
@@ -98,7 +98,7 @@
     {
       "size" : "29x29",
       "idiom" : "watch",
-      "filename" : "logo@3x-7.png",
+      "filename" : "logo@3x-3.png",
       "role" : "companionSettings",
       "scale" : "3x"
     },
@@ -113,7 +113,7 @@
     {
       "size" : "44x44",
       "idiom" : "watch",
-      "filename" : "logo@3x-8.png",
+      "filename" : "logo@2x-10.png",
       "scale" : "2x",
       "role" : "longLook",
       "subtype" : "42mm"
@@ -129,7 +129,7 @@
     {
       "size" : "98x98",
       "idiom" : "watch",
-      "filename" : "logo@3x-9.png",
+      "filename" : "logo@2x-11.png",
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "42mm"
