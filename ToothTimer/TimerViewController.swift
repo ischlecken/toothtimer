@@ -11,7 +11,15 @@ import UIKit
 class TimerViewController: UIViewController
 {
             dynamic var isTimerRunning : Bool = false
-  @IBOutlet weak    var customView     : CustomView!
+  @IBOutlet weak    var circlesView    : CirclesView!
+  @IBOutlet weak    var timerView      : TimerView!
+  @IBOutlet weak    var slideButton    : SlideButton!
+
+  @IBOutlet weak    var circleButton1  : CircleButton!
+  @IBOutlet weak    var circleButton2  : CircleButton!
+  @IBOutlet weak    var circleButton3  : CircleButton!
+  @IBOutlet weak    var circleButton4  : CircleButton!
+  
             weak    var timer          : NSTimer?
                     var actTimer       : Int = 0
                     var tickTimer      : TickTimer = TickTimer()
@@ -23,9 +31,8 @@ class TimerViewController: UIViewController
       NSLog("observeValueForKeyPath:\(keyPathValue)")
       
       if keyPathValue=="noOfSlices" {
-        self.customView.initView()
-        self.customView.updateGeometry()
-        self.customView.setNeedsDisplay()
+        self.circlesView.updateGeometry()
+        self.circlesView.setNeedsDisplay()
       }
     }
   }
@@ -47,7 +54,7 @@ class TimerViewController: UIViewController
   
   
   func updateTimerLabel()
-  { customView.timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
+  { timerView.timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
   }
 
   func startTimer()
@@ -60,7 +67,7 @@ class TimerViewController: UIViewController
       self.tickTimer.start()
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
       
-      self.customView.addAnimation( CFTimeInterval(actTimer) )
+      self.circlesView.addAnimation( CFTimeInterval(actTimer) )
       
       UIApplication.sharedApplication().idleTimerDisabled = true
     } /* of if */
@@ -83,7 +90,7 @@ class TimerViewController: UIViewController
     { self.timer?.invalidate()
       self.timer = nil
     
-      self.customView.removeAnimation()
+      self.circlesView.removeAnimation()
       
       let elapsedTime = self.tickTimer.stop()
       NSLog("stopp elapsedTime:\(elapsedTime)")

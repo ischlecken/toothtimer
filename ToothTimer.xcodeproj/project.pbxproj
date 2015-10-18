@@ -11,8 +11,11 @@
 		851511CA1B5BE61300D6EBDA /* TickTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851511C91B5BE61300D6EBDA /* TickTimer.swift */; };
 		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
 		851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AF9EF1B49A8C500C42489 /* AppUtil.m */; };
+		8537E1E31BD3932C00D9BD57 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537E1DF1BD3932C00D9BD57 /* CircleButton.swift */; settings = {ASSET_TAGS = (); }; };
+		8537E1E41BD3932C00D9BD57 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537E1E01BD3932C00D9BD57 /* CirclesView.swift */; settings = {ASSET_TAGS = (); }; };
+		8537E1E51BD3932C00D9BD57 /* SlideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537E1E11BD3932C00D9BD57 /* SlideButton.swift */; settings = {ASSET_TAGS = (); }; };
+		8537E1E61BD3932C00D9BD57 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8537E1E21BD3932C00D9BD57 /* TimerView.swift */; settings = {ASSET_TAGS = (); }; };
 		855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855F5A811B482C5F003448D1 /* AppGlobal.swift */; };
-		858669141B4C82D20091F8E5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858669131B4C82D20091F8E5 /* CustomView.swift */; };
 		858ACB421BB894320001B942 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858ACB411BB894320001B942 /* LogsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B73C51B52EE27006CC0A7 /* GradientView.swift */; };
 		8592C6811BB805A800F31A54 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8592C6801BB805A800F31A54 /* IAPProduct.swift */; settings = {ASSET_TAGS = (); }; };
@@ -75,8 +78,11 @@
 		851AF9ED1B498BCC00C42489 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		851AF9EE1B49A8C500C42489 /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
 		851AF9EF1B49A8C500C42489 /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
+		8537E1DF1BD3932C00D9BD57 /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		8537E1E01BD3932C00D9BD57 /* CirclesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
+		8537E1E11BD3932C00D9BD57 /* SlideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideButton.swift; sourceTree = "<group>"; };
+		8537E1E21BD3932C00D9BD57 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		855F5A811B482C5F003448D1 /* AppGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.swift; sourceTree = "<group>"; };
-		858669131B4C82D20091F8E5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CustomView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		858ACB411BB894320001B942 /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		858B73C51B52EE27006CC0A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8592C6801BB805A800F31A54 /* IAPProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
@@ -179,6 +185,10 @@
 		85C03A371B4919E700C88E95 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8537E1DF1BD3932C00D9BD57 /* CircleButton.swift */,
+				8537E1E01BD3932C00D9BD57 /* CirclesView.swift */,
+				8537E1E11BD3932C00D9BD57 /* SlideButton.swift */,
+				8537E1E21BD3932C00D9BD57 /* TimerView.swift */,
 				859E1C031B794D8900C9C0E0 /* String.swift */,
 				859E1C011B794A1000C9C0E0 /* SwiftSettingsItem.swift */,
 				855F5A811B482C5F003448D1 /* AppGlobal.swift */,
@@ -186,7 +196,6 @@
 				85C03A351B49199900C88E95 /* UIColor.swift */,
 				85C03A381B491A1800C88E95 /* NSURL.swift */,
 				85C03A3A1B491A5900C88E95 /* NSFileManager.swift */,
-				858669131B4C82D20091F8E5 /* CustomView.swift */,
 				858B73C51B52EE27006CC0A7 /* GradientView.swift */,
 				851511C91B5BE61300D6EBDA /* TickTimer.swift */,
 				85DB25F31B5C4134006CD370 /* AudioUtil.swift */,
@@ -415,9 +424,12 @@
 				85CFF8A71B49815D00C262F0 /* TextfieldBooleanTableViewCell.m in Sources */,
 				85A38F151B77FE2900430E76 /* UIImage.swift in Sources */,
 				855F5A821B482C5F003448D1 /* AppGlobal.swift in Sources */,
+				8537E1E51BD3932C00D9BD57 /* SlideButton.swift in Sources */,
 				85CFF8A91B49815D00C262F0 /* TextfieldTableViewCell.m in Sources */,
 				8597AF341B93019200A01BE4 /* CKUserInfo.swift in Sources */,
+				8537E1E61BD3932C00D9BD57 /* TimerView.swift in Sources */,
 				85DD47331B3EEBDB005BD7BE /* SettingsItem.m in Sources */,
+				8537E1E31BD3932C00D9BD57 /* CircleButton.swift in Sources */,
 				85DD472F1B3EEBDB005BD7BE /* CommonCoreGraphics.m in Sources */,
 				85B781741B6E517700B1A0C1 /* BadgeTableViewController.swift in Sources */,
 				85B7816F1B6E48E900B1A0C1 /* CKBadge.swift in Sources */,
@@ -443,9 +455,9 @@
 				85B781761B6E586F00B1A0C1 /* BadgeAllocator.swift in Sources */,
 				85C0EDC51B40180A00102F72 /* Error.m in Sources */,
 				85C8576A1BB7ECB100984DB8 /* CKUser.swift in Sources */,
+				8537E1E41BD3932C00D9BD57 /* CirclesView.swift in Sources */,
 				851511CA1B5BE61300D6EBDA /* TickTimer.swift in Sources */,
 				858B73C61B52EE27006CC0A7 /* GradientView.swift in Sources */,
-				858669141B4C82D20091F8E5 /* CustomView.swift in Sources */,
 				85D7D2001B3ED72600807955 /* AppDelegate.swift in Sources */,
 				85C03A3B1B491A5900C88E95 /* NSFileManager.swift in Sources */,
 				85D7D2021B3ED72600807955 /* TimerViewController.swift in Sources */,

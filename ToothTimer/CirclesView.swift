@@ -9,65 +9,16 @@
 import Foundation
 import UIKit
 
-class CustomView: UIView
+class CirclesView: UIView
 {
          var innerRing:[CAShapeLayer]                = []
          var actualAnimatedRing                      = -1
          var segmentAnimationDuration:CFTimeInterval = 0.0
-         var timeLabel                               = UILabel()
          var trackWidth                              = CGFloat(0.0)
          var lineWidth                               = CGFloat(0.0)
   static let outterInset                             = CGFloat(25.0)
   static let trackInset                              = CGFloat(2.0)
   static let innerFreeCircleDiameter                 = CGFloat(15.0)
-  
-  required init?(coder aDecoder: NSCoder)
-  { super.init(coder: aDecoder)
-    
-    self.initView()
-  }
-  
-  override init(frame: CGRect)
-  { super.init(frame: frame)
-    
-    self.initView()
-    
-  }
-  
-  func initView()
-  { self.timeLabel.removeFromSuperview()
-    self.addSubview(self.timeLabel)
-    
-    self.timeLabel.textAlignment = NSTextAlignment.Center
-    self.timeLabel.font = UIFont.monospacedDigitSystemFontOfSize(64.0, weight: UIFontWeightBold)
-    self.timeLabel.textColor = UIColor(white: 1.0, alpha: 0.7)
-    
-    for l in self.innerRing {
-      l.removeFromSuperlayer()
-    }
-    
-    self.innerRing = []
-    
-    let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
-    
-    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
-    { let l = CAShapeLayer()
-      
-      l.fillColor       = UIColor.clearColor() .CGColor
-      l.strokeColor     = ringColors[i].CGColor
-      l.strokeStart     = 0.0
-      l.strokeEnd       = 0.0
-      l.lineCap         = kCALineCapRound
-      l.shadowColor     = UIColor(white: 1.0, alpha: 0.6).CGColor
-      l.shadowOffset    = CGSize(width: 0, height: 4)
-      l.shadowRadius    = 2
-      l.shadowOpacity   = 1.0
-      l.frame           = CGRectNull
-      
-      self.layer.addSublayer(l)
-      self.innerRing.append(l)
-    } /* of for */
-  }
   
   private func startNextAnimation() -> Void
   { let animatedLayer = self.innerRing[actualAnimatedRing]
@@ -140,13 +91,13 @@ class CustomView: UIView
   }
   
   override func drawRect(rect: CGRect)
-  { let ctx          = UIGraphicsGetCurrentContext()
+  { let ctx = UIGraphicsGetCurrentContext()
     
     for i in 0..<self.innerRing.count {
       var r            = self.calcRect()
 
-      r.origin.x -= CustomView.outterInset*0.5
-      r.origin.y -= CustomView.outterInset
+      r.origin.x -= CirclesView.outterInset*0.5
+      r.origin.y -= CirclesView.outterInset
       
       CGContextAddPath(ctx, self.createCirclePath(r, position: i))
       CGContextSetStrokeColorWithColor(ctx,UIColor(white: 1.0, alpha: 0.1).CGColor)
@@ -170,11 +121,11 @@ class CustomView: UIView
       r = CGRect(x: 0.5*(self.frame.width-w), y:0.0, width: w, height: w)
     }
 
-    return r.insetBy(dx: CustomView.outterInset, dy: CustomView.outterInset)
+    return r.insetBy(dx: CirclesView.outterInset, dy: CirclesView.outterInset)
   }
   
   func createCirclePath(circleBounds:CGRect, position:Int) -> CGPath {
-    let maxCircleR = CustomView.innerFreeCircleDiameter + self.trackWidth*CGFloat(self.innerRing.count)
+    let maxCircleR = CirclesView.innerFreeCircleDiameter + self.trackWidth*CGFloat(self.innerRing.count)
     
     let path       = CGPathCreateMutable()
     let circleX    = circleBounds.origin.x + CGRectGetMidX(circleBounds)
@@ -190,34 +141,57 @@ class CustomView: UIView
   }
   
   func updateGeometry() {
-    if self.innerRing.count>0
-    { let r = self.calcRect()
+    NSLog("updateGeometry(\(self.frame.origin.x),\(self.frame.origin.y),\(self.frame.size.width),\(self.frame.size.height))")
+    
+    let r = self.calcRect()
+    
+    self.trackWidth = (min(CGRectGetWidth(r),CGRectGetHeight(r))*0.5 - CirclesView.innerFreeCircleDiameter) / CGFloat(self.innerRing.count)
+    self.lineWidth  = self.trackWidth - 2.0 * CirclesView.trackInset
+    
+    NSLog("trackWidth:\(self.trackWidth) lineWidth:\(self.lineWidth)")
+    
+    for l in self.innerRing {
+      l.removeFromSuperlayer()
+    }
+    
+    self.innerRing = []
+    
+    let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
+    
+    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
+    { let l = CAShapeLayer()
       
-      self.trackWidth = (min(CGRectGetWidth(r),CGRectGetHeight(r))*0.5 - CustomView.innerFreeCircleDiameter) / CGFloat(self.innerRing.count)
-      self.lineWidth  = self.trackWidth - 2.0 * CustomView.trackInset
+      l.fillColor       = UIColor.clearColor() .CGColor
+      l.strokeColor     = ringColors[i].CGColor
+      l.strokeStart     = 0.0
+      l.strokeEnd       = 0.0
+      l.lineCap         = kCALineCapRound
+      l.shadowColor     = UIColor(white: 1.0, alpha: 0.6).CGColor
+      l.shadowOffset    = CGSize(width: 0, height: 4)
+      l.shadowRadius    = 2
+      l.shadowOpacity   = 1.0
+      l.frame           = CGRectNull
       
-      NSLog("trackWidth:\(self.trackWidth) lineWidth:\(self.lineWidth)")
-      
-      var labelFrame = r
-      labelFrame.size.height = 64
-      labelFrame = labelFrame.offsetBy(dx:0, dy: -labelFrame.size.height-self.trackWidth*0.5)
-      self.timeLabel.frame = labelFrame
-      //self.timeLabel.layer.borderWidth = 1.0
-      //self.timeLabel.layer.borderColor = UIColor.whiteColor().CGColor
-      
-      let circleBounds = CGRect(origin: CGPoint(x: 0.0,y: 0.0), size: r.size)
-      
-      for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
-      { self.innerRing[i].frame       = r
-        self.innerRing[i].lineWidth   = CGFloat(self.lineWidth)
-        self.innerRing[i].path        = self.createCirclePath(circleBounds,position: i)
-      } /* of for */
-    } /* of if */
+      self.layer.addSublayer(l)
+      self.innerRing.append(l)
+    } /* of for */
+    
+    let circleBounds = CGRect(origin: CGPoint(x: 0.0,y: 0.0), size: r.size)
+    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
+    { self.innerRing[i].frame       = r
+      self.innerRing[i].lineWidth   = CGFloat(self.lineWidth)
+      self.innerRing[i].path        = self.createCirclePath(circleBounds,position: i)
+    } /* of for */
+    
   }
   
-  override var frame : CGRect
-  { didSet {
-      self.updateGeometry()
-    }
+  override func layoutSubviews() {
+    NSLog("layoutSubviews")
+    
+    super.layoutSubviews()
+    
+    self.updateGeometry()
+    self.setNeedsDisplay()
   }
+  
 }

@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--LogsViewController-->
@@ -149,23 +150,99 @@
             <objects>
                 <viewController storyboardIdentifier="TimerViewController" id="6MP-AZ-qqB" userLabel="TimerViewController" customClass="TimerViewController" customModule="ToothTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cR6-Iv-wnT"/>
-                        <viewControllerLayoutGuide type="bottom" id="j8K-rZ-7H7"/>
+                        <viewControllerLayoutGuide type="top" id="VVW-f7-bul"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rte-7i-2XU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fc6-Iu-mU3" customClass="CustomView" customModule="ToothTimer" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="igb-dI-7pm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCh-pK-SMi" customClass="CirclesView" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="92" width="560" height="376"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc5-U1-iSL" customClass="TimerView" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="472" width="560" height="76"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k73-OM-Pe4" customClass="SlideButton" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="552" width="560" height="48"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4Jw-aX-Sa3">
+                                <rect key="frame" x="186" y="32" width="228" height="48"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9Y-xO-mCa" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="hPI-an-gNd"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-LJ-m4o" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
+                                        <rect key="frame" x="60" y="0.0" width="48" height="48"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaX-k4-hF3" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
+                                        <rect key="frame" x="120" y="0.0" width="48" height="48"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-5i-QSf" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
+                                        <rect key="frame" x="180" y="0.0" width="48" height="48"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sTZ-LJ-m4o" firstAttribute="width" secondItem="q9Y-xO-mCa" secondAttribute="width" id="11k-cm-Kga"/>
+                                    <constraint firstAttribute="height" constant="48" id="1Fg-4Y-TfC"/>
+                                    <constraint firstItem="IaX-k4-hF3" firstAttribute="width" secondItem="q9Y-xO-mCa" secondAttribute="width" id="Cb0-so-Yz7"/>
+                                    <constraint firstItem="q9Y-xO-mCa" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="G6b-1F-Wpp"/>
+                                    <constraint firstItem="IdG-5i-QSf" firstAttribute="width" secondItem="IaX-k4-hF3" secondAttribute="width" id="H84-m4-um3"/>
+                                    <constraint firstItem="IaX-k4-hF3" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="MCT-vo-5uO"/>
+                                    <constraint firstItem="sTZ-LJ-m4o" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="dOQ-ne-9pj"/>
+                                    <constraint firstItem="IdG-5i-QSf" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="fuI-5z-eRX"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <accessibility key="accessibilityConfiguration">
-                            <accessibilityTraits key="traits" notEnabled="YES"/>
-                        </accessibility>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="k73-OM-Pe4" secondAttribute="trailing" id="0AL-s9-QJk"/>
+                            <constraint firstItem="k73-OM-Pe4" firstAttribute="leading" secondItem="igb-dI-7pm" secondAttribute="leadingMargin" id="901-3S-svL"/>
+                            <constraint firstItem="UCh-pK-SMi" firstAttribute="top" secondItem="4Jw-aX-Sa3" secondAttribute="bottom" constant="12" id="Bya-gZ-MN5"/>
+                            <constraint firstItem="4Jw-aX-Sa3" firstAttribute="centerX" secondItem="igb-dI-7pm" secondAttribute="centerX" id="D1z-Fj-Czs"/>
+                            <constraint firstItem="gc5-U1-iSL" firstAttribute="leading" secondItem="igb-dI-7pm" secondAttribute="leadingMargin" id="Dse-Eg-PL0"/>
+                            <constraint firstItem="Rte-7i-2XU" firstAttribute="top" secondItem="k73-OM-Pe4" secondAttribute="bottom" id="Sxq-yN-tcT"/>
+                            <constraint firstItem="k73-OM-Pe4" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="VSd-S9-1AG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UCh-pK-SMi" secondAttribute="trailing" id="Vm9-rH-5S0"/>
+                            <constraint firstItem="gc5-U1-iSL" firstAttribute="top" secondItem="UCh-pK-SMi" secondAttribute="bottom" constant="4" id="ZPz-yd-2EJ"/>
+                            <constraint firstItem="UCh-pK-SMi" firstAttribute="leading" secondItem="igb-dI-7pm" secondAttribute="leadingMargin" id="ahF-n2-RGn"/>
+                            <constraint firstItem="k73-OM-Pe4" firstAttribute="top" secondItem="gc5-U1-iSL" secondAttribute="bottom" constant="4" id="iM7-GF-CR6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gc5-U1-iSL" secondAttribute="trailing" id="iag-JI-dEC"/>
+                            <constraint firstItem="4Jw-aX-Sa3" firstAttribute="top" secondItem="VVW-f7-bul" secondAttribute="bottom" constant="12" id="lXB-46-LRO"/>
+                            <constraint firstItem="UCh-pK-SMi" firstAttribute="trailing" secondItem="igb-dI-7pm" secondAttribute="trailingMargin" id="wBV-Nw-nsl"/>
+                            <constraint firstItem="gc5-U1-iSL" firstAttribute="height" secondItem="UCh-pK-SMi" secondAttribute="height" multiplier="1:5" id="zy9-YW-iIP"/>
+                        </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="RqX-Cj-N11" appends="YES" id="Elq-YV-hPf"/>
+                            <outletCollection property="gestureRecognizers" destination="RqX-Cj-N11" appends="YES" id="nQE-Sc-mY4"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="customView" destination="fc6-Iu-mU3" id="f7h-Lx-o1G"/>
+                        <outlet property="circleButton1" destination="q9Y-xO-mCa" id="7Ir-23-Fe7"/>
+                        <outlet property="circleButton2" destination="sTZ-LJ-m4o" id="mwH-GA-1D6"/>
+                        <outlet property="circleButton3" destination="IaX-k4-hF3" id="BUc-sx-TOS"/>
+                        <outlet property="circleButton4" destination="IdG-5i-QSf" id="Jgd-CG-cVm"/>
+                        <outlet property="circlesView" destination="UCh-pK-SMi" id="KqK-tB-COS"/>
+                        <outlet property="timerView" destination="gc5-U1-iSL" id="4cb-ah-rY9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7O-Ig-pN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
