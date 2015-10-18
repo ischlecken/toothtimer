@@ -17,7 +17,7 @@ class SlideButton: UIControl
     result.startPoint = CGPoint(x: 0.0,y: 0.5)
     result.endPoint   = CGPoint(x: 1.0,y: 0.5)
     result.type       = kCAGradientLayerAxial
-    result.colors     = [UIColor(hexString: "#000000").CGColor,UIColor(hexString:"#ffffff").CGColor,UIColor(hexString: "#000000").CGColor]
+    result.colors     = [UIColor(hexString: "#ff44ff").CGColor,UIColor(hexString:"#ffffff").CGColor,UIColor(hexString: "#ff44ff").CGColor]
     result.locations  = [ 0.25, 0.5, 0.75 ]
     
     return result
@@ -28,7 +28,7 @@ class SlideButton: UIControl
     
     style.alignment = .Center
     
-    return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Thin", size: 32.0)!,
+    return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Bold", size: 38.0)!,
              NSParagraphStyleAttributeName: style
            ]
   }()
@@ -38,7 +38,7 @@ class SlideButton: UIControl
     
     style.alignment = .Center
     
-    return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Thin", size: 16.0)!,
+    return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Bold", size: 22.0)!,
       NSParagraphStyleAttributeName: style
     ]
     }()

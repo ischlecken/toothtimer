@@ -230,6 +230,9 @@
                                 <rect key="frame" x="20" y="552" width="560" height="48"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="WtI-1a-eoZ" appends="YES" id="Q60-ba-tbO"/>
+                                </connections>
                             </view>
                         </subviews>
                         <animations/>
@@ -264,7 +267,7 @@
                             </mask>
                         </variation>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="RqX-Cj-N11" appends="YES" id="nQE-Sc-mY4"/>
+                            <outletCollection property="gestureRecognizers" destination="RqX-Cj-N11" appends="YES" id="ZOg-RR-X6r"/>
                         </connections>
                     </view>
                     <connections>
@@ -283,6 +286,11 @@
                         <action selector="tappedAction:" destination="6MP-AZ-qqB" id="Xq0-tH-d2M"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="WtI-1a-eoZ">
+                    <connections>
+                        <action selector="swipAction:" destination="6MP-AZ-qqB" id="3cJ-c0-YdC"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1175" y="934"/>
         </scene>

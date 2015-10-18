@@ -121,7 +121,13 @@ class TimerViewController: UIViewController
   @IBAction func tappedAction(sender: AnyObject)
   { NSLog("TimerView tapped")
     
-    self.toggleTimer()
+    self.stopTimer()
+  }
+  
+  @IBAction func swipAction(sender: AnyObject)
+  { NSLog("swipped")
+    
+    self.startTimer()
   }
 }
 
