@@ -11,33 +11,96 @@ import UIKit
 
 class SlideButton: UIControl
 {
-  
-  var slideLabel                : UILabel!
-  var slideLabelConstaintsAdded = false
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+  let gradientLayer : CAGradientLayer = {
+    let result = CAGradientLayer()
     
-    self.initView()
+    result.startPoint = CGPoint(x: 0.0,y: 0.5)
+    result.endPoint   = CGPoint(x: 1.0,y: 0.5)
+    result.type       = kCAGradientLayerAxial
+    result.colors     = [UIColor(hexString: "#000000").CGColor,UIColor(hexString:"#ffffff").CGColor,UIColor(hexString: "#000000").CGColor]
+    result.locations  = [ 0.25, 0.5, 0.75 ]
+    
+    return result
+  }()
+  
+  let textAttributes0: [String: AnyObject] = {
+    let style = NSMutableParagraphStyle()
+    
+    style.alignment = .Center
+    
+    return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Thin", size: 32.0)!,
+             NSParagraphStyleAttributeName: style
+           ]
+  }()
+  
+  let textAttributes1: [String: AnyObject] = {
+    let style = NSMutableParagraphStyle()
+    
+    style.alignment = .Center
+    
+    return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Thin", size: 16.0)!,
+      NSParagraphStyleAttributeName: style
+    ]
+    }()
+  
+  var textAttributes : [String: AnyObject] {
+    get {
+      return self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact ? self.textAttributes1 : self.textAttributes0
+    }
   }
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    
-    self.initView()
-    
-  }
-  
-  func initView() {
-    NSLog("SlideButton.initView()")
-    
-    self.slideLabel = UILabel()
-    self.slideLabel.textAlignment = NSTextAlignment.Center
-    self.slideLabel.font = UIFont.monospacedDigitSystemFontOfSize(32, weight: UIFontWeightBold)
-    self.slideLabel.textColor = UIColor.lightGrayColor()
-    self.slideLabel.text = "Slide to start..."
+  let slideAnimation : CABasicAnimation = {
+    let result = CABasicAnimation(keyPath: "locations")
+    result.fromValue = [0.0, 0.0, 0.25]
+    result.toValue = [0.75, 1.0, 1.0]
+    result.duration = 3.0
+    result.repeatCount = Float.infinity
 
-    self.addSubview(self.slideLabel)
+    return result
+  }()
+  
+  let hideAnimation : CABasicAnimation = {
+    let result = CABasicAnimation(keyPath: "opacity")
+    result.fromValue = 1.0
+    result.toValue = 0.0
+    result.duration = 3.0
+    
+    return result
+    }()
+  
+  let showAnimation : CABasicAnimation = {
+    let result = CABasicAnimation(keyPath: "opacity")
+    result.fromValue = 0.0
+    result.toValue = 1.0
+    result.duration = 3.0
+    
+    return result
+    }()
+  
+
+  func startSlideAnimation() {
+    self.gradientLayer.removeAllAnimations()
+    self.gradientLayer.addAnimation(self.slideAnimation, forKey: "slideAnimation")
+  }
+  
+  func disappear() {
+    self.layer.removeAllAnimations()
+    self.layer.addAnimation(self.hideAnimation, forKey: "hide")
+    self.layer.opacity = 0.0
+  }
+
+  func appear() {
+    self.layer.removeAllAnimations()
+    self.layer.addAnimation(self.showAnimation, forKey: "show")
+    self.layer.opacity = 1.0
+  }
+
+  
+  override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    NSLog("TimerView.traitCollectionDidChange(\(previousTraitCollection))")
+    
+    gradientMask()
+    setNeedsDisplay()
   }
   
   override func layoutSubviews() {
@@ -45,57 +108,43 @@ class SlideButton: UIControl
     
     super.layoutSubviews()
     
-    if !slideLabelConstaintsAdded {
-      self.addConstraint(
-        NSLayoutConstraint( item: self.slideLabel,
-          attribute: NSLayoutAttribute.TopMargin,
-          relatedBy: NSLayoutRelation.Equal,
-          toItem: self,
-          attribute: NSLayoutAttribute.Top,
-          multiplier: 1.0,
-          constant: 0
-        )
-      )
-      
-      self.addConstraint(
-        NSLayoutConstraint( item: self.slideLabel,
-          attribute: NSLayoutAttribute.BottomMargin,
-          relatedBy: NSLayoutRelation.Equal,
-          toItem: self,
-          attribute: NSLayoutAttribute.Bottom,
-          multiplier: 1.0,
-          constant: 0
-        )
-      )
-      
-      
-      self.addConstraint(
-        NSLayoutConstraint( item: self.slideLabel,
-          attribute: NSLayoutAttribute.LeadingMargin,
-          relatedBy: NSLayoutRelation.Equal,
-          toItem: self,
-          attribute: NSLayoutAttribute.Leading,
-          multiplier: 1.0,
-          constant: 0
-        )
-      )
-      
-      self.addConstraint(
-        NSLayoutConstraint( item: self.slideLabel,
-          attribute: NSLayoutAttribute.TrailingMargin,
-          relatedBy: NSLayoutRelation.Equal,
-          toItem: self,
-          attribute: NSLayoutAttribute.Trailing,
-          multiplier: 1.0,
-          constant: 0
-        )
-      )
-      
-      self.slideLabel.translatesAutoresizingMaskIntoConstraints = false
-      
-      slideLabelConstaintsAdded = true
+    self.gradientLayer.frame = CGRect( x: -bounds.size.width, y: bounds.origin.y, width: 3 * bounds.size.width, height: bounds.size.height)
+    gradientMask()
+    
+  }
+  
+  override func didMoveToWindow() {
+    NSLog("TimerView.didMoveToWindow()")
+    
+    super.didMoveToWindow()
+    
+    self.layer.addSublayer(self.gradientLayer)
+    self.startSlideAnimation()
+  }
+  
+  @IBInspectable var text: String! {
+    didSet {
+      NSLog("setText(\(self.text))")
+    
+      gradientMask()
+      setNeedsDisplay()
     }
   }
+  
+  func gradientMask() {
+    UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+    self.text.drawInRect(bounds, withAttributes: self.textAttributes)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    let maskLayer = CALayer()
+    maskLayer.backgroundColor = UIColor.clearColor().CGColor
+    maskLayer.frame = CGRectOffset(bounds, bounds.size.width, 0)
+    maskLayer.contents = image.CGImage
+    
+    self.gradientLayer.mask = maskLayer
+  }
+
   
   override func drawRect(rect: CGRect)
   { let ctx = UIGraphicsGetCurrentContext()

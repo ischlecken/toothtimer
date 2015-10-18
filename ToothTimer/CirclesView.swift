@@ -20,6 +20,49 @@ class CirclesView: UIView
   static let trackInset                              = CGFloat(2.0)
   static let innerFreeCircleDiameter                 = CGFloat(15.0)
   
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    
+    self.initView()
+  }
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    self.initView()
+    
+  }
+
+  func initView() {
+    NSLog("CirclesView.initView()")
+    
+    for l in self.innerRing {
+      l.removeFromSuperlayer()
+    }
+    
+    self.innerRing = []
+    
+    let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
+    
+    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
+    { let l = CAShapeLayer()
+      
+      l.fillColor       = UIColor.clearColor() .CGColor
+      l.strokeColor     = ringColors[i].CGColor
+      l.strokeStart     = 0.0
+      l.strokeEnd       = 0.0
+      l.lineCap         = kCALineCapRound
+      l.shadowColor     = UIColor(white: 1.0, alpha: 0.6).CGColor
+      l.shadowOffset    = CGSize(width: 0, height: 4)
+      l.shadowRadius    = 2
+      l.shadowOpacity   = 1.0
+      l.frame           = CGRectNull
+      
+      self.layer.addSublayer(l)
+      self.innerRing.append(l)
+    } /* of for */
+  }
+  
   private func startNextAnimation() -> Void
   { let animatedLayer = self.innerRing[actualAnimatedRing]
     
@@ -94,7 +137,7 @@ class CirclesView: UIView
   { let ctx = UIGraphicsGetCurrentContext()
     
     for i in 0..<self.innerRing.count {
-      var r            = self.calcRect()
+      var r = self.calcRect()
 
       r.origin.x -= CirclesView.outterInset*0.5
       r.origin.y -= CirclesView.outterInset
@@ -150,31 +193,6 @@ class CirclesView: UIView
     
     NSLog("trackWidth:\(self.trackWidth) lineWidth:\(self.lineWidth)")
     
-    for l in self.innerRing {
-      l.removeFromSuperlayer()
-    }
-    
-    self.innerRing = []
-    
-    let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
-    
-    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
-    { let l = CAShapeLayer()
-      
-      l.fillColor       = UIColor.clearColor() .CGColor
-      l.strokeColor     = ringColors[i].CGColor
-      l.strokeStart     = 0.0
-      l.strokeEnd       = 0.0
-      l.lineCap         = kCALineCapRound
-      l.shadowColor     = UIColor(white: 1.0, alpha: 0.6).CGColor
-      l.shadowOffset    = CGSize(width: 0, height: 4)
-      l.shadowRadius    = 2
-      l.shadowOpacity   = 1.0
-      l.frame           = CGRectNull
-      
-      self.layer.addSublayer(l)
-      self.innerRing.append(l)
-    } /* of for */
     
     let circleBounds = CGRect(origin: CGPoint(x: 0.0,y: 0.0), size: r.size)
     for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue

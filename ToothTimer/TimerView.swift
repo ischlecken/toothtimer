@@ -34,11 +34,29 @@ class TimerView: UIView
     self.timeLabel = UILabel()
     self.timeLabel.textAlignment = NSTextAlignment.Center
     self.timeLabel.font = UIFont.monospacedDigitSystemFontOfSize(64.0, weight: UIFontWeightBold)
-    self.timeLabel.textColor = UIColor.redColor()
+    self.timeLabel.textColor = UIColor.lightGrayColor()
     self.timeLabel.text = "00:00"
+    self.timeLabel.adjustsFontSizeToFitWidth = true
+    self.timeLabel.minimumScaleFactor = 0.1
+    
     self.addSubview(self.timeLabel)
   }
   
+  override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    NSLog("TimerView.traitCollectionDidChange(\(previousTraitCollection))")
+    
+    var fontSize = CGFloat(64.0)
+    var fontColor = UIColor.lightGrayColor()
+    
+    if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+      fontSize = 32.0
+      fontColor = UIColor.whiteColor()
+    }
+    
+    self.timeLabel.font = UIFont.monospacedDigitSystemFontOfSize(fontSize, weight: UIFontWeightBold)
+    self.timeLabel.textColor = fontColor
+    
+  }
   
   override func layoutSubviews() {
     NSLog("TimerView.layoutSubviews()")

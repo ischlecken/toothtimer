@@ -47,11 +47,11 @@ class TimerViewController: UIViewController
   { super.viewDidLoad()
 
     self.updateTimerLabel()
+    self.slideButton.text = "Slide to start"
     
     ToothTimerSettings.sharedInstance.addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
   }
 
-  
   
   func updateTimerLabel()
   { timerView.timeLabel.text = String(format: "%02d:%02d", actTimer/60,actTimer%60)
@@ -68,6 +68,7 @@ class TimerViewController: UIViewController
       self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
       
       self.circlesView.addAnimation( CFTimeInterval(actTimer) )
+      self.slideButton.disappear()
       
       UIApplication.sharedApplication().idleTimerDisabled = true
     } /* of if */
@@ -91,6 +92,7 @@ class TimerViewController: UIViewController
       self.timer = nil
     
       self.circlesView.removeAnimation()
+      self.slideButton.appear()
       
       let elapsedTime = self.tickTimer.stop()
       NSLog("stopp elapsedTime:\(elapsedTime)")

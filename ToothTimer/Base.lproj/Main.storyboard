@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0me-Vy-0Pa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -157,21 +158,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCh-pK-SMi" customClass="CirclesView" customModule="ToothTimer" customModuleProvider="target">
-                                <rect key="frame" x="20" y="92" width="560" height="376"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc5-U1-iSL" customClass="TimerView" customModule="ToothTimer" customModuleProvider="target">
-                                <rect key="frame" x="20" y="472" width="560" height="76"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k73-OM-Pe4" customClass="SlideButton" customModule="ToothTimer" customModuleProvider="target">
-                                <rect key="frame" x="20" y="552" width="560" height="48"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4Jw-aX-Sa3">
                                 <rect key="frame" x="186" y="32" width="228" height="48"/>
                                 <subviews>
@@ -180,50 +166,84 @@
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="hPI-an-gNd"/>
+                                            <constraint firstAttribute="width" secondItem="q9Y-xO-mCa" secondAttribute="height" multiplier="1:1" id="d2m-4Z-1ST"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-LJ-m4o" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
                                         <rect key="frame" x="60" y="0.0" width="48" height="48"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="sTZ-LJ-m4o" secondAttribute="height" id="mSX-QD-IMt"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaX-k4-hF3" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
                                         <rect key="frame" x="120" y="0.0" width="48" height="48"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IaX-k4-hF3" secondAttribute="height" id="dMt-P7-pMl"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdG-5i-QSf" customClass="CircleButton" customModule="ToothTimer" customModuleProvider="target">
                                         <rect key="frame" x="180" y="0.0" width="48" height="48"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IdG-5i-QSf" secondAttribute="height" id="4B3-KD-9bX"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="sTZ-LJ-m4o" firstAttribute="width" secondItem="q9Y-xO-mCa" secondAttribute="width" id="11k-cm-Kga"/>
                                     <constraint firstAttribute="height" constant="48" id="1Fg-4Y-TfC"/>
-                                    <constraint firstItem="IaX-k4-hF3" firstAttribute="width" secondItem="q9Y-xO-mCa" secondAttribute="width" id="Cb0-so-Yz7"/>
                                     <constraint firstItem="q9Y-xO-mCa" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="G6b-1F-Wpp"/>
-                                    <constraint firstItem="IdG-5i-QSf" firstAttribute="width" secondItem="IaX-k4-hF3" secondAttribute="width" id="H84-m4-um3"/>
+                                    <constraint firstAttribute="height" constant="28" id="LJR-ar-Q46"/>
                                     <constraint firstItem="IaX-k4-hF3" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="MCT-vo-5uO"/>
                                     <constraint firstItem="sTZ-LJ-m4o" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="dOQ-ne-9pj"/>
                                     <constraint firstItem="IdG-5i-QSf" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="fuI-5z-eRX"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LJR-ar-Q46"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="1Fg-4Y-TfC"/>
+                                        <include reference="LJR-ar-Q46"/>
+                                    </mask>
+                                </variation>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCh-pK-SMi" customClass="CirclesView" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="80" width="560" height="386.5"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc5-U1-iSL" customClass="TimerView" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="470.5" width="560" height="77.5"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k73-OM-Pe4" customClass="SlideButton" customModule="ToothTimer" customModuleProvider="target">
+                                <rect key="frame" x="20" y="552" width="560" height="48"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="k73-OM-Pe4" secondAttribute="trailing" id="0AL-s9-QJk"/>
                             <constraint firstItem="k73-OM-Pe4" firstAttribute="leading" secondItem="igb-dI-7pm" secondAttribute="leadingMargin" id="901-3S-svL"/>
-                            <constraint firstItem="UCh-pK-SMi" firstAttribute="top" secondItem="4Jw-aX-Sa3" secondAttribute="bottom" constant="12" id="Bya-gZ-MN5"/>
+                            <constraint firstItem="UCh-pK-SMi" firstAttribute="top" secondItem="4Jw-aX-Sa3" secondAttribute="bottom" id="Bya-gZ-MN5"/>
                             <constraint firstItem="4Jw-aX-Sa3" firstAttribute="centerX" secondItem="igb-dI-7pm" secondAttribute="centerX" id="D1z-Fj-Czs"/>
                             <constraint firstItem="gc5-U1-iSL" firstAttribute="leading" secondItem="igb-dI-7pm" secondAttribute="leadingMargin" id="Dse-Eg-PL0"/>
                             <constraint firstItem="Rte-7i-2XU" firstAttribute="top" secondItem="k73-OM-Pe4" secondAttribute="bottom" id="Sxq-yN-tcT"/>
                             <constraint firstItem="k73-OM-Pe4" firstAttribute="height" secondItem="4Jw-aX-Sa3" secondAttribute="height" id="VSd-S9-1AG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UCh-pK-SMi" secondAttribute="trailing" id="Vm9-rH-5S0"/>
+                            <constraint firstItem="gc5-U1-iSL" firstAttribute="height" secondItem="UCh-pK-SMi" secondAttribute="height" multiplier="1:6" id="YKW-Tb-oKg"/>
                             <constraint firstItem="gc5-U1-iSL" firstAttribute="top" secondItem="UCh-pK-SMi" secondAttribute="bottom" constant="4" id="ZPz-yd-2EJ"/>
                             <constraint firstItem="UCh-pK-SMi" firstAttribute="leading" secondItem="igb-dI-7pm" secondAttribute="leadingMargin" id="ahF-n2-RGn"/>
                             <constraint firstItem="k73-OM-Pe4" firstAttribute="top" secondItem="gc5-U1-iSL" secondAttribute="bottom" constant="4" id="iM7-GF-CR6"/>
@@ -232,6 +252,17 @@
                             <constraint firstItem="UCh-pK-SMi" firstAttribute="trailing" secondItem="igb-dI-7pm" secondAttribute="trailingMargin" id="wBV-Nw-nsl"/>
                             <constraint firstItem="gc5-U1-iSL" firstAttribute="height" secondItem="UCh-pK-SMi" secondAttribute="height" multiplier="1:5" id="zy9-YW-iIP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="YKW-Tb-oKg"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="YKW-Tb-oKg"/>
+                                <exclude reference="zy9-YW-iIP"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="RqX-Cj-N11" appends="YES" id="nQE-Sc-mY4"/>
                         </connections>
@@ -242,6 +273,7 @@
                         <outlet property="circleButton3" destination="IaX-k4-hF3" id="BUc-sx-TOS"/>
                         <outlet property="circleButton4" destination="IdG-5i-QSf" id="Jgd-CG-cVm"/>
                         <outlet property="circlesView" destination="UCh-pK-SMi" id="KqK-tB-COS"/>
+                        <outlet property="slideButton" destination="k73-OM-Pe4" id="ZZp-vf-5Or"/>
                         <outlet property="timerView" destination="gc5-U1-iSL" id="4cb-ah-rY9"/>
                     </connections>
                 </viewController>
