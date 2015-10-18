@@ -104,6 +104,7 @@ class TimerViewController: UIViewController
       CKLogsDataModel.sharedInstance.addLog(log)
       
       UIApplication.sharedApplication().idleTimerDisabled = false
+      self.view.setNeedsLayout()
     } /* of if */
   }
   

@@ -58,7 +58,7 @@ class CirclesView: UIView
   }
   
   func addAnimation (duration:CFTimeInterval)
-  { NSLog("addAnimation(\(duration))")
+  { NSLog("CirclesView.addAnimation(\(duration))")
     
     self.segmentAnimationDuration = duration
     
@@ -75,7 +75,7 @@ class CirclesView: UIView
   }
   
   func removeAnimation()
-  { NSLog("removeAnimation")
+  { NSLog("CirclesView.removeAnimation")
     
     if actualAnimatedRing>=0
     { for i in 0..<self.innerRing.count
@@ -141,7 +141,7 @@ class CirclesView: UIView
   }
   
   func updateGeometry() {
-    NSLog("updateGeometry(\(self.frame.origin.x),\(self.frame.origin.y),\(self.frame.size.width),\(self.frame.size.height))")
+    NSLog("CirclesView.updateGeometry(\(self.frame.origin.x),\(self.frame.origin.y),\(self.frame.size.width),\(self.frame.size.height))")
     
     let r = self.calcRect()
     
@@ -186,7 +186,7 @@ class CirclesView: UIView
   }
   
   override func layoutSubviews() {
-    NSLog("layoutSubviews")
+    NSLog("CirclesView.layoutSubviews()")
     
     super.layoutSubviews()
     
