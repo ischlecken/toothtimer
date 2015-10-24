@@ -59,7 +59,7 @@ class CustomView: UIView
     CGContextSetFillColorWithColor(ctx, UIColor(white: 1.0, alpha: 0.8).CGColor)
     
     var circleRect = self.frame
-    circleRect.inset(dx: 20, dy: 20)
+    circleRect.insetInPlace(dx: 20, dy: 20)
     
     CGContextFillEllipseInRect(ctx, circleRect)
   }
@@ -68,12 +68,4 @@ class CustomView: UIView
 let v = CustomView(frame: CGRectMake(0, 0, 200, 200))
 
 v.addAnimation()
-
-XCPShowView("Container View1", view:v)
-
-
-
-
-
-
 
