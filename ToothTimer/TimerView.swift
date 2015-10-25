@@ -115,6 +115,7 @@ class TimerView: UIView
     }
   }
   
+  /*
   override func drawRect(rect: CGRect)
   { let ctx = UIGraphicsGetCurrentContext()
     
@@ -122,7 +123,7 @@ class TimerView: UIView
     CGContextSetLineWidth(ctx, CGFloat(1.0))
     
     CGContextStrokeRect(ctx, rect)
-  }
+  } */
   
 
   

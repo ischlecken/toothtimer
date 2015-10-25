@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-
 #import "macros.h"
+#import "CommonCoreGraphics.h"
 
 #endif /* ToothTimer_Bridging_Header_h */

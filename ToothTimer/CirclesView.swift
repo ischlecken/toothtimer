@@ -136,6 +136,16 @@ class CirclesView: UIView
   override func drawRect(rect: CGRect)
   { let ctx = UIGraphicsGetCurrentContext()
     
+    let color0 = UIColor.redColor().CGColor
+    let color1 = UIColor.blueColor().CGColor
+    
+    /*
+    let path = createArcPathFromBottomOfRect(rect,rect.size.height)
+    
+    drawPathGradient(ctx,rect,path as! CGPath,color0,color1)
+    */
+    drawLinearGradient(ctx, rect, color0, color1)
+    
     for i in 0..<self.innerRing.count {
       var r = self.calcRect()
 

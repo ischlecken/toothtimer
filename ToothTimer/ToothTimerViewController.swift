@@ -45,83 +45,11 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
                  var pageViewController       : UIPageViewController?
                  var timerViewController      : TimerViewController?
                  var badgeViewController      : BadgeCollectionViewController?
-  //BadgeTableViewController?
+                 let transition               = PuffAnimator()
   @IBOutlet weak var gradientView             : GradientView!
   @IBOutlet weak var settingsButton           : UIBarButtonItem!
   @IBOutlet weak var startButton              : UIBarButtonItem!
   
-  override func prefersStatusBarHidden() -> Bool {
-    var result = false
-    
-    if let tvc = self.timerViewController
-    { if tvc.isTimerRunning { result = true } }
-    
-    return result
-  }
-  
-  @IBAction func timerAction(sender: UIBarButtonItem) {
-    if let isRunning = self.timerViewController?.isTimerRunning
-    { if !isRunning
-      { self.timerViewController?.startTimer() }
-      else
-      { self.timerViewController?.stopTimer() }
-    } /* of if */
-  }
-  
-  @IBAction func settingsAction(sender: UIBarButtonItem?) {
-    let vc:UIViewController? = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController")
-    
-    vc?.modalPresentationStyle                                  = UIModalPresentationStyle.Popover
-    vc?.popoverPresentationController?.barButtonItem            = self.settingsButton
-    vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
-    vc?.popoverPresentationController?.delegate                 = self
-    vc?.popoverPresentationController?.backgroundColor          = UIColor.clearColor()
-    
-    self.presentViewController(vc!, animated: true, completion: nil)
-  }
-  
-  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-    return UIModalPresentationStyle.None
-  }
-  
-  func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-    NSLog("presentationController()")
-    
-    return nil
-  }
-  
-  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-    if context == &kvoToothTimerViewControllerContext && keyPath == "isTimerRunning"
-    {
-      if let newValue = change?[NSKeyValueChangeNewKey] as? Bool
-      { NSLog("isTimerRunning changed: \(newValue)")
-        
-        if newValue
-        { AudioUtil.playSound("start")
-          AudioUtil.vibrate()
-          
-          self.gradientView.dimGradient()
-          self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-        else
-        { AudioUtil.playSound("stop")
-          AudioUtil.vibrate()
-          
-          self.gradientView.resetGradient()
-          self.navigationController?.setNavigationBarHidden(false, animated: true)
-          
-          BadgeAllocator.allocateBadge()
-        }
-      } /* of if */
-    } /* of if */
-    else
-    { super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-    } /* of else */
-  }
-  
-  deinit {
-    self.timerViewController!.removeObserver(self, forKeyPath: "isTimerRunning", context: &kvoToothTimerViewControllerContext)
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -163,7 +91,50 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
   }
   
-  // MARK: - UIPageViewController delegate methods
+  deinit {
+    self.timerViewController!.removeObserver(self, forKeyPath: "isTimerRunning", context: &kvoToothTimerViewControllerContext)
+  }
+  
+  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    if context == &kvoToothTimerViewControllerContext && keyPath == "isTimerRunning"
+    {
+      if let newValue = change?[NSKeyValueChangeNewKey] as? Bool
+      { NSLog("isTimerRunning changed: \(newValue)")
+        
+        if newValue
+        { AudioUtil.playSound("start")
+          AudioUtil.vibrate()
+          
+          self.gradientView.dimGradient()
+          self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+        else
+        { AudioUtil.playSound("stop")
+          AudioUtil.vibrate()
+          
+          self.gradientView.resetGradient()
+          self.navigationController?.setNavigationBarHidden(false, animated: true)
+          
+          BadgeAllocator.allocateBadge()
+        }
+      } /* of if */
+    } /* of if */
+    else
+    { super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    } /* of else */
+  }
+  
+  override func prefersStatusBarHidden() -> Bool {
+    var result = false
+    
+    if let tvc = self.timerViewController
+    { if tvc.isTimerRunning { result = true } }
+    
+    return result
+  }
+  
+
+  // MARK: UIPageViewController delegate methods
   
   func pageViewController(pageViewController                              : UIPageViewController,
                           spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation
@@ -185,7 +156,7 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     return .Mid
   }
   
-  // MARK: - Page View Controller Data Source
+  // MARK: Page View Controller Data Source
   
   func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
     NSLog("pageViewController.before")
@@ -228,5 +199,73 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     return result
   }
 
+  // MARK: Actions
+  
+  @IBAction func timerAction(sender: UIBarButtonItem) {
+    if let isRunning = self.timerViewController?.isTimerRunning
+    { if !isRunning
+    { self.timerViewController?.startTimer() }
+    else
+    { self.timerViewController?.stopTimer() }
+    } /* of if */
+  }
+  
+  @IBAction func settingsAction(sender: UIBarButtonItem?) {
+    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController")
+    
+    vc?.modalPresentationStyle                                  = UIModalPresentationStyle.Popover
+    vc?.popoverPresentationController?.barButtonItem            = self.settingsButton
+    vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
+    vc?.popoverPresentationController?.delegate                 = self
+    vc?.popoverPresentationController?.backgroundColor          = UIColor.clearColor()
+    
+    self.presentViewController(vc!, animated: true, completion: nil)
+  }
+  
+  @IBAction func showLogsAction(sender: UIBarButtonItem?) {
+    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LogsViewController")
+    
+    vc?.transitioningDelegate = self
+    self.presentViewController(vc!, animated: true, completion: nil)
+    
+    /*
+    vc?.modalPresentationStyle                                  = UIModalPresentationStyle.Popover
+    vc?.popoverPresentationController?.barButtonItem            = self.startButton
+    vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
+    vc?.popoverPresentationController?.delegate                 = self
+    vc?.popoverPresentationController?.backgroundColor          = UIColor.clearColor()
+    
+    self.presentViewController(vc!, animated: true, completion: nil)
+    */
+  }
+  
+  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    return UIModalPresentationStyle.None
+  }
+  
+  func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    NSLog("presentationController()")
+    
+    return nil
+  }
+
 }
 
+extension ToothTimerViewController: UIViewControllerTransitioningDelegate {
+  
+  func animationControllerForPresentedController(presented: UIViewController,
+    presentingController presenting: UIViewController,
+    sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+      
+    transition.originFrame = CGRectMake(20, 60, 40, 40)
+    transition.presenting  = true
+    
+    return transition
+  }
+  
+  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.presenting = false
+    
+    return transition
+  }
+}

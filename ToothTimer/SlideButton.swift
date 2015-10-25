@@ -145,7 +145,7 @@ class SlideButton: UIControl
     self.gradientLayer.mask = maskLayer
   }
 
-  
+  /*
   override func drawRect(rect: CGRect)
   { let ctx = UIGraphicsGetCurrentContext()
     
@@ -153,5 +153,5 @@ class SlideButton: UIControl
     CGContextSetLineWidth(ctx, CGFloat(1.0))
     
     CGContextStrokeRect(ctx, rect)
-  }
+  }*/
 }
