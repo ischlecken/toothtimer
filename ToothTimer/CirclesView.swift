@@ -50,7 +50,7 @@ class CirclesView: UIView
       l.fillColor       = UIColor.clearColor() .CGColor
       l.strokeColor     = ringColors[i].CGColor
       l.strokeStart     = 0.0
-      l.strokeEnd       = 0.0
+      l.strokeEnd       = 1.0
       l.lineCap         = kCALineCapRound
       l.shadowColor     = UIColor(white: 1.0, alpha: 0.6).CGColor
       l.shadowOffset    = CGSize(width: 0, height: 4)
@@ -88,11 +88,11 @@ class CirclesView: UIView
                          (actualAnimatedRing == self.innerRing.count-1 ? kCAMediaTimingFunctionEaseOut: kCAMediaTimingFunctionLinear )
     
     end.timingFunction = CAMediaTimingFunction(name: mediaTimingFkt)
-    end.fromValue      = 0.0
-    end.toValue        = 1.0
+    end.fromValue      = 1.0
+    end.toValue        = 0.0
     
     animatedLayer.strokeStart = 0.0
-    animatedLayer.strokeEnd   = 1.0
+    animatedLayer.strokeEnd   = 0.0
     
     animatedLayer.addAnimation(end, forKey: "strokeEnd")
     
@@ -136,15 +136,11 @@ class CirclesView: UIView
   override func drawRect(rect: CGRect)
   { let ctx = UIGraphicsGetCurrentContext()
     
-    let color0 = UIColor.redColor().CGColor
-    let color1 = UIColor.blueColor().CGColor
-    
-    /*
-    let path = createArcPathFromBottomOfRect(rect,rect.size.height)
-    
-    drawPathGradient(ctx,rect,path as! CGPath,color0,color1)
-    */
-    drawLinearGradient(ctx, rect, color0, color1)
+    let color0       = UIColor.redColor().CGColor
+    let color1       = UIColor(hexString: "#ff0088").CGColor
+    let circleCenter = CGPoint( x: rect.midX, y: rect.midY )
+    let circleRadius = CirclesView.innerFreeCircleDiameter + self.trackWidth*CGFloat(self.innerRing.count)
+    drawCircleGradient(ctx, circleCenter, circleRadius,CGFloat(lineWidth), color0, color1)
     
     for i in 0..<self.innerRing.count {
       var r = self.calcRect()
@@ -168,8 +164,7 @@ class CirclesView: UIView
       r = CGRect(x: 0.0, y: 0.5*(self.frame.height-h), width: self.frame.width, height: self.frame.width)
     }
     else
-    {
-      let w = self.frame.height
+    { let w = self.frame.height
       
       r = CGRect(x: 0.5*(self.frame.width-w), y:0.0, width: w, height: w)
     }
@@ -202,7 +197,6 @@ class CirclesView: UIView
     self.lineWidth  = self.trackWidth - 2.0 * CirclesView.trackInset
     
     NSLog("trackWidth:\(self.trackWidth) lineWidth:\(self.lineWidth)")
-    
     
     let circleBounds = CGRect(origin: CGPoint(x: 0.0,y: 0.0), size: r.size)
     for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue

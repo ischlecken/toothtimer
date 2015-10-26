@@ -134,6 +134,33 @@ void drawArcGradient(CGContextRef context, CGPoint center,float radius, float r0
 /**
  *
  */
+void drawCircleGradient(CGContextRef context, CGPoint center,CGFloat radius, CGFloat lineWidth, CGColorRef startColor, CGColorRef endColor)
+{ CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
+  CGFloat         locations[] = { 0.0, 1.0 };
+  NSArray*        colors      = @[(__bridge id) startColor, (__bridge id) endColor];
+  CGGradientRef   gradient    = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
+  
+  CGContextSaveGState(context);
+  
+  CGContextAddArc(context,center.x, center.y, radius, 0.0, 2.0*M_PI, YES);
+  CGContextSetLineWidth(context, lineWidth);
+  CGContextSetLineCap(context, kCGLineCapRound);
+  CGContextReplacePathWithStrokedPath(context);
+  CGContextClip(context);
+  
+  CGPoint p0 = CGPointMake(center.x-radius-20, center.y);
+  CGPoint p1 = CGPointMake(center.x+radius+20, center.y);
+  CGContextDrawLinearGradient(context, gradient, p0, p1, 0);
+  
+  CGContextRestoreGState(context);
+  CGGradientRelease(gradient);
+  CGColorSpaceRelease(colorSpace);
+}
+
+
+/**
+ *
+ */
 void draw1PxStroke(CGContextRef context, CGPoint startPoint, CGPoint endPoint, CGColorRef color)
 { CGContextSaveGState(context);
   CGContextSetLineCap(context, kCGLineCapSquare);
