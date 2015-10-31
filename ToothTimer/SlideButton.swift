@@ -1,8 +1,4 @@
 //
-//  CustomView.swift
-//  ToothTimer
-//
-//  Created by Feldmaus on 07.07.15.
 //  Copyright © 2015 ischlecken. All rights reserved.
 //
 
@@ -12,12 +8,15 @@ import UIKit
 class SlideButton: UIControl
 {
   let gradientLayer : CAGradientLayer = {
-    let result = CAGradientLayer()
+    let result         = CAGradientLayer()
+    let gradientColors = UIColor.colorWithName(ColorName.gradientColors.rawValue) as! [UIColor]
+    let color1         = gradientColors[0].CGColor
+    let color0         = gradientColors[gradientColors.count-1].CGColor
     
     result.startPoint = CGPoint(x: 0.0,y: 0.5)
     result.endPoint   = CGPoint(x: 1.0,y: 0.5)
     result.type       = kCAGradientLayerAxial
-    result.colors     = [UIColor(hexString: "#ff44ff").CGColor,UIColor(hexString:"#ffffff").CGColor,UIColor(hexString: "#ff44ff").CGColor]
+    result.colors     = [color0,color1,color0]
     result.locations  = [ 0.25, 0.5, 0.75 ]
     
     return result
@@ -51,9 +50,9 @@ class SlideButton: UIControl
   
   let slideAnimation : CABasicAnimation = {
     let result = CABasicAnimation(keyPath: "locations")
-    result.fromValue = [0.0, 0.0, 0.25]
-    result.toValue = [0.75, 1.0, 1.0]
-    result.duration = 3.0
+    result.fromValue   = [0.0, 0.0, 0.25]
+    result.toValue     = [0.75, 1.0, 1.0]
+    result.duration    = 4.0
     result.repeatCount = Float.infinity
 
     return result

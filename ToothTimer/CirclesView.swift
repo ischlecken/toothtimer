@@ -12,6 +12,7 @@ import UIKit
 class CirclesView: UIView
 {
          var innerRing:[CAShapeLayer]                = []
+         var innerRingGradient:[CAGradientLayer]     = []
          var actualAnimatedRing                      = -1
          var segmentAnimationDuration:CFTimeInterval = 0.0
          var trackWidth                              = CGFloat(0.0)
@@ -32,34 +33,59 @@ class CirclesView: UIView
     self.initView()
     
   }
+  
+  func innerRingGradientColors(position:Int) -> [AnyObject] {
+    
+    switch position
+    {
+    case -1:
+      return [UIColor.lightGrayColor().CGColor,UIColor.darkGrayColor().CGColor]
+    case 0:
+      return [UIColor.blueColor().CGColor,UIColor.redColor().CGColor]
+    case 1:
+      return [UIColor.cyanColor().CGColor,UIColor.magentaColor().CGColor]
+    case 2:
+      return [UIColor.greenColor().CGColor,UIColor.orangeColor().CGColor]
+    default:
+      return [UIColor.yellowColor().CGColor,UIColor.purpleColor().CGColor]
+    }
+  }
 
   func initView() {
-    NSLog("CirclesView.initView()")
     
-    for l in self.innerRing {
+    for l in self.innerRingGradient {
       l.removeFromSuperlayer()
     }
     
-    self.innerRing = []
+    self.innerRingGradient = []
+    self.innerRing         = []
     
     let ringColors = UIColor.colorWithName(ColorName.iconColors.rawValue) as! [UIColor]
-    
     for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
-    { let l = CAShapeLayer()
+    { let g = CAGradientLayer()
+      
+      g.startPoint = CGPoint(x: 0.5,y: 0.0)
+      g.endPoint   = CGPoint(x: 0.5,y: 1.0)
+      g.type       = kCAGradientLayerAxial
+      g.colors     = self.innerRingGradientColors(i)
+      
+      let l = CAShapeLayer()
       
       l.fillColor       = UIColor.clearColor() .CGColor
       l.strokeColor     = ringColors[i].CGColor
       l.strokeStart     = 0.0
-      l.strokeEnd       = 1.0
+      l.strokeEnd       = 0.0
       l.lineCap         = kCALineCapRound
       l.shadowColor     = UIColor(white: 1.0, alpha: 0.6).CGColor
       l.shadowOffset    = CGSize(width: 0, height: 4)
       l.shadowRadius    = 2
       l.shadowOpacity   = 1.0
       l.frame           = CGRectNull
+      g.mask = l
       
-      self.layer.addSublayer(l)
+      self.layer.addSublayer(g)
       self.innerRing.append(l)
+      self.innerRingGradient.append(g)
     } /* of for */
   }
   
@@ -71,13 +97,18 @@ class CirclesView: UIView
       { () -> Void in
         
         NSLog("Animation \(self.actualAnimatedRing) completed")
-        
+
         if self.actualAnimatedRing>=0 && self.actualAnimatedRing<self.innerRing.count-1
-        { self.actualAnimatedRing++
+        { self.innerRingGradient[self.actualAnimatedRing].colors = self.innerRingGradientColors(-1)
+          
+          self.actualAnimatedRing++
+          
+          self.innerRingGradient[self.actualAnimatedRing].colors = self.innerRingGradientColors(self.actualAnimatedRing)
           
           self.startNextAnimation()
           AudioUtil.playSound("lap")
         }
+        
     }
     
     let end = CABasicAnimation(keyPath: "strokeEnd")
@@ -88,12 +119,11 @@ class CirclesView: UIView
                          (actualAnimatedRing == self.innerRing.count-1 ? kCAMediaTimingFunctionEaseOut: kCAMediaTimingFunctionLinear )
     
     end.timingFunction = CAMediaTimingFunction(name: mediaTimingFkt)
-    end.fromValue      = 1.0
-    end.toValue        = 0.0
+    end.fromValue      = 0.0
+    end.toValue        = 1.0
     
     animatedLayer.strokeStart = 0.0
-    animatedLayer.strokeEnd   = 0.0
-    
+    animatedLayer.strokeEnd   = 1.0
     animatedLayer.addAnimation(end, forKey: "strokeEnd")
     
     CATransaction.commit()
@@ -111,6 +141,7 @@ class CirclesView: UIView
       for i in 0..<self.innerRing.count
       { self.innerRing[i].strokeStart = 0.0
         self.innerRing[i].strokeEnd   = 0.0
+        self.innerRingGradient[i].colors = self.innerRingGradientColors(i)
       }
       
       self.startNextAnimation()
@@ -127,6 +158,8 @@ class CirclesView: UIView
         }
       
         self.innerRing[i].removeAnimationForKey("strokeEnd")
+        
+        self.innerRingGradient[i].colors = self.innerRingGradientColors(i)
       } /* of for */
       
       actualAnimatedRing = -1
@@ -135,12 +168,6 @@ class CirclesView: UIView
   
   override func drawRect(rect: CGRect)
   { let ctx = UIGraphicsGetCurrentContext()
-    
-    let color0       = UIColor.redColor().CGColor
-    let color1       = UIColor(hexString: "#ff0088").CGColor
-    let circleCenter = CGPoint( x: rect.midX, y: rect.midY )
-    let circleRadius = CirclesView.innerFreeCircleDiameter + self.trackWidth*CGFloat(self.innerRing.count)
-    drawCircleGradient(ctx, circleCenter, circleRadius,CGFloat(lineWidth), color0, color1)
     
     for i in 0..<self.innerRing.count {
       var r = self.calcRect()
@@ -200,9 +227,10 @@ class CirclesView: UIView
     
     let circleBounds = CGRect(origin: CGPoint(x: 0.0,y: 0.0), size: r.size)
     for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
-    { self.innerRing[i].frame       = r
-      self.innerRing[i].lineWidth   = CGFloat(self.lineWidth)
-      self.innerRing[i].path        = self.createCirclePath(circleBounds,position: i)
+    { self.innerRingGradient[i].frame = self.bounds
+      self.innerRing[i].frame         = r
+      self.innerRing[i].lineWidth     = CGFloat(self.lineWidth)
+      self.innerRing[i].path          = self.createCirclePath(circleBounds,position: i)
     } /* of for */
     
   }
