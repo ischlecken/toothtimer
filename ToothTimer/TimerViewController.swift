@@ -31,8 +31,8 @@ class TimerViewController: UIViewController
       NSLog("observeValueForKeyPath:\(keyPathValue)")
       
       if keyPathValue=="noOfSlices" {
-        self.circlesView.updateGeometry()
-        self.circlesView.setNeedsDisplay()
+        self.circlesView.initView()
+        self.circlesView.setNeedsLayout()
       }
     }
   }
