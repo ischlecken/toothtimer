@@ -61,10 +61,12 @@ class CirclesView: UIView
           self.ringLayers[self.actualAnimatedRing].gradientAnimation.fromValue = self.ringLayers[self.actualAnimatedRing].gradientLayer.colors
           self.ringLayers[self.actualAnimatedRing].gradientAnimation.toValue = Ring.gradientColorsForRing(-1)
           self.ringLayers[self.actualAnimatedRing].gradientAnimation.duration = 10.0
-          */
-          
+
           self.ringLayers[self.actualAnimatedRing].gradientLayer.removeAllAnimations()
           self.ringLayers[self.actualAnimatedRing].gradientLayer.addAnimation(self.ringLayers[self.actualAnimatedRing].gradientAnimation,forKey: "changeColors")
+          */
+          
+          CATransaction.setAnimationDuration(10.0)
           self.ringLayers[self.actualAnimatedRing].gradientLayer.colors = Ring.gradientColorsForRing(-1)
 
           self.actualAnimatedRing++
@@ -250,6 +252,8 @@ struct Ring {
   func startAnimation() {
     self.shapeLayer.strokeStart = 0.0
     self.shapeLayer.strokeEnd   = 0.0
+    
+    CATransaction.setAnimationDuration(2.0)
     self.gradientLayer.colors   = Ring.gradientColorsForRing(position)
   }
   
@@ -259,7 +263,8 @@ struct Ring {
     }
       
     self.shapeLayer.removeAnimationForKey("strokeEnd")
-      
+    
+    CATransaction.setAnimationDuration(10.0)
     self.gradientLayer.colors = Ring.gradientColorsForRing(position)
   }
   
@@ -279,7 +284,7 @@ struct Ring {
     switch position
     {
     case -1:
-      return [UIColor(white: 1.0, alpha: 0.3).CGColor,UIColor(white: 1.0, alpha: 0.1).CGColor]
+      return [UIColor(white: 1.0, alpha: 0.1).CGColor,UIColor(white: 1.0, alpha: 0.1).CGColor]
     case 0:
       return [UIColor.blueColor().CGColor,UIColor.redColor().CGColor]
     case 1:
