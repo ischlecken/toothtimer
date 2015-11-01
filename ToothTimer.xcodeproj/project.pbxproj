@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 850529831B3EDB5C00DE1E6F /* HealthKit.framework */; };
 		851511CA1B5BE61300D6EBDA /* TickTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851511C91B5BE61300D6EBDA /* TickTimer.swift */; };
 		851AF9EC1B498BC500C42489 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 851AF9EA1B498BC500C42489 /* InfoPlist.strings */; };
 		851AF9F01B49A8C500C42489 /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 851AF9EF1B49A8C500C42489 /* AppUtil.m */; };
@@ -69,7 +68,6 @@
 
 /* Begin PBXFileReference section */
 		850529821B3EDAFC00DE1E6F /* ToothTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ToothTimer.entitlements; sourceTree = "<group>"; };
-		850529831B3EDB5C00DE1E6F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		850529D01B3EE2A500DE1E6F /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		851511C91B5BE61300D6EBDA /* TickTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickTimer.swift; sourceTree = "<group>"; };
 		851AF9EB1B498BC500C42489 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				859310D61B91E3D60064B33E /* CloudKit.framework in Frameworks */,
-				850529841B3EDB5C00DE1E6F /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +204,6 @@
 			children = (
 				8592C6821BB805B300F31A54 /* StoreKit.framework */,
 				859310D51B91E3D60064B33E /* CloudKit.framework */,
-				850529831B3EDB5C00DE1E6F /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -354,7 +350,7 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
