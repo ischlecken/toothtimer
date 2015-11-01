@@ -193,18 +193,6 @@
       }],
   ]];
   
-  NSString* buyTitle = ![[ToothTimerSettings sharedInstance] fullVersion] ? @"fullversion" : @"revertfullversion";
-  
-  [aboutSectionItems addObject:[SettingsItem settingItemWithTitle:buyTitle
-                                                       andCellId:@"BasicCell"
-                                                 andSelectAction:^(NSIndexPath* indexPath,SettingsItem *item)
-   { [self settingsDoneAction:self];
-     if( ![[ToothTimerSettings sharedInstance] fullVersion] )
-     [[AppUtil class] performSelector:@selector(fullVersionDialogue) withObject:nil afterDelay:1.0];
-     else
-       [[ToothTimerSettings sharedInstance] revertFullVersion];
-   }]];
-  
   [sectionInfo addObject:[MutableSectionInfo sectionWithTitle:kSectionTitleAbout andItems:aboutSectionItems]];
   
   self.sections = sectionInfo;
