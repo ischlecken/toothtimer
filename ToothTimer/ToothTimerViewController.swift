@@ -11,31 +11,31 @@ import UIKit
 private var kvoToothTimerViewControllerContext = 0
 
 extension UIViewController {
-  func createBlur(effectStyle: UIBlurEffectStyle = .Light) {
-    NSLog("UIViewController.createBlur")
+  func createBlur(_ effectStyle: UIBlurEffectStyle = .light) {
+    print("UIViewController.createBlur")
     
     if !UIAccessibilityIsReduceTransparencyEnabled() {
-      view.backgroundColor = UIColor.clearColor()
+      view.backgroundColor = UIColor.clear
       
       let blurView = UIVisualEffectView(effect: UIBlurEffect(style: effectStyle))
-      blurView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight , UIViewAutoresizing.FlexibleWidth]
+      blurView.autoresizingMask = [UIViewAutoresizing.flexibleHeight , UIViewAutoresizing.flexibleWidth]
       blurView.frame = view.bounds
       
-      view.insertSubview(blurView, atIndex: 0)
+      view.insertSubview(blurView, at: 0)
     }
   }
 }
 
 extension UITableViewController {
-  override func createBlur(effectStyle: UIBlurEffectStyle = UIBlurEffectStyle.Light) {
-    NSLog("UITableViewController.createBlur")
+  override func createBlur(_ effectStyle: UIBlurEffectStyle = UIBlurEffectStyle.light) {
+    print("UITableViewController.createBlur")
     
     if !UIAccessibilityIsReduceTransparencyEnabled() {
-      tableView.backgroundColor = UIColor.clearColor()
+      tableView.backgroundColor = UIColor.clear
       
       let blurEffect = UIBlurEffect(style: effectStyle)
       tableView.backgroundView = UIVisualEffectView(effect: blurEffect)
-      tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+      tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurEffect)
     }
   }
 }
@@ -54,14 +54,14 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
   override func viewDidLoad() {
     super.viewDidLoad()
   
-    self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+    self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     self.pageViewController!.delegate = self
     
-    self.timerViewController      = self.storyboard!.instantiateViewControllerWithIdentifier("TimerViewController") as? TimerViewController
+    self.timerViewController      = self.storyboard!.instantiateViewController(withIdentifier: "TimerViewController") as? TimerViewController
     //self.badgeViewController = self.storyboard!.instantiateViewControllerWithIdentifier("BadgeTableViewController") as? BadgeTableViewController
-    self.badgeViewController = self.storyboard!.instantiateViewControllerWithIdentifier("BadgeCollectionViewController") as? BadgeCollectionViewController
+    self.badgeViewController = self.storyboard!.instantiateViewController(withIdentifier: "BadgeCollectionViewController") as? BadgeCollectionViewController
     
-    self.timerViewController!.addObserver(self, forKeyPath: "isTimerRunning", options: .New, context: &kvoToothTimerViewControllerContext)
+    self.timerViewController!.addObserver(self, forKeyPath: "isTimerRunning", options: .new, context: &kvoToothTimerViewControllerContext)
     
     let ei =  UIEdgeInsetsMake(64, 0, 0, 0)
 //    self.badgeViewController?.tableView.contentInset          = ei
@@ -71,7 +71,7 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     
     let viewControllers = [timerViewController!]
-    self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: false, completion: nil)
+    self.pageViewController!.setViewControllers(viewControllers, direction: .forward, animated: false, completion: nil)
     
     self.pageViewController!.dataSource = self
     
@@ -80,12 +80,12 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     
     // Set the page view controller's bounds using an inset rect so that self's view is visible around the edges of the pages.
     var pageViewRect = self.view.bounds
-    if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-      pageViewRect = CGRectInset(pageViewRect, 40.0, 40.0)
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      pageViewRect = pageViewRect.insetBy(dx: 40.0, dy: 40.0)
     }
     self.pageViewController!.view.frame = pageViewRect
     
-    self.pageViewController!.didMoveToParentViewController(self)
+    self.pageViewController!.didMove(toParentViewController: self)
     
     // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
     self.view.gestureRecognizers = self.pageViewController!.gestureRecognizers
@@ -95,11 +95,11 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     self.timerViewController!.removeObserver(self, forKeyPath: "isTimerRunning", context: &kvoToothTimerViewControllerContext)
   }
   
-  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if context == &kvoToothTimerViewControllerContext && keyPath == "isTimerRunning"
     {
-      if let newValue = change?[NSKeyValueChangeNewKey] as? Bool
-      { NSLog("isTimerRunning changed: \(newValue)")
+      if let newValue = change?[NSKeyValueChangeKey.newKey] as? Bool
+      { print("isTimerRunning changed: \(newValue)")
         
         if newValue
         { AudioUtil.playSound("start")
@@ -120,11 +120,11 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
       } /* of if */
     } /* of if */
     else
-    { super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    { super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
     } /* of else */
   }
   
-  override func prefersStatusBarHidden() -> Bool {
+  override var prefersStatusBarHidden : Bool {
     var result = false
     
     if let tvc = self.timerViewController
@@ -136,30 +136,30 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
 
   // MARK: UIPageViewController delegate methods
   
-  func pageViewController(pageViewController                              : UIPageViewController,
-                          spineLocationForInterfaceOrientation orientation: UIInterfaceOrientation
+  func pageViewController(_ pageViewController                              : UIPageViewController,
+                          spineLocationFor orientation: UIInterfaceOrientation
                          ) -> UIPageViewControllerSpineLocation {
-    if (orientation == .Portrait) || (orientation == .PortraitUpsideDown) || (UIDevice.currentDevice().userInterfaceIdiom == .Phone)
+    if (orientation == .portrait) || (orientation == .portraitUpsideDown) || (UIDevice.current.userInterfaceIdiom == .phone)
     { let currentViewController = self.pageViewController!.viewControllers![0]
       let viewControllers = [currentViewController]
      
-      self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion:nil)
-      self.pageViewController!.doubleSided = false
+      self.pageViewController!.setViewControllers(viewControllers, direction: .forward, animated: true, completion:nil)
+      self.pageViewController!.isDoubleSided = false
       
-      return .Min
+      return .min
     } /* of if */
     
-    let viewControllers = [timerViewController!,badgeViewController!]
+    let viewControllers = [timerViewController!,badgeViewController!] as [Any]
     
-    self.pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+    self.pageViewController!.setViewControllers(viewControllers as! [UIViewController], direction: .forward, animated: true, completion: nil)
     
-    return .Mid
+    return .mid
   }
   
   // MARK: Page View Controller Data Source
   
-  func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-    NSLog("pageViewController.before")
+  func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    print("pageViewController.before")
     
     var result:UIViewController? = nil
     
@@ -169,8 +169,8 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     return result
   }
   
-  func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-    NSLog("pageViewController.after")
+  func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    print("pageViewController.after")
     
     var result:UIViewController? = nil
     
@@ -180,11 +180,11 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     return result
   }
 
-  func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+  func presentationCount(for pageViewController: UIPageViewController) -> Int {
     return 2
   }
   
-  func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+  func presentationIndex(for pageViewController: UIPageViewController) -> Int {
     let currentViewController = self.pageViewController!.viewControllers![0]
     var result = 0
     
@@ -201,7 +201,7 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
 
   // MARK: Actions
   
-  @IBAction func timerAction(sender: UIBarButtonItem) {
+  @IBAction func timerAction(_ sender: UIBarButtonItem) {
     if let isRunning = self.timerViewController?.isTimerRunning
     { if !isRunning
     { self.timerViewController?.startTimer() }
@@ -210,23 +210,23 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     } /* of if */
   }
   
-  @IBAction func settingsAction(sender: UIBarButtonItem?) {
-    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController")
+  @IBAction func settingsAction(_ sender: UIBarButtonItem?) {
+    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController")
     
-    vc?.modalPresentationStyle                                  = UIModalPresentationStyle.Popover
+    vc?.modalPresentationStyle                                  = UIModalPresentationStyle.popover
     vc?.popoverPresentationController?.barButtonItem            = self.settingsButton
-    vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.Any
+    vc?.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.any
     vc?.popoverPresentationController?.delegate                 = self
-    vc?.popoverPresentationController?.backgroundColor          = UIColor.clearColor()
+    vc?.popoverPresentationController?.backgroundColor          = UIColor.clear
     
-    self.presentViewController(vc!, animated: true, completion: nil)
+    self.present(vc!, animated: true, completion: nil)
   }
   
-  @IBAction func showLogsAction(sender: UIBarButtonItem?) {
-    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LogsViewController")
+  @IBAction func showLogsAction(_ sender: UIBarButtonItem?) {
+    let vc = self.storyboard?.instantiateViewController(withIdentifier: "LogsViewController")
     
     vc?.transitioningDelegate = self
-    self.presentViewController(vc!, animated: true, completion: nil)
+    self.present(vc!, animated: true, completion: nil)
     
     /*
     vc?.modalPresentationStyle                                  = UIModalPresentationStyle.Popover
@@ -239,12 +239,12 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
     */
   }
   
-  func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-    return UIModalPresentationStyle.None
+  func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+    return UIModalPresentationStyle.none
   }
   
-  func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-    NSLog("presentationController()")
+  func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+    print("presentationController()")
     
     return nil
   }
@@ -253,17 +253,17 @@ class ToothTimerViewController: UIViewController, UIPageViewControllerDelegate, 
 
 extension ToothTimerViewController: UIViewControllerTransitioningDelegate {
   
-  func animationControllerForPresentedController(presented: UIViewController,
-    presentingController presenting: UIViewController,
-    sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+  func animationController(forPresented presented: UIViewController,
+    presenting: UIViewController,
+    source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
       
-    transition.originFrame = CGRectMake(20, 60, 40, 40)
+    transition.originFrame = CGRect(x: 20, y: 60, width: 40, height: 40)
     transition.presenting  = true
     
     return transition
   }
   
-  func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     transition.presenting = false
     
     return transition

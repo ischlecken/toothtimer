@@ -29,21 +29,21 @@ class GradientView : UIView
     self.commonInit()
   }
   
-  override class func layerClass() -> AnyClass
+  override class var layerClass : AnyClass
   { return CAGradientLayer.self }
   
   var gradientLayer : CAGradientLayer
   { return self.layer as! CAGradientLayer }
   
   func commonInit() {
-    NSLog("commonInit()")
+    print("commonInit()")
     
     self.gradientLayer.startPoint = CGPoint(x: 0.5,y: 0.0)
     self.gradientLayer.endPoint   = CGPoint(x: 0.5,y: 1.0)
     self.gradientLayer.type       = kCAGradientLayerAxial
     self.gradientLayer.colors     = self.loadGradientColors()
     
-    self.dimmedColors = [UIColor(hexString: "#808080").CGColor,UIColor(hexString:"#000000").CGColor]
+    self.dimmedColors = [UIColor(hexString: "#808080").cgColor,UIColor(hexString:"#000000").cgColor]
     self.normalColors = self.loadGradientColors()
     
     self.dimGradientAnimation.duration    = 20
@@ -60,7 +60,7 @@ class GradientView : UIView
     var gradientColorsRefs = [CGColor]()
     
     for c in gradientColors
-    { gradientColorsRefs.append(c.CGColor)
+    { gradientColorsRefs.append(c.cgColor)
     }
     
     return gradientColorsRefs
@@ -69,14 +69,14 @@ class GradientView : UIView
   func dimGradient () {
     self.runningAnimation = "dimGradient"
     self.gradientLayer.removeAllAnimations()
-    self.gradientLayer.addAnimation(self.dimGradientAnimation, forKey: runningAnimation)
+    self.gradientLayer.add(self.dimGradientAnimation, forKey: runningAnimation)
     self.gradientLayer.colors = self.dimmedColors
   }
   
   func resetGradient() {
     self.runningAnimation = "resetGradient"
     self.gradientLayer.removeAllAnimations()
-    self.gradientLayer.addAnimation(self.resetGradientAnimation, forKey: runningAnimation)
+    self.gradientLayer.add(self.resetGradientAnimation, forKey: runningAnimation)
     self.gradientLayer.colors = self.normalColors
   }
 

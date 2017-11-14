@@ -19,15 +19,15 @@ class CKLogsDataModel : CKDataModel
   {
     userInfo.userID { (userRecordID, error) -> () in
       if let userRecordID = userRecordID
-      { NSLog("fetchLogs(): userId:\(userRecordID)");
+      { print("fetchLogs(): userId:\(userRecordID)");
         
         var newItems = [CKLog]()
         let queryOperation = self.createQueryOperationForCurrentUser(userRecordID,recordType:CKLog.recordType, resultLimit: 40)
         
         queryOperation.queryCompletionBlock =
-          { (queryCursor:CKQueryCursor?, error:NSError?) -> Void in
+          { (queryCursor:CKQueryCursor?, error:Error?) -> Void in
             
-            NSLog("Query completed.")
+            print("Query completed.")
             
             if let error = error {
               self.delegate?.errorUpdating(error)
@@ -48,37 +48,37 @@ class CKLogsDataModel : CKDataModel
         
         self.delegate?.modelUpdatesWillBegin()
         
-        self.usedDB.addOperation(queryOperation)
+        self.usedDB.add(queryOperation)
       }
     }
   }
   
-  func addLog(log:CKLog)
-  { NSLog("addLog(\(log))");
+  func addLog(_ log:CKLog)
+  { print("addLog(\(log))");
     
     userInfo.userID { (userRecordID, error) -> () in
       if let userRecordID = userRecordID
-      { NSLog("addLog(): userId:\(userRecordID)");
+      { print("addLog(): userId:\(userRecordID)");
         
         let modifyRecordsOperation = CKModifyRecordsOperation()
     
         modifyRecordsOperation.recordsToSave = [log.record]
         
         modifyRecordsOperation.modifyRecordsCompletionBlock = {
-          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
+          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: Error?) -> Void in
           
           if let error = error {
             self.delegate?.errorUpdating(error)
           }
           else {
-            self.logItems.insert(log, atIndex: 0)
+            self.logItems.insert(log, at: 0)
             
             self.delegate?.modelUpdatesDone()
           }
-        };
+        } as? ([CKRecord]?, [CKRecordID]?, Error?) -> Void;
         
         self.delegate?.modelUpdatesWillBegin()
-        self.usedDB.addOperation(modifyRecordsOperation)
+        self.usedDB.add(modifyRecordsOperation)
       }
     }
   }

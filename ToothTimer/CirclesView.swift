@@ -12,7 +12,7 @@ import UIKit
 class CirclesView: UIView
 {
   var ringLayers:[Ring]                       = []
-  var ringGeometry                            = RingGeometry(frame: CGRectNull, ringCount: 0)
+  var ringGeometry                            = RingGeometry(frame: CGRect.null, ringCount: 0)
   var actualAnimatedRing                      = -1
   var totalAnimationDuration:CFTimeInterval   = 0.0
   
@@ -35,7 +35,7 @@ class CirclesView: UIView
     }
     
     self.ringLayers = []
-    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.integerValue
+    for i in 0..<ToothTimerSettings.sharedInstance.noOfSlices!.intValue
     { let r = Ring(position: i)
       
       self.layer.addSublayer(r.backgroundLayer)
@@ -46,14 +46,14 @@ class CirclesView: UIView
     self.ringGeometry = RingGeometry(frame: self.frame,ringCount: self.ringLayers.count)
   }
   
-  private func startNextAnimation() -> Void
+  fileprivate func startNextAnimation() -> Void
   { let animatedLayer = self.ringLayers[actualAnimatedRing]
     
     CATransaction.begin()
     CATransaction.setCompletionBlock
       { () -> Void in
         
-        NSLog("Animation \(self.actualAnimatedRing) completed")
+        print("Animation \(self.actualAnimatedRing) completed")
 
         if self.actualAnimatedRing>=0 && self.actualAnimatedRing<self.ringLayers.count-1
         {
@@ -69,7 +69,7 @@ class CirclesView: UIView
           CATransaction.setAnimationDuration(10.0)
           self.ringLayers[self.actualAnimatedRing].gradientLayer.colors = Ring.gradientColorsForRing(-1)
 
-          self.actualAnimatedRing++
+          self.actualAnimatedRing += 1
           self.ringLayers[self.actualAnimatedRing].gradientLayer.colors = Ring.gradientColorsForRing(self.actualAnimatedRing)
           
           self.startNextAnimation()
@@ -90,14 +90,14 @@ class CirclesView: UIView
     
     animatedLayer.shapeLayer.strokeStart = 0.0
     animatedLayer.shapeLayer.strokeEnd   = 1.0
-    animatedLayer.shapeLayer.addAnimation(end, forKey: "strokeEnd")
+    animatedLayer.shapeLayer.add(end, forKey: "strokeEnd")
     
     CATransaction.commit()
     
   }
   
-  func addAnimation (duration:CFTimeInterval)
-  { NSLog("CirclesView.addAnimation(\(duration))")
+  func addAnimation (_ duration:CFTimeInterval)
+  { print("CirclesView.addAnimation(\(duration))")
     
     self.totalAnimationDuration = duration
     
@@ -113,7 +113,7 @@ class CirclesView: UIView
   }
   
   func removeAnimation()
-  { NSLog("CirclesView.removeAnimation")
+  { print("CirclesView.removeAnimation")
     
     if actualAnimatedRing>=0
     {
@@ -138,7 +138,7 @@ class CirclesView: UIView
   }*/
   
   func updateGeometry() {
-    NSLog("CirclesView.updateGeometry(\(self.frame.origin.x),\(self.frame.origin.y),\(self.frame.size.width),\(self.frame.size.height))")
+    print("CirclesView.updateGeometry(\(self.frame.origin.x),\(self.frame.origin.y),\(self.frame.size.width),\(self.frame.size.height))")
     
     self.ringGeometry = RingGeometry(frame: self.frame, ringCount: self.ringLayers.count)
     
@@ -148,7 +148,7 @@ class CirclesView: UIView
   }
   
   override func layoutSubviews() {
-    NSLog("CirclesView.layoutSubviews()")
+    print("CirclesView.layoutSubviews()")
     
     super.layoutSubviews()
     
@@ -167,8 +167,8 @@ struct RingGeometry {
   var ringCount  = 0
   var ringWidth  = CGFloat(0.0)
   var lineWidth  = CGFloat(0.0)
-  var ringFrame  = CGRectNull
-  var ringBounds = CGRectNull
+  var ringFrame  = CGRect.null
+  var ringBounds = CGRect.null
   
   init(frame:CGRect, ringCount:Int) {
     self.ringCount = ringCount
@@ -184,31 +184,33 @@ struct RingGeometry {
       ringFrame = CGRect(x: 0.5*(frame.width-w), y:0.0, width: w, height: w)
     }
     
-    self.ringBounds = CGRectMake(0, 0, ringFrame.size.width, ringFrame.size.height)
+    self.ringBounds = CGRect(x: 0, y: 0, width: ringFrame.size.width, height: ringFrame.size.height)
     self.ringWidth  = (ringFrame.size.width*0.5 - RingGeometry.innerFreeCircleRadius) / CGFloat(self.ringCount)
     self.lineWidth  = self.ringWidth - 2.0 * RingGeometry.trackInset
     
-    NSLog("ringWidth:\(self.ringWidth) lineWidth:\(self.lineWidth)")
+    print("ringWidth:\(self.ringWidth) lineWidth:\(self.lineWidth)")
   }
 
-  func circleRadiusForRing(position:Int) -> CGFloat {
+  func circleRadiusForRing(_ position:Int) -> CGFloat {
     let maxCircleR = self.ringFrame.size.width*0.5 - RingGeometry.trackInset - self.lineWidth*0.5
     
     return maxCircleR - self.ringWidth*CGFloat(position)
   }
   
-  func ringPathForPosition(position:Int) -> CGPath {
+  func ringPathForPosition(_ position:Int) -> CGPath {
     let circleBounds = self.ringBounds
     let circleRadius = self.circleRadiusForRing(position)
-    let circleX      = circleBounds.origin.x + CGRectGetMidX(circleBounds)
+    let circleX      = circleBounds.origin.x + circleBounds.midX
     let circleY      = circleBounds.origin.y + circleX
     
-    let path         = CGPathCreateMutable()
-    let sliceAngle   = 2.0 * M_PI
+    let path         = CGMutablePath()
+    let sliceAngle   = 2.0 * Double.pi
     let startAngle   = 0.0
     let stopAngle    = sliceAngle
     
-    CGPathAddArc(path, nil, circleX, circleY, circleRadius, CGFloat(startAngle-M_PI_2),CGFloat(stopAngle-M_PI_2), false)
+    path.addArc(center: CGPoint(x: circleX, y: circleY), radius: circleRadius,
+                startAngle: CGFloat(startAngle-Double.pi*0.5), endAngle: CGFloat(stopAngle-Double.pi*0.5),
+                clockwise: false)
     
     return path
   }
@@ -225,8 +227,8 @@ struct Ring {
   init(position:Int) {
     self.position               = position
     
-    backgroundLayer.fillColor   = UIColor.clearColor().CGColor
-    backgroundLayer.strokeColor = UIColor(white: 1.0, alpha: 0.1).CGColor
+    backgroundLayer.fillColor   = UIColor.clear.cgColor
+    backgroundLayer.strokeColor = UIColor(white: 1.0, alpha: 0.1).cgColor
     backgroundLayer.strokeStart = 0.0
     backgroundLayer.strokeEnd   = 1.0
     backgroundLayer.lineCap     = kCALineCapRound
@@ -236,12 +238,12 @@ struct Ring {
     gradientLayer.type          = kCAGradientLayerAxial
     gradientLayer.colors        = Ring.gradientColorsForRing(position)
     
-    shapeLayer.fillColor        = UIColor.clearColor().CGColor
-    shapeLayer.strokeColor      = UIColor.blackColor().CGColor
+    shapeLayer.fillColor        = UIColor.clear.cgColor
+    shapeLayer.strokeColor      = UIColor.black.cgColor
     shapeLayer.strokeStart      = 0.0
     shapeLayer.strokeEnd        = 0.0
     shapeLayer.lineCap          = kCALineCapRound
-    shapeLayer.shadowColor      = UIColor(white: 1.0, alpha: 0.6).CGColor
+    shapeLayer.shadowColor      = UIColor(white: 1.0, alpha: 0.6).cgColor
     shapeLayer.shadowOffset     = CGSize(width: 0, height: 4)
     shapeLayer.shadowRadius     = 2
     shapeLayer.shadowOpacity    = 1.0
@@ -258,17 +260,17 @@ struct Ring {
   }
   
   func stopAnimation() {
-    if let pl = self.shapeLayer.presentationLayer() {
+    if let pl = self.shapeLayer.presentation() {
       self.shapeLayer.strokeEnd = pl.strokeEnd
     }
       
-    self.shapeLayer.removeAnimationForKey("strokeEnd")
+    self.shapeLayer.removeAnimation(forKey: "strokeEnd")
     
     CATransaction.setAnimationDuration(10.0)
     self.gradientLayer.colors = Ring.gradientColorsForRing(position)
   }
   
-  func updateGeometry(ringGeometry:RingGeometry) {
+  func updateGeometry(_ ringGeometry:RingGeometry) {
     self.gradientLayer.frame       = ringGeometry.ringFrame
     
     self.shapeLayer.frame          = ringGeometry.ringBounds
@@ -280,19 +282,19 @@ struct Ring {
     self.backgroundLayer.path      = ringGeometry.ringPathForPosition(self.position)
   }
   
-  static func gradientColorsForRing(position:Int) -> [AnyObject] {
+  static func gradientColorsForRing(_ position:Int) -> [AnyObject] {
     switch position
     {
     case -1:
-      return [UIColor(white: 1.0, alpha: 0.1).CGColor,UIColor(white: 1.0, alpha: 0.1).CGColor]
+      return [UIColor(white: 1.0, alpha: 0.1).cgColor,UIColor(white: 1.0, alpha: 0.1).cgColor]
     case 0:
-      return [UIColor.blueColor().CGColor,UIColor.redColor().CGColor]
+      return [UIColor.blue.cgColor,UIColor.red.cgColor]
     case 1:
-      return [UIColor.cyanColor().CGColor,UIColor.magentaColor().CGColor]
+      return [UIColor.cyan.cgColor,UIColor.magenta.cgColor]
     case 2:
-      return [UIColor.greenColor().CGColor,UIColor.orangeColor().CGColor]
+      return [UIColor.green.cgColor,UIColor.orange.cgColor]
     default:
-      return [UIColor.yellowColor().CGColor,UIColor.purpleColor().CGColor]
+      return [UIColor.yellow.cgColor,UIColor.purple.cgColor]
     }
   }
 

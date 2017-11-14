@@ -8,51 +8,51 @@
 
 import Foundation
 
-extension NSFileManager
+extension FileManager
 {
-  func copyToSharedLocationIfNotExists(fileName:String,fileType:String) throws -> Void
-  { if let sfp = NSURL.appGroupURLForFileName("\(fileName).\(fileType)")?.path,
-    fp  = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)
-  { if self.fileExistsAtPath(sfp)
-  { try self.copyItemAtPath(fp, toPath: sfp) }
+  func copyToSharedLocationIfNotExists(_ fileName:String,fileType:String) throws -> Void
+  { if let sfp = URL.appGroupURLForFileName("\(fileName).\(fileType)")?.path,
+    let fp  = Bundle.main.path(forResource: fileName, ofType: fileType)
+  { if self.fileExists(atPath: sfp)
+  { try self.copyItem(atPath: fp, toPath: sfp) }
     } /* of if */
   }
   
-  func copyToSharedLocation(fileName:String,fileType:String) throws -> Void
-  { if let sfp = NSURL.appGroupURLForFileName("\(fileName).\(fileType)")?.path,
-    fp  = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)
-  { if self.fileExistsAtPath(sfp)
-  { try self.removeItemAtPath(sfp) }
+  func copyToSharedLocation(_ fileName:String,fileType:String) throws -> Void
+  { if let sfp = URL.appGroupURLForFileName("\(fileName).\(fileType)")?.path,
+    let fp  = Bundle.main.path(forResource: fileName, ofType: fileType)
+  { if self.fileExists(atPath: sfp)
+  { try self.removeItem(atPath: sfp) }
     
-    try self.copyItemAtPath(fp, toPath: sfp)
+    try self.copyItem(atPath: fp, toPath: sfp)
     } /* of if */
   }
   
-  func copyIfModified(sourceURL:NSURL,destination:NSURL) throws -> Bool
+  func copyIfModified(_ sourceURL:URL,destination:URL) throws -> Bool
   { var result : Bool = false
     
-    if let sourcePath      = sourceURL.path,
-      destinationPath = destination.path
-    { var copyFile = !self.fileExistsAtPath(destinationPath)
+    let sourcePath      = sourceURL.path
+    let destinationPath = destination.path
       
-      if !copyFile
-      { let sourceFileSize = try self.attributesOfItemAtPath(sourcePath)[NSFileSize]      as! NSNumber
-        let destFileSize   = try self.attributesOfItemAtPath(destinationPath)[NSFileSize] as! NSNumber
-        
-        if !sourceFileSize.isEqualToNumber(destFileSize)
-        { copyFile = true }
-      } /* of else */
+    var copyFile = !self.fileExists(atPath: destinationPath)
       
-      if copyFile
-      { if self.fileExistsAtPath(destinationPath)
-      { try self.removeItemAtPath(destinationPath) }
-        
-        try self.copyItemAtPath(sourcePath, toPath: destinationPath)
-        
-        result = true
-      } /* of if */
-    } /* of if */
+    if !copyFile
+    { let sourceFileSize = try self.attributesOfItem(atPath: sourcePath)[FileAttributeKey.size]      as! NSNumber
+      let destFileSize   = try self.attributesOfItem(atPath: destinationPath)[FileAttributeKey.size] as! NSNumber
+      
+      if !sourceFileSize.isEqual(to: destFileSize)
+      { copyFile = true }
+    } /* of else */
     
+    if copyFile
+    { if self.fileExists(atPath: destinationPath)
+    { try self.removeItem(atPath: destinationPath) }
+      
+      try self.copyItem(atPath: sourcePath, toPath: destinationPath)
+      
+      result = true
+    } /* of if */
+  
     return result
   }
 }

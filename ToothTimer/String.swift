@@ -8,10 +8,10 @@
 
 import Foundation
 
-func createDateFormatter(locale:String, format:String, timezone: NSTimeZone) -> NSDateFormatter
-{ let result = NSDateFormatter()
+func createDateFormatter(_ locale:String, format:String, timezone: TimeZone) -> DateFormatter
+{ let result = DateFormatter()
   
-  result.locale = NSLocale(localeIdentifier: locale)
+  result.locale = Locale(identifier: locale)
   result.dateFormat = format
   result.timeZone = timezone
   
@@ -20,13 +20,13 @@ func createDateFormatter(locale:String, format:String, timezone: NSTimeZone) -> 
 
 extension String
 {
-  static var ISODateForDate:NSDateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd",timezone: NSTimeZone(forSecondsFromGMT:0))
+  static var ISODateForDate:DateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd",timezone: TimeZone(secondsFromGMT:0)!)
 
-  static var ISOTimestampForDate:NSDateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd' 'HH':'mm':'ss",timezone: NSTimeZone(forSecondsFromGMT:0))
+  static var ISOTimestampForDate:DateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd' 'HH':'mm':'ss",timezone: TimeZone(secondsFromGMT:0)!)
 
-  static var LocalTimestamp:NSDateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd",timezone: NSTimeZone.localTimeZone())
+  static var LocalTimestamp:DateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd",timezone: TimeZone.autoupdatingCurrent)
 
-  static var ISOTimestamp:NSDateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd' 'HH':'mm':'ss",timezone: NSTimeZone(forSecondsFromGMT:0))
+  static var ISOTimestamp:DateFormatter = createDateFormatter("en_US_POSIX",format: "yyyy'-'MM'-'dd' 'HH':'mm':'ss",timezone: TimeZone(secondsFromGMT:0)!)
 
   
   static func stringISODate() -> String
@@ -41,20 +41,20 @@ extension String
     return result
   }
 
-  static func stringISODateForDate(date:NSDate) -> String
-  { return String.ISODateForDate.stringFromDate(date)
+  static func stringISODateForDate(_ date:Date) -> String
+  { return String.ISODateForDate.string(from: date)
   }
 
-  static func stringISOTimestampForDate(date:NSDate) -> String
-  { return String.ISOTimestampForDate.stringFromDate(date)
+  static func stringISOTimestampForDate(_ date:Date) -> String
+  { return String.ISOTimestampForDate.string(from: date)
   }
   
-  static func timestampValue(ts:String) -> NSDate?
-  { return String.LocalTimestamp.dateFromString(ts)
+  static func timestampValue(_ ts:String) -> Date?
+  { return String.LocalTimestamp.date(from: ts)
   }
 
-  static func isoTimestampValue(ts:String) -> NSDate?
-  { return String.ISOTimestamp.dateFromString(ts)
+  static func isoTimestampValue(_ ts:String) -> Date?
+  { return String.ISOTimestamp.date(from: ts)
   }
 
 

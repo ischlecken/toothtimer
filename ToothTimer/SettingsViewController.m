@@ -64,7 +64,7 @@
     if( addPicker )
     { NSIndexPath* openPickerIndexPath = [weakSelf.sections findFirstSettingItemWithCellId:@"PickerCell"];
       
-      //_NSLOG(@"openPickerIndexPath:%@",openPickerIndexPath);
+      //_print(@"openPickerIndexPath:%@",openPickerIndexPath);
       
       SettingsItem* pickerSetting = [SettingsItem settingItemWithTitle:si.title andCellId:@"PickerCell" andSelectAction:NULL andPickerValues:si.pickerValues];
       
@@ -525,7 +525,7 @@
   NSString* value  = [rowValue description];
   NSString* result = [[NSBundle mainBundle] localizedStringForKey:key value:value table:nil];
 
-  //_NSLOG(@"si.title:%@ key:%@ value:%@ result:%@",si.title,key,value,result);
+  //_print(@"si.title:%@ key:%@ value:%@ result:%@",si.title,key,value,result);
   
   return result;
 }

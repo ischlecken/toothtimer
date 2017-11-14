@@ -10,8 +10,8 @@ class SlideButton: UIControl
   let gradientLayer : CAGradientLayer = {
     let result         = CAGradientLayer()
     let gradientColors = UIColor.colorWithName(ColorName.gradientColors.rawValue) as! [UIColor]
-    let color1         = gradientColors[0].CGColor
-    let color0         = gradientColors[gradientColors.count-1].CGColor
+    let color1         = gradientColors[0].cgColor
+    let color0         = gradientColors[gradientColors.count-1].cgColor
     
     result.startPoint = CGPoint(x: 0.0,y: 0.5)
     result.endPoint   = CGPoint(x: 1.0,y: 0.5)
@@ -25,7 +25,7 @@ class SlideButton: UIControl
   let textAttributes0: [String: AnyObject] = {
     let style = NSMutableParagraphStyle()
     
-    style.alignment = .Center
+    style.alignment = .center
     
     return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Bold", size: 38.0)!,
              NSParagraphStyleAttributeName: style
@@ -35,7 +35,7 @@ class SlideButton: UIControl
   let textAttributes1: [String: AnyObject] = {
     let style = NSMutableParagraphStyle()
     
-    style.alignment = .Center
+    style.alignment = .center
     
     return [ NSFontAttributeName:UIFont(name: "HelveticaNeue-Bold", size: 22.0)!,
       NSParagraphStyleAttributeName: style
@@ -44,7 +44,7 @@ class SlideButton: UIControl
   
   var textAttributes : [String: AnyObject] {
     get {
-      return self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact ? self.textAttributes1 : self.textAttributes0
+      return self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact ? self.textAttributes1 : self.textAttributes0
     }
   }
   
@@ -79,31 +79,31 @@ class SlideButton: UIControl
 
   func startSlideAnimation() {
     self.gradientLayer.removeAllAnimations()
-    self.gradientLayer.addAnimation(self.slideAnimation, forKey: "slideAnimation")
+    self.gradientLayer.add(self.slideAnimation, forKey: "slideAnimation")
   }
   
   func disappear() {
     self.layer.removeAllAnimations()
-    self.layer.addAnimation(self.hideAnimation, forKey: "hide")
+    self.layer.add(self.hideAnimation, forKey: "hide")
     self.layer.opacity = 0.0
   }
 
   func appear() {
     self.layer.removeAllAnimations()
-    self.layer.addAnimation(self.showAnimation, forKey: "show")
+    self.layer.add(self.showAnimation, forKey: "show")
     self.layer.opacity = 1.0
   }
 
   
-  override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-    NSLog("TimerView.traitCollectionDidChange(\(previousTraitCollection))")
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    print("TimerView.traitCollectionDidChange(\(String(describing: previousTraitCollection)))")
     
     gradientMask()
     setNeedsDisplay()
   }
   
   override func layoutSubviews() {
-    NSLog("SlideButton.layoutSubviews()")
+    print("SlideButton.layoutSubviews()")
     
     super.layoutSubviews()
     
@@ -113,7 +113,7 @@ class SlideButton: UIControl
   }
   
   override func didMoveToWindow() {
-    NSLog("TimerView.didMoveToWindow()")
+    print("TimerView.didMoveToWindow()")
     
     super.didMoveToWindow()
     
@@ -123,7 +123,7 @@ class SlideButton: UIControl
   
   @IBInspectable var text: String! {
     didSet {
-      NSLog("setText(\(self.text))")
+      print("setText(\(self.text))")
     
       gradientMask()
       setNeedsDisplay()
@@ -132,14 +132,14 @@ class SlideButton: UIControl
   
   func gradientMask() {
     UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
-    self.text.drawInRect(bounds, withAttributes: self.textAttributes)
+    self.text.draw(in: bounds, withAttributes: self.textAttributes)
     let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
     let maskLayer = CALayer()
-    maskLayer.backgroundColor = UIColor.clearColor().CGColor
-    maskLayer.frame = CGRectOffset(bounds, bounds.size.width, 0)
-    maskLayer.contents = image.CGImage
+    maskLayer.backgroundColor = UIColor.clear.cgColor
+    maskLayer.frame = bounds.offsetBy(dx: bounds.size.width, dy: 0)
+    maskLayer.contents = image?.cgImage
     
     self.gradientLayer.mask = maskLayer
   }

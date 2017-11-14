@@ -13,9 +13,9 @@ import Foundation
  */
 class TickTimer
 {
-  private var startTicks    : UInt64 = 0
-  private var lapStartTicks : UInt64 = 0
-  private var stopTicks     : UInt64 = 0
+  fileprivate var startTicks    : UInt64 = 0
+  fileprivate var lapStartTicks : UInt64 = 0
+  fileprivate var stopTicks     : UInt64 = 0
   
   /**
       Start the *timer*
@@ -53,7 +53,7 @@ class TickTimer
     
       :returns:  elapsed seconds.
    */
-  private func seconds(ticks:UInt64) -> Double
+  fileprivate func seconds(_ ticks:UInt64) -> Double
   { var result = 0.0
     
     if ticks>0

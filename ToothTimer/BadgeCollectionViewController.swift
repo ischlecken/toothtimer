@@ -14,13 +14,13 @@ private let cellIdentifier = "Cell"
 class BadgeCollectionViewController: UICollectionViewController, ModelDelegate
 {
   var badges = [CKBadge]()
-  let dateFormatter = NSDateFormatter()
+  let dateFormatter = DateFormatter()
   
   override func viewDidLoad()
   { super.viewDidLoad()
     
-    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+    dateFormatter.dateStyle = DateFormatter.Style.short
+    dateFormatter.timeStyle = DateFormatter.Style.short
     
     CKBadgesDataModel.sharedInstance.delegate = self
     CKBadgesDataModel.sharedInstance.fetchBadges()
@@ -28,60 +28,60 @@ class BadgeCollectionViewController: UICollectionViewController, ModelDelegate
     CKBadgesDataModel.sharedInstance.addCreationSubscriptionForBadges()
     CKBadgesDataModel.sharedInstance.addDeletionSubscriptionForBadges()
     
-    self.collectionView!.backgroundColor = UIColor.clearColor()
+    self.collectionView!.backgroundColor = UIColor.clear
   }
 
   // MARK: ModelDelegate
   
-  func errorUpdating(error: NSError) {
-    NSLog("errorUpdating(%@)",error)
+  func errorUpdating(_ error: Error) {
+    print("errorUpdating(%@)",error)
     
     self.badges = CKBadgesDataModel.sharedInstance.badges
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    DispatchQueue.main.async { () -> Void in
       self.collectionView!.reloadData()
     }
     
   }
   
   func modelUpdatesWillBegin() {
-    NSLog("modelUpdatesWillBegin()")
+    print("modelUpdatesWillBegin()")
     
   }
   
   func modelUpdatesDone() {
     self.badges = CKBadgesDataModel.sharedInstance.badges
     
-    NSLog("modelUpdatesDone(): logsCount=\(self.badges.count)")
+    print("modelUpdatesDone(): logsCount=\(self.badges.count)")
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    DispatchQueue.main.async { () -> Void in
       self.collectionView!.reloadData()
     }
 
   }
   
-  func recordAdded(indexPath:NSIndexPath!) {
-    NSLog("recordAdded()")
+  func recordAdded(_ indexPath:IndexPath!) {
+    print("recordAdded()")
     
   }
   
-  func recordUpdated(indexPath:NSIndexPath!) {
-    NSLog("recordUpdated()")
+  func recordUpdated(_ indexPath:IndexPath!) {
+    print("recordUpdated()")
     
   }
   
   // MARK: UICollectionViewDataSource
   
-  override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  override func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
   
-  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return self.badges.count
   }
   
-  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell      = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier, forIndexPath: indexPath)
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell      = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
     let badge     = self.badges[indexPath.row]
     let imageView = cell.viewWithTag(100) as! UIImageView
     let nameView  = cell.viewWithTag(101) as! UILabel
@@ -93,12 +93,12 @@ class BadgeCollectionViewController: UICollectionViewController, ModelDelegate
       circleColor: UIColor.colorWithName(ColorName.titleColor.rawValue) as! UIColor,
       disabled: false)
     
-    imageView.image = imageView.image?.dropShadow(UIColor.whiteColor())
+    imageView.image = imageView.image?.dropShadow(UIColor.white)
     
     nameView.text  = badge.name
     countView.text = "99"
     countView.layer.cornerRadius = countView.bounds.size.height/2.0
-    countView.layer.borderColor = UIColor.whiteColor().CGColor
+    countView.layer.borderColor = UIColor.white.cgColor
     countView.layer.borderWidth = 2.0
     countView.layer.masksToBounds = true
     
@@ -108,11 +108,11 @@ class BadgeCollectionViewController: UICollectionViewController, ModelDelegate
 
   // MARK: UICollectionViewDelegate
   
-  override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
     return true
   }
   
-  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
   }
 
 }

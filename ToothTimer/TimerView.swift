@@ -29,12 +29,12 @@ class TimerView: UIView
   }
   
   func initView()
-  { NSLog("TimerView.initView()")
+  { print("TimerView.initView()")
     
     self.timeLabel = UILabel()
-    self.timeLabel.textAlignment = NSTextAlignment.Center
-    self.timeLabel.font = UIFont.monospacedDigitSystemFontOfSize(64.0, weight: UIFontWeightBold)
-    self.timeLabel.textColor = UIColor.lightGrayColor()
+    self.timeLabel.textAlignment = NSTextAlignment.center
+    self.timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 64.0, weight: UIFontWeightBold)
+    self.timeLabel.textColor = UIColor.lightGray
     self.timeLabel.text = "00:00"
     self.timeLabel.adjustsFontSizeToFitWidth = true
     self.timeLabel.minimumScaleFactor = 0.1
@@ -42,34 +42,34 @@ class TimerView: UIView
     self.addSubview(self.timeLabel)
   }
   
-  override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-    NSLog("TimerView.traitCollectionDidChange(\(previousTraitCollection))")
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    print("TimerView.traitCollectionDidChange(\(previousTraitCollection))")
     
     var fontSize = CGFloat(64.0)
-    var fontColor = UIColor.lightGrayColor()
+    var fontColor = UIColor.lightGray
     
-    if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.Compact {
+    if self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClass.compact {
       fontSize = 32.0
-      fontColor = UIColor.whiteColor()
+      fontColor = UIColor.white
     }
     
-    self.timeLabel.font = UIFont.monospacedDigitSystemFontOfSize(fontSize, weight: UIFontWeightBold)
+    self.timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: fontSize, weight: UIFontWeightBold)
     self.timeLabel.textColor = fontColor
     
   }
   
   override func layoutSubviews() {
-    NSLog("TimerView.layoutSubviews()")
+    print("TimerView.layoutSubviews()")
     
     super.layoutSubviews()
     
     if !timeLabelConstaintsAdded {
       self.addConstraint(
         NSLayoutConstraint( item: self.timeLabel,
-          attribute: NSLayoutAttribute.TopMargin,
-          relatedBy: NSLayoutRelation.Equal,
+          attribute: NSLayoutAttribute.topMargin,
+          relatedBy: NSLayoutRelation.equal,
           toItem: self,
-          attribute: NSLayoutAttribute.Top,
+          attribute: NSLayoutAttribute.top,
           multiplier: 1.0,
           constant: 0
         )
@@ -77,10 +77,10 @@ class TimerView: UIView
       
       self.addConstraint(
         NSLayoutConstraint( item: self.timeLabel,
-          attribute: NSLayoutAttribute.BottomMargin,
-          relatedBy: NSLayoutRelation.Equal,
+          attribute: NSLayoutAttribute.bottomMargin,
+          relatedBy: NSLayoutRelation.equal,
           toItem: self,
-          attribute: NSLayoutAttribute.Bottom,
+          attribute: NSLayoutAttribute.bottom,
           multiplier: 1.0,
           constant: 0
         )
@@ -89,10 +89,10 @@ class TimerView: UIView
       
       self.addConstraint(
         NSLayoutConstraint( item: self.timeLabel,
-          attribute: NSLayoutAttribute.LeadingMargin,
-          relatedBy: NSLayoutRelation.Equal,
+          attribute: NSLayoutAttribute.leadingMargin,
+          relatedBy: NSLayoutRelation.equal,
           toItem: self,
-          attribute: NSLayoutAttribute.Leading,
+          attribute: NSLayoutAttribute.leading,
           multiplier: 1.0,
           constant: 0
         )
@@ -100,10 +100,10 @@ class TimerView: UIView
       
       self.addConstraint(
         NSLayoutConstraint( item: self.timeLabel,
-          attribute: NSLayoutAttribute.TrailingMargin,
-          relatedBy: NSLayoutRelation.Equal,
+          attribute: NSLayoutAttribute.trailingMargin,
+          relatedBy: NSLayoutRelation.equal,
           toItem: self,
-          attribute: NSLayoutAttribute.Trailing,
+          attribute: NSLayoutAttribute.trailing,
           multiplier: 1.0,
           constant: 0
         )

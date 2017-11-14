@@ -16,14 +16,14 @@ class LogsViewController : UITableViewController, ModelDelegate {
   var logs = [CKLog]()
   var badges = [CKBadge]()
   
-  let dateFormatter = NSDateFormatter()
+  let dateFormatter = DateFormatter()
   
   override func viewDidLoad()
   { super.viewDidLoad()
     
-    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-    dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-    self.tableView.backgroundColor = UIColor.clearColor()
+    dateFormatter.dateStyle = DateFormatter.Style.short
+    dateFormatter.timeStyle = DateFormatter.Style.short
+    self.tableView.backgroundColor = UIColor.clear
     
     CKLogsDataModel.sharedInstance.delegate = self
     CKLogsDataModel.sharedInstance.fetchLogs()
@@ -35,41 +35,41 @@ class LogsViewController : UITableViewController, ModelDelegate {
     
   }
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+  override func numberOfSections(in tableView: UITableView) -> Int
   { return 1 }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   { let result = self.logTypeControl.selectedSegmentIndex==0 ? self.logs.count : self.badges.count
     
-    NSLog("tableView(): numberOfRowsInSection=\(result)")
+    print("tableView(): numberOfRowsInSection=\(result)")
     
     return result
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
   {
     if self.logTypeControl.selectedSegmentIndex==0 {
-      let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+      let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
       let log  = logs[indexPath.row]
       
       cell.textLabel?.text = "\(log.what):\(log.durationinseconds)"
-      cell.detailTextLabel?.text = self.dateFormatter.stringFromDate(log.logts)
+      cell.detailTextLabel?.text = self.dateFormatter.string(from: log.logts as Date)
       
       return cell
     }
     else {
-      let cell   = tableView.dequeueReusableCellWithIdentifier("badgeCell", forIndexPath: indexPath) as! BadgeTableViewCell
+      let cell   = tableView.dequeueReusableCell(withIdentifier: "badgeCell", for: indexPath) as! BadgeTableViewCell
       let badge  = self.badges[indexPath.row]
       
       cell.badgeNameLabel.text      = badge.name
-      cell.badgeTimestampLabel.text = self.dateFormatter.stringFromDate(badge.createts) + badge.userID.recordName
+      cell.badgeTimestampLabel.text = self.dateFormatter.string(from: badge.createts as Date) + badge.userID.recordName
       cell.badgeImageView.image     = UIImage(named: "badge-"+badge.name)
       
       cell.badgeImageView.image     = cell.badgeImageView.image?.circleImageWithSize((cell.badgeImageView.image?.size)!,
         circleColor: UIColor.colorWithName(ColorName.titleColor.rawValue) as! UIColor,
         disabled: false)
       
-      cell.badgeImageView.image     = cell.badgeImageView.image?.dropShadow(UIColor.whiteColor())
+      cell.badgeImageView.image     = cell.badgeImageView.image?.dropShadow(UIColor.white)
       
       return cell
     }
@@ -77,19 +77,19 @@ class LogsViewController : UITableViewController, ModelDelegate {
   
   // MARK: ModelDelegate
   
-  func errorUpdating(error: NSError) {
-    NSLog("errorUpdating(%@)",error)
+  func errorUpdating(_ error: Error) {
+    print("errorUpdating(%@)",error)
     
     self.logs = CKLogsDataModel.sharedInstance.logItems
     self.badges = CKBadgesDataModel.sharedInstance.badges
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    DispatchQueue.main.async { () -> Void in
       self.tableView.reloadData()
     }
   }
   
   func modelUpdatesWillBegin() {
-    NSLog("modelUpdatesWillBegin()")
+    print("modelUpdatesWillBegin()")
     
   }
   
@@ -97,28 +97,28 @@ class LogsViewController : UITableViewController, ModelDelegate {
     self.logs = CKLogsDataModel.sharedInstance.logItems
     self.badges = CKBadgesDataModel.sharedInstance.badges
     
-    NSLog("modelUpdatesDone(): logsCount=\(self.logs.count)")
+    print("modelUpdatesDone(): logsCount=\(self.logs.count)")
     
-    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    DispatchQueue.main.async { () -> Void in
       self.tableView.reloadData()
     }
   }
   
-  func recordAdded(indexPath:NSIndexPath!) {
-    NSLog("recordAdded()")
+  func recordAdded(_ indexPath:IndexPath!) {
+    print("recordAdded()")
     
   }
   
-  func recordUpdated(indexPath:NSIndexPath!) {
-    NSLog("recordUpdated()")
+  func recordUpdated(_ indexPath:IndexPath!) {
+    print("recordUpdated()")
     
   }
 
-  @IBAction func logTypeAction(sender: AnyObject) {
+  @IBAction func logTypeAction(_ sender: AnyObject) {
     self.tableView.reloadData()
   }
   
-  @IBAction func doneAction(sender: AnyObject) {
-    self.dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func doneAction(_ sender: AnyObject) {
+    self.dismiss(animated: true, completion: nil)
   }
 }

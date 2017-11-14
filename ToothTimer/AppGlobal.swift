@@ -21,19 +21,19 @@ class Constant : NSObject
   static let kColorSchemeFileName          = "colorscheme"
   
   static var appName : String
-  { let localizedInfo = NSBundle.mainBundle().localizedInfoDictionary
+  { let localizedInfo = Bundle.main.localizedInfoDictionary
   
     return localizedInfo?["CFBundleDisplayName"] as! String;
   }
   
   static var appVersion : String
-  { let localizedInfo = NSBundle.mainBundle().infoDictionary
+  { let localizedInfo = Bundle.main.infoDictionary
     
     return localizedInfo?["CFBundleShortVersionString"] as! String;
   }
 
   static var appBuild : String
-  { let localizedInfo = NSBundle.mainBundle().infoDictionary
+  { let localizedInfo = Bundle.main.infoDictionary
     
     return localizedInfo?["CFBundleVersion"] as! String;
   }

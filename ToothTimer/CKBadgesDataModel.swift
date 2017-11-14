@@ -25,7 +25,7 @@ class CKBadgesDataModel : CKDataModel
   func addCreationSubscriptionForBadges()
   {
     let predicate = NSPredicate(format: "TRUEPREDICATE")
-    let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .FiresOnRecordCreation)
+    let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .firesOnRecordCreation)
     let notificationInfo = CKNotificationInfo()
     
     notificationInfo.alertBody = "A Badge was added"
@@ -33,12 +33,12 @@ class CKBadgesDataModel : CKDataModel
     
     subscription.notificationInfo = notificationInfo
     
-    self.publicDB.saveSubscription(subscription,
+    self.publicDB.save(subscription,
       completionHandler: ({ returnRecord, error in
         if let err = error {
-          NSLog("subscription failed %@",err.localizedDescription)
+          print("subscription failed %@",err.localizedDescription)
         } else {
-          NSLog("Subscription set up successfully")
+          print("Subscription set up successfully")
         }
       }))
   }
@@ -46,7 +46,7 @@ class CKBadgesDataModel : CKDataModel
   func addDeletionSubscriptionForBadges()
   {
     let predicate = NSPredicate(format: "TRUEPREDICATE")
-    let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .FiresOnRecordDeletion)
+    let subscription = CKSubscription(recordType: CKBadge.recordType,predicate: predicate, options: .firesOnRecordDeletion)
     let notificationInfo = CKNotificationInfo()
     
     notificationInfo.alertBody = "A Badge was deleted"
@@ -54,12 +54,12 @@ class CKBadgesDataModel : CKDataModel
     
     subscription.notificationInfo = notificationInfo
     
-    self.publicDB.saveSubscription(subscription,
+    self.publicDB.save(subscription,
       completionHandler: ({ returnRecord, error in
         if let err = error {
-          NSLog("subscription failed %@",err.localizedDescription)
+          print("subscription failed %@",err.localizedDescription)
         } else {
-          NSLog("Subscription set up successfully")
+          print("Subscription set up successfully")
         }
       }))
   }
@@ -68,15 +68,15 @@ class CKBadgesDataModel : CKDataModel
   {
     userInfo.userID { (userRecordID, error) -> () in
       if let userRecordID = userRecordID
-      { NSLog("fetchBadges(): usvard:\(userRecordID)");
+      { print("fetchBadges(): usvard:\(userRecordID)");
         
         var newItems = [CKBadge]()
         let queryOperation = self.createQueryOperation(userRecordID,recordType: CKBadge.recordType,resultLimit: 100)
         
         queryOperation.queryCompletionBlock =
-          { (queryCursor:CKQueryCursor?, error:NSError?) -> Void in
+          { (queryCursor:CKQueryCursor?, error:Error?) -> Void in
             
-            NSLog("Query completed.")
+            print("Query completed.")
             
             if let error = error {
               self.delegate?.errorUpdating(error)
@@ -85,7 +85,7 @@ class CKBadgesDataModel : CKDataModel
               self.badges = newItems
               self.delegate?.modelUpdatesDone()
             }
-        };
+        }
         
         queryOperation.recordFetchedBlock =
           { (record:CKRecord)->Void in
@@ -97,37 +97,37 @@ class CKBadgesDataModel : CKDataModel
         
         self.delegate?.modelUpdatesWillBegin()
         
-        self.usedDB.addOperation(queryOperation)
+        self.usedDB.add(queryOperation)
       }
     }
   }
   
-  func addBadge(badge:CKBadge)
-  { NSLog("addBadge(\(badge))");
+  func addBadge(_ badge:CKBadge)
+  { print("addBadge(\(badge))");
     
     userInfo.userID { (userRecordID, error) -> () in
       if let userRecordID = userRecordID
-      { NSLog("addBadge(): userId:\(userRecordID)");
+      { print("addBadge(): userId:\(userRecordID)");
         
         let modifyRecordsOperation = CKModifyRecordsOperation()
     
         modifyRecordsOperation.recordsToSave = [badge.record]
         
         modifyRecordsOperation.modifyRecordsCompletionBlock = {
-          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError?) -> Void in
+          (records: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: Error?) -> Void in
           
           if let error = error {
             self.delegate?.errorUpdating(error)
           }
           else {
-            self.badges.insert(badge, atIndex: 0)
+            self.badges.insert(badge, at: 0)
             
             self.delegate?.modelUpdatesDone()
           }
-        };
+        }
         
         self.delegate?.modelUpdatesWillBegin()
-        self.usedDB.addOperation(modifyRecordsOperation)
+        self.usedDB.add(modifyRecordsOperation)
       }
     }
   }

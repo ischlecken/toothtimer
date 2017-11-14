@@ -8,32 +8,32 @@
 
 import Foundation
 
-extension NSURL
+extension URL
 {
-  static var applicationDocumentsDirectory : NSURL
-  { return NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last!
+  static var applicationDocumentsDirectory : URL
+  { return FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).last!
   }
   
-  static var databaseStoreURL : NSURL
-  { return NSURL.applicationDocumentsDirectory .URLByAppendingPathComponent("tooltimer.sqlite")
+  static var databaseStoreURL : URL
+  { return URL.applicationDocumentsDirectory .appendingPathComponent("tooltimer.sqlite")
   }
   
   static var databaseStoreExists : Bool
-  { let url = NSURL.databaseStoreURL;
+  { let url = URL.databaseStoreURL;
     
-    return NSFileManager.defaultManager().fileExistsAtPath(url.path!)
+    return FileManager.default.fileExists(atPath: url.path)
   }
   
-  static var colorSchemeURL : NSURL?
-  { return NSURL.appGroupURLForFileName("\(Constant.kColorSchemeFileName).json") }
+  static var colorSchemeURL : URL?
+  { return URL.appGroupURLForFileName("\(Constant.kColorSchemeFileName).json") }
   
-  static func documentFileURL(fileName:String) -> NSURL
-  { return NSURL(fileURLWithPath: fileName, relativeToURL: NSURL.applicationDocumentsDirectory)
+  static func documentFileURL(_ fileName:String) -> URL
+  { return URL(fileURLWithPath: fileName, relativeTo: URL.applicationDocumentsDirectory)
   }
   
-  static func appGroupURLForFileName(fileName:String) -> NSURL?
-  { let storeURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(Constant.kAppGroup)
-    let result   = storeURL?.URLByAppendingPathComponent(fileName);
+  static func appGroupURLForFileName(_ fileName:String) -> URL?
+  { let storeURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constant.kAppGroup)
+    let result   = storeURL?.appendingPathComponent(fileName);
     
     return result
   }

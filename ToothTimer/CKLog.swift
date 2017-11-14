@@ -13,7 +13,7 @@ class CKLog
 {
   static let recordType = "Logs"
   
-  var logts: NSDate
+  var logts: Date
     {
     get {
       return record.creationDate!
@@ -30,20 +30,20 @@ class CKLog
   var durationinseconds: Int64
     {
     get {
-      return (record.objectForKey("durationinseconds")! as! NSNumber).longLongValue
+      return (record.object(forKey: "durationinseconds")! as! NSNumber).int64Value
     }
     set(durationinseconds) {
-      record.setObject(NSNumber(longLong: durationinseconds), forKey: "durationinseconds")
+      record.setObject(NSNumber(value: durationinseconds as Int64), forKey: "durationinseconds")
     }
   }
 
   var what: String
     {
     get {
-      return record.objectForKey("what")! as! String
+      return record.object(forKey: "what")! as! String
     }
     set(status) {
-      record.setObject(status, forKey: "what")
+      record.setObject(status as CKRecordValue, forKey: "what")
     }
   }
 

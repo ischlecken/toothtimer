@@ -10,12 +10,12 @@ import CloudKit
 
 
 protocol ModelDelegate {
-  func errorUpdating(error: NSError)
+  func errorUpdating(_ error: Error)
   
   func modelUpdatesWillBegin()
   func modelUpdatesDone()
-  func recordAdded(indexPath:NSIndexPath!)
-  func recordUpdated(indexPath:NSIndexPath!)
+  func recordAdded(_ indexPath:IndexPath!)
+  func recordUpdated(_ indexPath:IndexPath!)
 }
 
 
@@ -30,24 +30,24 @@ class CKDataModel
   let userInfo : CKUserInfo
   
   init() {
-    container = CKContainer.defaultContainer()
+    container = CKContainer.default()
     publicDB = container.publicCloudDatabase
     privateDB = container.privateCloudDatabase
     usedDB = privateDB
     userInfo = CKUserInfo(container: container)
   }
   
-  func createQueryOperation(userRecordID:CKRecordID, recordType:String, resultLimit:Int) -> CKQueryOperation
+  func createQueryOperation(_ userRecordID:CKRecordID, recordType:String, resultLimit:Int) -> CKQueryOperation
   {
     return createQueryOperationWithPredicate(NSPredicate(format: "TRUEPREDICATE"),forUserId:userRecordID,andRecordType:recordType, andResultLimit:resultLimit)
   }
 
-  func createQueryOperationForCurrentUser(userRecordID:CKRecordID, recordType:String, resultLimit:Int) -> CKQueryOperation
+  func createQueryOperationForCurrentUser(_ userRecordID:CKRecordID, recordType:String, resultLimit:Int) -> CKQueryOperation
   {
     return createQueryOperationWithPredicate(NSPredicate(format: "creatorUserRecordID == %@", userRecordID),forUserId:userRecordID,andRecordType:recordType, andResultLimit:resultLimit)
   }
 
-  func createQueryOperationWithPredicate(predicate: NSPredicate,
+  func createQueryOperationWithPredicate(_ predicate: NSPredicate,
                                          forUserId userRecordID:CKRecordID,
                                          andRecordType recordType:String,
                                          andResultLimit resultLimit:Int) -> CKQueryOperation

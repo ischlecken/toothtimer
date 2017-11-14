@@ -10,13 +10,13 @@ import AudioToolbox
 
 class AudioUtil
 {
-  class func playSound(soundName:String) -> Void
-  { let soundPath               = NSBundle.mainBundle().URLForResource(soundName, withExtension: "caf")
+  class func playSound(_ soundName:String) -> Void
+  { let soundPath               = Bundle.main.url(forResource: soundName, withExtension: "caf")
     var soundId : SystemSoundID = 0
     
-    let createResult = AudioServicesCreateSystemSoundID(soundPath!,&soundId)
+    let createResult = AudioServicesCreateSystemSoundID(soundPath! as CFURL,&soundId)
     
-    NSLog("playSound(\(soundName)): path:\(soundPath) soundId:\(soundId) createResult:\(createResult)")
+    print("playSound(\(soundName)): path:\(soundPath) soundId:\(soundId) createResult:\(createResult)")
     
     if createResult==0
     { AudioServicesPlaySystemSound(soundId)

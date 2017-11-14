@@ -37,7 +37,7 @@ class ToothTimerSettings : Settings
       return self.getConfigValue(ToothTimerSettingKey.colorSchemeName.rawValue) as? String
     }
     set(colorSchemeName) {
-      self.setConfigValue(colorSchemeName, forKey: ToothTimerSettingKey.colorSchemeName.rawValue)
+      self.setConfigValue(colorSchemeName as AnyObject, forKey: ToothTimerSettingKey.colorSchemeName.rawValue)
     }
   }
   
@@ -73,16 +73,16 @@ class ToothTimerSettings : Settings
       return self.getConfigValue(ToothTimerSettingKey.notificationEnabled.rawValue)! as! Bool
     }
     set(notificationEnabled) {
-      self.setConfigValue(notificationEnabled, forKey: ToothTimerSettingKey.notificationEnabled.rawValue)
+      self.setConfigValue(notificationEnabled as AnyObject, forKey: ToothTimerSettingKey.notificationEnabled.rawValue)
     }
   }
   
   let udd =
-  [ DefaultSetting(withKeyName: ToothTimerSettingKey.timerInSeconds.rawValue,andDefaultValue: 240),
-    DefaultSetting(withKeyName: ToothTimerSettingKey.noOfSlices.rawValue,andDefaultValue: 4),
-    DefaultSetting(withKeyName: ToothTimerSettingKey.usageCount.rawValue,andDefaultValue: 0),
-    DefaultSetting(withKeyName: ToothTimerSettingKey.notificationEnabled.rawValue,andDefaultValue: false),
-    DefaultSetting(withKeyName: ToothTimerSettingKey.colorSchemeName.rawValue,andDefaultValue: "bonbon")
+  [ DefaultSetting(withKeyName: ToothTimerSettingKey.timerInSeconds.rawValue,andDefaultValue: 240 as AnyObject),
+    DefaultSetting(withKeyName: ToothTimerSettingKey.noOfSlices.rawValue,andDefaultValue: 4 as AnyObject),
+    DefaultSetting(withKeyName: ToothTimerSettingKey.usageCount.rawValue,andDefaultValue: 0 as AnyObject),
+    DefaultSetting(withKeyName: ToothTimerSettingKey.notificationEnabled.rawValue,andDefaultValue: false as AnyObject),
+    DefaultSetting(withKeyName: ToothTimerSettingKey.colorSchemeName.rawValue,andDefaultValue: "bonbon" as AnyObject)
   ]
   
   init() {

@@ -19,33 +19,32 @@ class CKUserInfo {
     self.container = container;
   }
   
-  func loggedInToICloud(completion : (accountStatus : CKAccountStatus, error : NSError?) -> Void) {
+  func loggedInToICloud(_ completion : @escaping (_ accountStatus : CKAccountStatus, _ error : Error?) -> Void) {
     
-    container.accountStatusWithCompletionHandler() { (accountStatus:CKAccountStatus, error:NSError?) -> Void in
-      completion(accountStatus: accountStatus, error: error);
+    container.accountStatus { (accountStatus, error) in
+      
     }
-    
   }
   
-  func userID(completion: (userRecordID: CKRecordID!, error: NSError!)->()) {
+  func userID(_ completion: @escaping (_ userRecordID: CKRecordID?, _ error: Error?)->()) {
     if userRecordID != nil {
-      completion(userRecordID: userRecordID, error: nil)
+      completion(userRecordID, nil)
     } else {
-      self.container.fetchUserRecordIDWithCompletionHandler() {
+      self.container.fetchUserRecordID() {
         recordID, error in
         if recordID != nil {
           self.userRecordID = recordID
         }
-        completion(userRecordID: recordID, error: error)
+        completion(recordID, error! as Error)
       }
     }
   }
   
-  func userInfo(completion: (userInfo: CKDiscoveredUserInfo!, error: NSError!)->()) {
+  func userInfo(_ completion: @escaping (_ userInfo: CKUserIdentity?, _ error: Error?)->()) {
     requestDiscoverability() { discoverable in
       self.userID() { recordID, error in
         if error != nil {
-          completion(userInfo: nil, error: error)
+          completion(nil, error)
         } else {
           self.userInfo(recordID, completion: completion)
         }
@@ -53,29 +52,28 @@ class CKUserInfo {
     }
   }
   
-  func userInfo(recordID: CKRecordID!,
-    completion:(userInfo: CKDiscoveredUserInfo!, error: NSError!)->()) {
+  func userInfo(_ recordID: CKRecordID!, completion:@escaping (_ userInfo: CKUserIdentity?, _ error: Error?)->()) {
       
-      container.discoverUserInfoWithUserRecordID(recordID) { (userInfo:CKDiscoveredUserInfo?, error:NSError?) -> Void in
-        completion(userInfo: userInfo, error: error)
-      }
+    container.discoverUserIdentity(withUserRecordID: recordID, completionHandler: { (userIdentity, error) in
+      
+    })
   }
   
-  func requestDiscoverability(completion: (discoverable: Bool) -> ()) {
-    container.statusForApplicationPermission(
-      .UserDiscoverability) {
+  func requestDiscoverability(_ completion: @escaping (_ discoverable: Bool) -> ()) {
+    container.status(
+      forApplicationPermission: .userDiscoverability) {
         status, error in
-        if error != nil || status == CKApplicationPermissionStatus.Denied {
-          completion(discoverable: false)
+        if error != nil || status == CKApplicationPermissionStatus.denied {
+          completion(false)
         } else {
-          self.container.requestApplicationPermission(.UserDiscoverability) { status, error in
-            completion(discoverable: status == .Granted)
+          self.container.requestApplicationPermission(.userDiscoverability) { status, error in
+            completion(status == .granted)
           }
         }
     }
   }
   
-  func findContacts(completion: (userInfos:[AnyObject]!, error: NSError!)->()) {
-    completion(userInfos: [CKRecordID](), error: nil)
+  func findContacts(_ completion: (_ userInfos:[AnyObject]?, _ error: Error?)->()) {
+    completion([CKRecordID](), nil)
   }
 }

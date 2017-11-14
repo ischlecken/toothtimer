@@ -17,17 +17,17 @@ class PuffAnimator : NSObject, UIViewControllerAnimatedTransitioning {
   
   var dismissCompletion: (()->())?
   
-  func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+  func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
     return duration
   }
   
-  func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+  func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     
-    let containerView = transitionContext.containerView()!
-    containerView.backgroundColor = UIColor.clearColor()
+    let containerView = transitionContext.containerView
+    containerView.backgroundColor = UIColor.clear
     
-    let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
-    let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
+    let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
+    let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
     
     let herbView = presenting ? toView : fromView
     
@@ -42,27 +42,27 @@ class PuffAnimator : NSObject, UIViewControllerAnimatedTransitioning {
       initialFrame.height / finalFrame.height :
       finalFrame.height / initialFrame.height
     
-    let scaleTransform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor)
+    let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
     
     if presenting {
       herbView.transform = scaleTransform
       herbView.center = CGPoint(
-        x: CGRectGetMidX(initialFrame),
-        y: CGRectGetMidY(initialFrame))
+        x: initialFrame.midX,
+        y: initialFrame.midY)
       herbView.clipsToBounds = true
     }
     
     containerView.addSubview(toView)
-    containerView.bringSubviewToFront(herbView)
+    containerView.bringSubview(toFront: herbView)
     
-    UIView.animateWithDuration(duration, delay:0.0,
+    UIView.animate(withDuration: duration, delay:0.0,
       usingSpringWithDamping: 0.4,
       initialSpringVelocity: 0.0,
       options: [],
       animations: {
         
-        herbView.transform = self.presenting ? CGAffineTransformIdentity : scaleTransform
-        herbView.center = CGPoint(x: CGRectGetMidX(finalFrame), y: CGRectGetMidY(finalFrame))
+        herbView.transform = self.presenting ? CGAffineTransform.identity : scaleTransform
+        herbView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
         
       }, completion:{_ in
         
@@ -73,7 +73,7 @@ class PuffAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         
         if self.presenting {
           containerView.addSubview(fromView)
-          containerView.bringSubviewToFront(toView)
+          containerView.bringSubview(toFront: toView)
         }
     })
     

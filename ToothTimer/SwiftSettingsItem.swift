@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias SwiftSelectActionType = (IndexPath:NSIndexPath,item:SwiftSettingsItem) -> Void;
+typealias SwiftSelectActionType = (_ IndexPath:IndexPath,_ item:SwiftSettingsItem) -> Void;
 
 class SwiftSettingsItem : NSObject
 {
@@ -19,12 +19,12 @@ class SwiftSettingsItem : NSObject
   var pickerValues:[AnyObject]?
   var selectedPickerValue:Int?
 
-  static func settingItemWithTitle(title:String, cellId:String) -> SwiftSettingsItem
+  static func settingItemWithTitle(_ title:String, cellId:String) -> SwiftSettingsItem
   { let result = SwiftSettingsItem()
     
     result.title               = title;
     result.cellId              = cellId;
-    result.keyboardType        = UIKeyboardType.Default;
+    result.keyboardType        = UIKeyboardType.default;
     result.selectAction        = nil;
     result.pickerValues        = nil;
     result.selectedPickerValue = 0;
@@ -32,12 +32,12 @@ class SwiftSettingsItem : NSObject
     return result
   }
 
-  static func settingItemWithTitle(title:String, cellId:String, selectAction:SwiftSelectActionType) -> SwiftSettingsItem
+  static func settingItemWithTitle(_ title:String, cellId:String, selectAction:@escaping SwiftSelectActionType) -> SwiftSettingsItem
   { let result = SwiftSettingsItem()
     
     result.title               = title;
     result.cellId              = cellId;
-    result.keyboardType        = UIKeyboardType.Default;
+    result.keyboardType        = UIKeyboardType.default;
     result.selectAction        = selectAction;
     result.pickerValues        = nil;
     result.selectedPickerValue = 0;
@@ -45,12 +45,12 @@ class SwiftSettingsItem : NSObject
     return result
   }
 
-  static func settingItemWithTitle(title:String, cellId:String, selectAction:SwiftSelectActionType, pickerValues:[AnyObject]) -> SwiftSettingsItem
+  static func settingItemWithTitle(_ title:String, cellId:String, selectAction:@escaping SwiftSelectActionType, pickerValues:[AnyObject]) -> SwiftSettingsItem
   { let result = SwiftSettingsItem()
     
     result.title               = title;
     result.cellId              = cellId;
-    result.keyboardType        = UIKeyboardType.Default;
+    result.keyboardType        = UIKeyboardType.default;
     result.selectAction        = selectAction;
     result.pickerValues        = pickerValues;
     result.selectedPickerValue = 0;
@@ -58,12 +58,12 @@ class SwiftSettingsItem : NSObject
     return result
   }
 
-  static func settingItemWithTitle(title:String, cellId:String, pickerValues:[AnyObject], selectedPickerValue:Int) -> SwiftSettingsItem
+  static func settingItemWithTitle(_ title:String, cellId:String, pickerValues:[AnyObject], selectedPickerValue:Int) -> SwiftSettingsItem
   { let result = SwiftSettingsItem()
     
     result.title               = title;
     result.cellId              = cellId;
-    result.keyboardType        = UIKeyboardType.Default;
+    result.keyboardType        = UIKeyboardType.default;
     result.selectAction        = nil;
     result.pickerValues        = pickerValues;
     result.selectedPickerValue = selectedPickerValue;
@@ -71,7 +71,7 @@ class SwiftSettingsItem : NSObject
     return result
   }
 
-  static func settingItemWithTitle(title:String, cellId:String, keyboardType:UIKeyboardType) -> SwiftSettingsItem
+  static func settingItemWithTitle(_ title:String, cellId:String, keyboardType:UIKeyboardType) -> SwiftSettingsItem
   { let result = SwiftSettingsItem()
     
     result.title               = title;

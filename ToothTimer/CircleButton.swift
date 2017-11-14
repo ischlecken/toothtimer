@@ -12,10 +12,10 @@ import UIKit
 class CircleButton : UIControl
 {
   
-  override func drawRect(rect: CGRect)
+  override func draw(_ rect: CGRect)
   { let ctx          = UIGraphicsGetCurrentContext()
   
-    CGContextSetFillColorWithColor(ctx, UIColor.blueColor().CGColor)
-    CGContextFillEllipseInRect(ctx, rect)
+    ctx?.setFillColor(UIColor.blue.cgColor)
+    ctx?.fillEllipse(in: rect)
   }
 }

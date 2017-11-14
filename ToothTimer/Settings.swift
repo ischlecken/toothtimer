@@ -23,14 +23,14 @@ struct DefaultSetting
 class Settings : NSObject
 {
   var userDefaultDescription = [String:DefaultSetting]()
-  var configUserDefaultsStore : NSUserDefaults
+  var configUserDefaultsStore : UserDefaults
   
   init(withDefaults udd:[DefaultSetting])
   { for u in udd {
       self.userDefaultDescription[u.keyName] = u
     }
     
-    self.configUserDefaultsStore = NSUserDefaults(suiteName: Constant.kAppGroup)!
+    self.configUserDefaultsStore = UserDefaults(suiteName: Constant.kAppGroup)!
     
     var defaultValues = [String:AnyObject]();
     
@@ -38,7 +38,7 @@ class Settings : NSObject
       defaultValues[keyName] = keyValue.defaultValue
     }
     
-    self.configUserDefaultsStore.registerDefaults(defaultValues)
+    self.configUserDefaultsStore.register(defaults: defaultValues)
     self.configUserDefaultsStore.synchronize()
     
   // NSNotificationCenter.defaultCenter().addObserver(self, selector: "defaultsChanged", name: NSUserDefaultsDidChangeNotification, object: nil)
@@ -46,40 +46,40 @@ class Settings : NSObject
   }
   
   func resetUserDefaults()
-  { NSUserDefaults.resetStandardUserDefaults()
+  { UserDefaults.resetStandardUserDefaults()
     
-    let appDomain = NSBundle.mainBundle().bundleIdentifier
+    let appDomain = Bundle.main.bundleIdentifier
     
-    self.configUserDefaultsStore.removePersistentDomainForName(appDomain!)
+    self.configUserDefaultsStore.removePersistentDomain(forName: appDomain!)
   }
   
-  func configValueExists(key:String) -> Bool
+  func configValueExists(_ key:String) -> Bool
   { return self.userDefaultDescription[key] != nil
   }
   
-  func getConfigValue(key:String) -> AnyObject?
-  { let result = self.configUserDefaultsStore.objectForKey(key)
+  func getConfigValue(_ key:String) -> AnyObject?
+  { let result = self.configUserDefaultsStore.object(forKey: key)
     
-    return result
+    return result as AnyObject
   }
   
-  func setConfigValue(value:AnyObject?, forKey key:String)
+  func setConfigValue(_ value:AnyObject?, forKey key:String)
   {
     let udd = self.userDefaultDescription[key];
     
     if let _ = udd {
-      self.willChangeValueForKey(key)
+      self.willChangeValue(forKey: key)
       
-      self.configUserDefaultsStore.setObject(value, forKey: key)
+      self.configUserDefaultsStore.set(value, forKey: key)
       self.configUserDefaultsStore.synchronize()
       
-      self.didChangeValueForKey(key)
+      self.didChangeValue(forKey: key)
     }
   }
   
-  func defaultsChanged(notification:NSNotification)
+  func defaultsChanged(_ notification:Notification)
   {
-    NSLog("defaultsChanged()")
+    print("defaultsChanged()")
     
   }
 }

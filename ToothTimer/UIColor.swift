@@ -19,25 +19,25 @@ enum ColorName : String
 
 extension UIColor
 {
-  private static var colorScheme : [String:AnyObject]?
+  fileprivate static var colorScheme : [String:AnyObject]?
   { var result : [String:AnyObject]? = nil
     
     do
-    { try NSFileManager.defaultManager().copyToSharedLocation(Constant.kColorSchemeFileName,fileType:"json") }
+    { try FileManager.default.copyToSharedLocation(Constant.kColorSchemeFileName,fileType:"json") }
     catch let error
-    { NSLog("Error while move colorscheme to appgroup directory:\(error)") }
+    { print("Error while move colorscheme to appgroup directory:\(error)") }
     
-    if let dataPath = NSURL.colorSchemeURL?.path, data = NSData(contentsOfFile: dataPath)
+    if let dataPath = URL.colorSchemeURL?.path, let data = try? Data(contentsOf: URL(fileURLWithPath: dataPath))
     { do
-    { result = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions(rawValue: 0)) as? [String : AnyObject] }
+    { result = try JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions(rawValue: 0)) as? [String : AnyObject] }
     catch let error
-    { NSLog("Error while reading json:\(error)") }
+    { print("Error while reading json:\(error)") }
     } /* of if */
     
     return result!
   }
   
-  private static var colorCache      = [String:AnyObject](minimumCapacity: 1)
+  fileprivate static var colorCache      = [String:AnyObject](minimumCapacity: 1)
   
   static var colorSchemeNames        : [String]?
   { var result : [String]? = nil
@@ -61,11 +61,11 @@ extension UIColor
     }
   }
   
-  static func colorWithName(colorName:String) -> AnyObject?
+  static func colorWithName(_ colorName:String) -> AnyObject?
   { var result : AnyObject? = UIColor.colorCache[colorName]
     
     if result==nil
-    { if let cs = UIColor.colorScheme, currentColorScheme = cs[UIColor.selectedColorSchemeName!] as? [String:AnyObject]
+    { if let cs = UIColor.colorScheme, let currentColorScheme = cs[UIColor.selectedColorSchemeName!] as? [String:AnyObject]
       { if let colorValue = currentColorScheme[colorName] as? String
         { result = UIColor(hexString: colorValue)
         } /* of if */
@@ -76,7 +76,7 @@ extension UIColor
           { colors.append(UIColor(hexString: c))
           }
           
-          result = colors
+          result = colors as AnyObject
         } /* of else if */
       } /* of if */
       
@@ -88,19 +88,19 @@ extension UIColor
   }
   
   convenience init(hexString:String)
-  { if hexString.characters.count==7 || hexString.characters.count==9
-    { let scanner           = NSScanner(string: hexString)
+  { if hexString.count==7 || hexString.count==9
+    { let scanner           = Scanner(string: hexString)
       var rgbValue : UInt32 = 0;
       
       scanner.scanLocation = 1
-      scanner.scanHexInt(&rgbValue)
+      scanner.scanHexInt32(&rgbValue)
       
       let red   = CGFloat((rgbValue & 0xFF0000)>>16) / 255.0
       let green = CGFloat((rgbValue & 0xFF00  )>>8 ) / 255.0
       let blue  = CGFloat((rgbValue & 0xFF    )    ) / 255.0
       var alpha = CGFloat(1.0)
       
-      if hexString.characters.count==9
+      if hexString.count == 9
       { alpha = CGFloat((rgbValue & 0xFF000000)>>24) / 255.0
       } /* of if */
       
@@ -133,12 +133,16 @@ extension UIColor
   }
   
   func cgColorToString() -> String
-  { let components = CGColorGetComponents(self.CGColor)
-    let result = String(format: "#%0.2X%0.2X%0.2X%0.2X",
-                        arguments: [Int(components[0]*255.0),
-                                    Int(components[0]*255.0),
-                                    Int(components[0]*255.0),
-                                    Int(components[0]*255.0)])
+  { var result = ""
+    
+    if let components = self.cgColor.components {
+      result = String(format: "#%0.2X%0.2X%0.2X%0.2X",
+                          arguments: [Int(components[0]*255.0),
+                                      Int(components[1]*255.0),
+                                      Int(components[2]*255.0),
+                                      Int(components[3]*255.0)])
+    
+    }
     
     return result
   }

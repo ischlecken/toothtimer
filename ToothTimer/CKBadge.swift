@@ -17,7 +17,7 @@ class CKBadge {
   
   static let recordType = "Badges"
   
-  var createts: NSDate
+  var createts: Date
     {
     get {
       return record.creationDate!
@@ -27,40 +27,40 @@ class CKBadge {
   var name: String
     {
     get {
-      return record.objectForKey("name")! as! String
+      return record.object(forKey: "name")! as! String
     }
     set(name) {
-      record.setObject(name, forKey: "name")
+      record.setObject(name as CKRecordValue, forKey: "name")
     }
   }
   
   var badgeClass: String
     {
     get {
-      return record.objectForKey("class")! as! String
+      return record.object(forKey: "class")! as! String
     }
     set(name) {
-      record.setObject(name, forKey: "class")
+      record.setObject(name as CKRecordValue, forKey: "class")
     }
   }
   
-  var period: NSDate
+  var period: Date
     {
     get {
-      return record.objectForKey("period")! as! NSDate
+      return record.object(forKey: "period")! as! Date
     }
     set(name) {
-      record.setObject(name, forKey: "period")
+      record.setObject(name as CKRecordValue, forKey: "period")
     }
   }
   
   var periodClass: String
     {
     get {
-      return record.objectForKey("periodclass")! as! String
+      return record.object(forKey: "periodclass")! as! String
     }
     set(name) {
-      record.setObject(name, forKey: "periodclass")
+      record.setObject(name as CKRecordValue, forKey: "periodclass")
     }
   }
   

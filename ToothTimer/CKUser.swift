@@ -17,20 +17,20 @@ class CKUser {
   var nickname: String
     {
     get {
-      return record.objectForKey("nickname")! as! String
+      return record.object(forKey: "nickname")! as! String
     }
     set(name) {
-      record.setObject(name, forKey: "nickname")
+      record.setObject(name as CKRecordValue, forKey: "nickname")
     }
   }
   
   var description: String
     {
     get {
-      return record.objectForKey("description")! as! String
+      return record.object(forKey: "description")! as! String
     }
     set(name) {
-      record.setObject(name, forKey: "description")
+      record.setObject(name as CKRecordValue, forKey: "description")
     }
   }
   

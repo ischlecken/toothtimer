@@ -20,15 +20,15 @@ class TimerViewController: UIViewController
   @IBOutlet weak    var circleButton3  : CircleButton!
   @IBOutlet weak    var circleButton4  : CircleButton!
   
-            weak    var timer          : NSTimer?
+            weak    var timer          : Timer?
                     var actTimer       : Int = 0
                     var tickTimer      : TickTimer = TickTimer()
   
   
-  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if let keyPathValue = keyPath
     {
-      NSLog("observeValueForKeyPath:\(keyPathValue)")
+      print("observeValueForKeyPath:\(keyPathValue)")
       
       if keyPathValue=="noOfSlices" {
         self.circlesView.initView()
@@ -49,7 +49,7 @@ class TimerViewController: UIViewController
     self.updateTimerLabel()
     self.slideButton.text = "Slide to start"
     
-    ToothTimerSettings.sharedInstance.addObserver(self, forKeyPath: "noOfSlices", options: .New, context: nil)
+    ToothTimerSettings.sharedInstance.addObserver(self, forKeyPath: "noOfSlices", options: .new, context: nil)
   }
 
   
@@ -61,24 +61,24 @@ class TimerViewController: UIViewController
   { if !self.isTimerRunning
     { self.isTimerRunning = true
       
-      self.actTimer = ToothTimerSettings.sharedInstance.timerInSeconds!.integerValue
+      self.actTimer = ToothTimerSettings.sharedInstance.timerInSeconds!.intValue
       self.updateTimerLabel()
       
       self.tickTimer.start()
-      self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("timerFired"), userInfo: nil, repeats: true)
+      self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(TimerViewController.timerFired), userInfo: nil, repeats: true)
       
       self.circlesView.addAnimation( CFTimeInterval(actTimer) )
       self.slideButton.disappear()
       
-      UIApplication.sharedApplication().idleTimerDisabled = true
+      UIApplication.shared.isIdleTimerDisabled = true
     } /* of if */
   }
   
   func timerFired()
   { let elapsedTime = self.tickTimer.lap()
-    NSLog("elapsedTime:\(elapsedTime)")
+    print("elapsedTime:\(elapsedTime)")
     
-    self.actTimer--
+    self.actTimer -= 1
     self.updateTimerLabel()
     
     if self.actTimer<=0
@@ -95,7 +95,7 @@ class TimerViewController: UIViewController
       self.slideButton.appear()
       
       let elapsedTime = self.tickTimer.stop()
-      NSLog("stopp elapsedTime:\(elapsedTime)")
+      print("stopp elapsedTime:\(elapsedTime)")
       
       self.isTimerRunning = false
       
@@ -105,7 +105,7 @@ class TimerViewController: UIViewController
       
       CKLogsDataModel.sharedInstance.addLog(log)
       
-      UIApplication.sharedApplication().idleTimerDisabled = false
+      UIApplication.shared.isIdleTimerDisabled = false
       self.view.setNeedsLayout()
     } /* of if */
   }
@@ -118,14 +118,14 @@ class TimerViewController: UIViewController
   }
   
   // MARK: Actions
-  @IBAction func tappedAction(sender: AnyObject)
-  { NSLog("TimerView tapped")
+  @IBAction func tappedAction(_ sender: AnyObject)
+  { print("TimerView tapped")
     
     self.stopTimer()
   }
   
-  @IBAction func swipAction(sender: AnyObject)
-  { NSLog("swipped")
+  @IBAction func swipAction(_ sender: AnyObject)
+  { print("swipped")
     
     self.startTimer()
   }

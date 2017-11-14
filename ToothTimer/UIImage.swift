@@ -11,21 +11,21 @@ import Foundation
 extension UIImage
 {
   
-  func tintedGradientImageWithColor(tintColor:UIColor, backgroundColor:UIColor) -> UIImage
-  { return self.tintedImageWithColor(tintColor,backgroundColor: backgroundColor,blendingMode: CGBlendMode.Overlay) }
+  func tintedGradientImageWithColor(_ tintColor:UIColor, backgroundColor:UIColor) -> UIImage
+  { return self.tintedImageWithColor(tintColor,backgroundColor: backgroundColor,blendingMode: CGBlendMode.overlay) }
 
-  func tintedImageWithColor(tintColor:UIColor, backgroundColor:UIColor) -> UIImage
-  { return self.tintedImageWithColor(tintColor,backgroundColor: backgroundColor,blendingMode: CGBlendMode.DestinationIn) }
+  func tintedImageWithColor(_ tintColor:UIColor, backgroundColor:UIColor) -> UIImage
+  { return self.tintedImageWithColor(tintColor,backgroundColor: backgroundColor,blendingMode: CGBlendMode.destinationIn) }
 
-  func tintedImageWithColor(tintColor:UIColor, backgroundColor:UIColor, blendingMode:CGBlendMode) -> UIImage
-  { let bounds = CGRectMake(0, 0, self.size.width, self.size.height)
+  func tintedImageWithColor(_ tintColor:UIColor, backgroundColor:UIColor, blendingMode:CGBlendMode) -> UIImage
+  { let bounds = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
     
     UIGraphicsBeginImageContextWithOptions(self.size, false, 0.0)
     
     tintColor.setFill()
     UIRectFill(bounds)
     
-    self.drawInRect(bounds, blendMode: blendingMode, alpha: 1.0)
+    self.draw(in: bounds, blendMode: blendingMode, alpha: 1.0)
     
     let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
     
@@ -36,15 +36,16 @@ extension UIImage
     backgroundColor.setFill()
     UIRectFill(bounds)
     
-    tintedImage.drawInRect(bounds);
+    tintedImage?.draw(in: bounds);
     
     let result = UIGraphicsGetImageFromCurrentImageContext()
     
-    return result
+    return result!
   }
   
-  func circleImageWithSize(size:CGSize, var circleColor:UIColor, disabled:Bool) -> UIImage
+  func circleImageWithSize(_ size:CGSize, circleColor:UIColor, disabled:Bool) -> UIImage
   {
+    var circleColor = circleColor
     var hue:CGFloat    = 0.0
     var sat:CGFloat    = 0.0
     var bright:CGFloat = 0.0
@@ -52,65 +53,65 @@ extension UIImage
     
     circleColor.getHue(&hue, saturation: &sat, brightness: &bright, alpha: &alpha)
     
-    var circleRect = CGRectMake(0, 0, size.width, size.height)
-    let imageOffset = CGPointMake(0.5*(size.width-self.size.width), 0.5*(size.height-self.size.height))
+    var circleRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    let imageOffset = CGPoint(x: 0.5*(size.width-self.size.width), y: 0.5*(size.height-self.size.height))
     let imgColor = !disabled  &&
                     ((0.11<=hue && hue<=0.17) || (0.32<=hue && hue<=0.34) || (0.49<=hue && hue<=0.51)) &&
                     0.9<bright &&
                     0.9<sat
-                  ? UIColor(white: 0.6, alpha: 1.0) : UIColor.whiteColor()
+                  ? UIColor(white: 0.6, alpha: 1.0) : UIColor.white
     
     if disabled
     { circleColor = UIColor(hue: hue, saturation: sat*0.2, brightness: 1.0, alpha: 0.3) }
     
-    let img = self.tintedImageWithColor(imgColor,backgroundColor: UIColor.clearColor())
+    let img = self.tintedImageWithColor(imgColor,backgroundColor: UIColor.clear)
     
     UIGraphicsBeginImageContext(size)
     let ctx = UIGraphicsGetCurrentContext()
     
     
     
-    CGContextSaveGState(ctx);
+    ctx?.saveGState();
     
     if !disabled
-    { CGContextSetShadowWithColor(ctx, CGSizeMake(0,0), 4.0, UIColor.grayColor().CGColor) }
+    { ctx?.setShadow(offset: CGSize(width: 0,height: 0), blur: 4.0, color: UIColor.gray.cgColor) }
     
     circleColor.setFill()
     
-    circleRect = CGRectInset(circleRect, 4, 4)
+    circleRect = circleRect.insetBy(dx: 4, dy: 4)
     
-    CGContextFillEllipseInRect(ctx, circleRect)
+    ctx?.fillEllipse(in: circleRect)
     
-    CGContextRestoreGState(ctx)
+    ctx?.restoreGState()
     
-    CGContextSetStrokeColorWithColor(ctx, circleColor.CGColor)
-    CGContextSetLineWidth(ctx, disabled ? 0.5 : 1.0)
-    CGContextStrokeEllipseInRect(ctx, circleRect);
+    ctx?.setStrokeColor(circleColor.cgColor)
+    ctx?.setLineWidth(disabled ? 0.5 : 1.0)
+    ctx?.strokeEllipse(in: circleRect);
     
-    img.drawAtPoint(imageOffset)
+    img.draw(at: imageOffset)
     
     let result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return result;
+    return result!;
 
   }
 
-  func dropShadow(shadowColor:UIColor) -> UIImage
+  func dropShadow(_ shadowColor:UIColor) -> UIImage
   {
     UIGraphicsBeginImageContext(self.size)
     
     let ctx = UIGraphicsGetCurrentContext()
     
-    CGContextSetShadowWithColor(ctx, CGSizeMake(2,0), 2.0, shadowColor.CGColor)
+    ctx?.setShadow(offset: CGSize(width: 2,height: 0), blur: 2.0, color: shadowColor.cgColor)
     
-    let imageOffset = CGPointMake(0.0,0.0)
-    self.drawAtPoint(imageOffset)
+    let imageOffset = CGPoint(x: 0.0,y: 0.0)
+    self.draw(at: imageOffset)
     let result = UIGraphicsGetImageFromCurrentImageContext()
     
     UIGraphicsEndImageContext();
     
-    return result;
+    return result!;
 
   }
 
